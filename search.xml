@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>hello world</title>
-    <url>/2022/06/12/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-Bash" data-language="Bash"><code class="language-Bash">$ hexo new &quot;My New Post&quot;</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-Bash" data-language="Bash"><code class="language-Bash">$ hexo server</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-Bash" data-language="Bash"><code class="language-Bash">$ hexo generate</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-Bash" data-language="Bash"><code class="language-Bash">$ hexo deploy</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+    <title>愚者【浅谈 euphoria 之主题】</title>
+    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js"></script><p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
+<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
+<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
+<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
+<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
+<span id="more"></span>]]></content>
       <categories>
-        <category>美好的每一天</category>
+        <category>思辨</category>
       </categories>
       <tags>
+        <tag>gal</tag>
         <tag>hello world</tag>
       </tags>
   </entry>
