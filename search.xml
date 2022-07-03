@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>愚者【浅谈 euphoria 之主题】</title>
+    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
+    <content><![CDATA[<p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
+<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
+<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
+<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
+<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>想点大问题</category>
+      </categories>
+      <tags>
+        <tag>gal</tag>
+        <tag>hello world</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何度过一个愉快的暑假？</title>
     <url>/2022/06/22/%E5%A6%82%E4%BD%95%E5%BA%A6%E8%BF%87%E4%B8%80%E4%B8%AA%E6%84%89%E5%BF%AB%E7%9A%84%E6%9A%91%E5%81%87/</url>
     <content><![CDATA[<h2 id="在最后一场考试后……"><a href="#在最后一场考试后……" class="headerlink" title="在最后一场考试后……"></a>在最后一场考试后……</h2><p>我听着小曲，漫游在渐渐入夜的南大校园中，想起来那场重要考试前的那晚，似乎也与今个的夜色并无二致。</p>
@@ -43,14 +60,7 @@
 
 <p>那么，下面——</p>
 <p><strong>我的假期开始啦！！！</strong></p>
-<h2 id="6-23"><a href="#6-23" class="headerlink" title="6.23"></a>6.23</h2><h3 id="更新书单"><a href="#更新书单" class="headerlink" title="更新书单"></a>更新书单</h3><p>鉴于书包还有一些空位，我在原有的基础上又添进了几本书，所以现在的书单是：</p>
-<blockquote>
-<p>CS:APP ( and its helper C Programming Language )<br>-&gt; Algorithms<br>New History of Western Philosophy<br>-&gt; some unknown books</p>
-</blockquote>
-<h3 id="辅修哲学的决定"><a href="#辅修哲学的决定" class="headerlink" title="辅修哲学的决定"></a>辅修哲学的决定</h3><p>上午写形策课的期末小结，认识到相比于程序设计，自己对计算机底层实现不感兴趣。这有关未来的方向选择，并还需通过进一步学习来考量这一点。但就近处来说，《数字电路与计算机组成实验》这门课我下学期是不打算选的。</p>
-<p>同时，鉴于本学期我仍学有余力，所以打算恢复辅修哲学的想法。在本科生院网站上下载了哲学系的辅修和主修培养计划，更细致的决定还待选课时做出。</p>
-<p>读了一篇关于信息在高考志愿填报中的重要性的文章，深以为然，日后生活当把获取信息提上日程。</p>
-<h3 id="可一书店"><a href="#可一书店" class="headerlink" title="可一书店"></a>可一书店</h3><p>下午同朋友去了可一书店，那里气氛很好，静雅闲适，更协窗外雨落，友人作伴，眼前哲思亦有趣。可惜雨下得大而急，未能全身而退，可算瑕不掩瑜。</p>
+<h2 id="可一书店"><a href="#可一书店" class="headerlink" title="可一书店"></a>可一书店</h2><p>下午同朋友去了可一书店，那里气氛很好，静雅闲适，更协窗外雨落，友人作伴，眼前哲思亦有趣。可惜雨下得大而急，未能全身而退，可算瑕不掩瑜。</p>
 <p>在自然哲学家还在以有形质料为万物本原、各执一词而争论时，赫拉克利特的思想已经超越时代，达到了“对辩证唯物主义原则的绝妙说明”之高度。</p>
 <div class="success">
     <blockquote>
@@ -81,6 +91,131 @@
         <p>我何尝没有经历过此三者的思想路径呢？可叹可叹耶！</p>
     </blockquote>
 </div>
+
+<h2 id="github-copilot"><a href="#github-copilot" class="headerlink" title="github copilot"></a>github copilot</h2><p>开始学习 CS:APP 之后遇到的第一个问题就是——copilot 连不上去了、</p>
+<blockquote>
+<p>copilot，没有你我可怎么活啊！！！</p>
+</blockquote>
+<p>经各种尝试无果后，想起之前 hosts 的改法：</p>
+<pre class="language-none"><code class="language-none">34.201.80.84    vscode-auth.github.com
+54.91.6.89      vscode-auth.github.com
+54.157.4.65     vscode-auth.github.com
+54.196.16.164   vscode-auth.github.com</code></pre>
+
+<p>大功告成，由于 WSL 会自动拷贝 Windows 下 hosts 文件的内容，所以 vscode in WSL 也解决了。</p>
+<p><del>（后续实践发现这样的过量代码提示还是有些碍眼的）</del></p>
+<h2 id="datalab"><a href="#datalab" class="headerlink" title="datalab"></a>datalab</h2><div class="info">
+    <blockquote>
+        <p>经过充分的摸鱼后，我终于来到了 CS:APP 的第一个实验 datalab，这里选几道有意思的题咱瞧瞧：</p>
+    </blockquote>
+</div>
+
+<h3 id="数据的-attributes"><a href="#数据的-attributes" class="headerlink" title="数据的 attributes"></a>数据的 attributes</h3><ol>
+<li><strong>检验 x 是否为 Tmax</strong>，只允许使用 ! ~ &amp; ^ | +</li>
+</ol>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">isTmax</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 从运算性质方面考察，有且仅有 Tmax 和 -1 满足等式 2 * x == -2</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">2</span> <span class="token operator">+</span> x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ol start="2">
+<li><strong>实现三目运算符</strong>，只允许使用 ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</li>
+</ol>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">conditional</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">,</span> <span class="token keyword">int</span> z<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 首先把 x 映射到 &#123;0,1&#125; 上，然后再把 &#123;0,1&#125; 映射到 &#123;0,~0&#125; 上，作掩码</span>
+    y <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token operator">!</span>x<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">31</span> <span class="token operator">>></span> <span class="token number">31</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> y<span class="token punctuation">;</span>
+    z <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">!</span>x<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">31</span> <span class="token operator">>></span> <span class="token number">31</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> z<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> y <span class="token operator">|</span> z<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ol start="3">
+<li><strong>实现逻辑非</strong>，只允许使用 ~ &amp; ^ | + &lt;&lt; &gt;&gt;</li>
+</ol>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">logicalNeg</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 从表示形式方面考察，0 具有这样的独特性质：+0 和 -0 的符号位均为 0</span>
+    <span class="token comment">// 所以取出符号位后用 1 减去它即可</span>
+    <span class="token keyword">return</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token operator">~</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token operator">~</span>x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">31</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<div class="success">
+    <blockquote>
+        <p>这些运算符各司其职：</p>
+        <p>! 负责映射，& 用于取出特定位，^ 用于检验全部位，| 用于拼接，而 << >> 和 ~ 最擅长造字面量</p>
+        <p>在仅对一位布尔值进行操作时，& 与 &&，| 与 || 是完全等效的。</p>
+        <p>此外，移位操作和 x*2 与 x/2 的对应性也值得留意。</p>
+    </blockquote>
+</div>
+
+
+<h3 id="分类与分步"><a href="#分类与分步" class="headerlink" title="分类与分步"></a>分类与分步</h3><p>比起上面的“思维训练”，还是考察程序员之基本功的相关题目更得我意：</p>
+<ol>
+<li><strong>实现小于等于的判断</strong>，只允许使用 ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</li>
+</ol>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">isLessOrEqual</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> x_is_positive <span class="token operator">=</span> <span class="token operator">!</span><span class="token punctuation">(</span>x <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> y_is_positive <span class="token operator">=</span> <span class="token operator">!</span><span class="token punctuation">(</span>y <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 情况 1，x>0 &amp;&amp; y&lt;0 时返回 0，同时 y==Tmin 的情况在这里被排除掉了</span>
+    <span class="token keyword">int</span> case_1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">!</span>x_is_positive<span class="token punctuation">)</span> <span class="token operator">|</span> y_is_positive<span class="token punctuation">;</span>
+
+    <span class="token comment">// 情况 2，x&lt;0 &amp;&amp; y>0 时返回 1</span>
+    <span class="token keyword">int</span> case_2 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">!</span>x_is_positive<span class="token punctuation">)</span> <span class="token operator">&amp;</span> y_is_positive<span class="token punctuation">;</span>
+
+    <span class="token comment">// 情况 3，x 与 y 同号，此时不存在溢出问题</span>
+    <span class="token keyword">int</span> minus_y <span class="token operator">=</span> <span class="token operator">~</span>y <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> x_minus_y <span class="token operator">=</span> x <span class="token operator">+</span> minus_y<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> x_minus_y_is_negative <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">(</span>x_minus_y <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> x_minus_y_is_zero <span class="token operator">=</span> <span class="token operator">!</span>x_minus_y<span class="token punctuation">;</span>
+
+    <span class="token comment">// 召唤神龙！</span>
+    <span class="token keyword">return</span> case_1 <span class="token operator">&amp;</span> <span class="token punctuation">(</span>case_2 <span class="token operator">|</span> x_minus_y_is_negative <span class="token operator">|</span> x_minus_y_is_zero<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ol start="2">
+<li><strong>实现 float 到 int 的强制类型转换</strong>，不允许使用任何函数</li>
+</ol>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">floatFloat2Int</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> uf<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 取出各个功能位，并做预处理</span>
+    <span class="token keyword">unsigned</span> sign <span class="token operator">=</span> uf <span class="token operator">>></span> <span class="token number">31</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> e <span class="token operator">=</span> <span class="token punctuation">(</span>uf <span class="token operator">&lt;&lt;</span> <span class="token number">1</span> <span class="token operator">>></span> <span class="token number">24</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">127</span><span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> frac <span class="token operator">=</span> uf <span class="token operator">&lt;&lt;</span> <span class="token number">9</span> <span class="token operator">>></span> <span class="token number">9</span><span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> total_frac<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> n<span class="token punctuation">;</span>
+
+    <span class="token comment">// 排除由于阶码过大过小导致 int 装不下的情况</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token operator">>=</span> <span class="token number">31</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">31</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 移动小数点</span>
+    total_frac <span class="token operator">=</span> <span class="token punctuation">(</span>frac <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token operator">&lt;=</span> <span class="token number">22</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        n <span class="token operator">=</span> total_frac <span class="token operator">>></span> <span class="token punctuation">(</span><span class="token number">22</span> <span class="token operator">-</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        n <span class="token operator">=</span> total_frac <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>e <span class="token operator">-</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 添加正负号</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sign <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> n<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span>n<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>有没有发现，IEEE 规定下的浮点数更像是一个多部件的拼合体？</p>
+<p>嘻嘻~</p>
+<blockquote>
+<p>值得一提的是，这个“拼合体”在其非规格化形式与规格化形式之间存在非常平滑的过渡。<br>这同时也是其单调性的来源。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>生活日记</category>
@@ -89,23 +224,6 @@
         <tag>假期</tag>
         <tag>CS:APP</tag>
         <tag>西方哲学史</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>愚者【浅谈 euphoria 之主题】</title>
-    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
-    <content><![CDATA[<p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
-<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
-<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
-<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
-<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>想点大问题</category>
-      </categories>
-      <tags>
-        <tag>gal</tag>
-        <tag>hello world</tag>
       </tags>
   </entry>
   <entry>
