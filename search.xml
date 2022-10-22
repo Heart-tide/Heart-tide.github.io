@@ -108,6 +108,7 @@
 <h4 id="Goal-of-6-031"><a href="#Goal-of-6-031" class="headerlink" title="Goal of 6.031"></a>Goal of 6.031</h4><div class="success">
     <blockquote>
         <p><b>软件工程是着眼于未来的</b>，因为软件是一个不断需要被改变的东西，因而它必须以准备被改变的形式去建构</p>
+        <p>也正因软件工程的未来性，软件的每一子结构也必须有良好的 <b>自我限定性</b>。</p>
     </blockquote>
 </div>
 
