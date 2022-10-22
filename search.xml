@@ -47,7 +47,7 @@
 <li>无检查则将尽力维持程序的运行（至于是否正常运行……）</li>
 </ul>
 <p>无检查通过定义 正无穷 &#x2F; NAN 等值，或返回 NULL 等来维持程序的运行，而在运行时并不向外抛出任何异常</p>
-<h4 id="Gradual-typing"><a href="#Gradual-typing" class="headerlink" title="Gradual typing"></a>Gradual typing</h4><p>很多动态类型的语言现在也支持使用静态类型，这实际上使得渐进类型（Gradual typing）得以存在，即同一程序的一部分使用静态类型，而另一部分使用动态类型</p>
+<h4 id="Gradual-typing"><a href="#Gradual-typing" class="headerlink" title="Gradual typing"></a>Gradual typing</h4><p>很多动态类型的语言现在也支持使用静态类型，这实际上使得渐进类型（gradual typing）得以存在，即同一程序的一部分使用静态类型，而另一部分使用动态类型</p>
 <p>利用渐进类型，一个快速成型的动态类型小 demo ，逐渐成长为大型静态类型 project 的这一过程，就可以具有一条更平滑的曲线了</p>
 <h3 id="Tips-about-grammer"><a href="#Tips-about-grammer" class="headerlink" title="Tips about grammer"></a><strong>Tips about grammer</strong></h3><h4 id="Details"><a href="#Details" class="headerlink" title="Details"></a>Details</h4><ul>
 <li><p>TypeScript 中可以指定变量类型为 any，则编译器会跳过所有与之相关的静态类型检查。所有包含类型为 any 的变量的表达式的类型也为 any</p>
@@ -130,7 +130,7 @@
 <p>编程语言是工具，但软件工程的思想不是。诚如儒学中“礼”与“义”之分，逻辑通路与实践通路，现已展现在眼前</p>
 ]]></content>
       <categories>
-        <category>programming</category>
+        <category>Programming</category>
       </categories>
       <tags>
         <tag>TypeScript</tag>
@@ -147,7 +147,7 @@
 <p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
 <span id="more"></span>]]></content>
       <categories>
-        <category>galgame</category>
+        <category>Galgame</category>
       </categories>
       <tags>
         <tag>gal</tag>
@@ -783,7 +783,7 @@ painter<span class="token punctuation">.</span><span class="token function">draw
 </blockquote>
 ]]></content>
       <categories>
-        <category>programming</category>
+        <category>Programming</category>
       </categories>
       <tags>
         <tag>C++</tag>
