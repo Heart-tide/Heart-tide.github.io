@@ -131,7 +131,7 @@
 <p>编程语言是工具，但软件工程的思想不是。诚如儒学中“礼”与“义”之分，逻辑通路与实践通路，现已展现在眼前</p>
 <h2 id="Basic-TypeScript"><a href="#Basic-TypeScript" class="headerlink" title="Basic TypeScript"></a>Basic TypeScript</h2><div class="success">
     <blockquote>
-        <p>术语只存在于严格受限的模型中</p>
+        <p>术语只存在于模型中，并同其一并严格受限</p>
     </blockquote>
 </div>
 
@@ -168,7 +168,7 @@
 <li>将 a 所对应的对象拷贝到 x 分配到的内存空间中</li>
 </ul>
 <p>这一过程实际上创建了一个起点为 x 的信息链路，作为原起点为 a 的信息链路之副本：</p>
-<div class="success">
+<div class="info">
     <blockquote>
         <p>变量名 a（变量 a 的内存地址）-> 对象 M 的值</p>
         <p>变量名 x（变量 x 的内存地址）-> 对象 M 的值</p>
