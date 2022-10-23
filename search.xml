@@ -129,7 +129,13 @@
 </div>
 
 <p>编程语言是工具，但软件工程的思想不是。诚如儒学中“礼”与“义”之分，逻辑通路与实践通路，现已展现在眼前</p>
-<h2 id="Basic-TypeScript"><a href="#Basic-TypeScript" class="headerlink" title="Basic TypeScript"></a>Basic TypeScript</h2><h3 id="Mutability-vs-Immutability"><a href="#Mutability-vs-Immutability" class="headerlink" title="Mutability vs. Immutability"></a><strong>Mutability <em>vs.</em> Immutability</strong></h3><h4 id="Snapshot-diagram"><a href="#Snapshot-diagram" class="headerlink" title="Snapshot diagram"></a>Snapshot diagram</h4><p>内存快照（snapshot diagram）是一种 <strong>分析方法</strong>，它能直观地展示概念之间的梗概性的不同</p>
+<h2 id="Basic-TypeScript"><a href="#Basic-TypeScript" class="headerlink" title="Basic TypeScript"></a>Basic TypeScript</h2><div class="info">
+    <blockquote>
+        <p>术语只存在于严格受限的模型中</p>
+    </blockquote>
+</div>
+
+<h3 id="Mutability-vs-Immutability"><a href="#Mutability-vs-Immutability" class="headerlink" title="Mutability vs. Immutability"></a><strong>Mutability <em>vs.</em> Immutability</strong></h3><h4 id="Snapshot-diagram"><a href="#Snapshot-diagram" class="headerlink" title="Snapshot diagram"></a>Snapshot diagram</h4><p>内存快照（snapshot diagram）是一种 <strong>研究模型的分析方法</strong>，它能直观地展示概念之间的梗概性的不同</p>
 <p>为了精当地表现这些不同，此一方法应当对自身语法有良好的规约</p>
 <h4 id="Value-vs-Reference"><a href="#Value-vs-Reference" class="headerlink" title="Value vs. Reference"></a>Value <em>vs.</em> Reference</h4><p>同上节课 const 处所述，改变内存地址的值，与改变变量映射到哪块内存区域中，是两个迥然不同的话题：</p>
 <ul>
@@ -199,13 +205,12 @@
     </blockquote>
 </div>
 
-<h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a><strong>Containers</strong></h3><p>Arrays, Maps, and Sets included.</p>
-<ul>
+<h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a><strong>Containers</strong></h3><ul>
 <li>Array 对象接受隐式的列表构造方法</li>
 <li>Set 对象可以通过构造函数显式调用一维数组实参来构造</li>
 <li>Map 对象则可通过构造函数显式调用二维数组实参来构造，其中内层数组的形式必须为 <code>[key, value]</code></li>
 </ul>
-<h4 id="Primitive-vs-Object"><a href="#Primitive-vs-Object" class="headerlink" title="Primitive vs. Object"></a>Primitive <em>vs.</em> Object</h4><p>案：TypeScript 中 基元 &#x2F; 引用类型 的概念分野与 Java 基本相同。如 number 与 string 即属基元，而 Number, String, Array 等则属包装类型的对象</p>
+<h4 id="Primitive-vs-Object"><a href="#Primitive-vs-Object" class="headerlink" title="Primitive vs. Object"></a>Primitive <em>vs.</em> Object</h4><p>案：TypeScript 中 基元 &#x2F; 引用类型 的概念分野与 Java 基本相同</p>
 <blockquote>
 <p>引用类型的对象的特征在于，它的值是一个隐式的、指向真正对象的一个指针</p>
 </blockquote>
