@@ -133,12 +133,12 @@
 <p>为了精当地表现这些不同，此一方法应当对自身语法有良好的规约</p>
 <h4 id="Value-vs-Reference"><a href="#Value-vs-Reference" class="headerlink" title="Value vs. Reference"></a>Value <em>vs.</em> Reference</h4><p>同上节课 const 处所述，改变内存地址的值，与改变变量映射到哪块内存区域中，是两个迥然不同的话题：</p>
 <ul>
-<li>可变对象与不可变对象之分，只在前者（value）</li>
-<li>而 const 考虑的问题，则在后者（reference）</li>
+<li>可变对象与不可变对象之分，只在前者（<strong>value</strong>）</li>
+<li>而 const 考虑的问题，则在后者（<strong>reference</strong>）</li>
 </ul>
 <p>可变性与不可变性的话题，自此可从以上两方面分别讨论</p>
 <ul>
-<li>就理论本质而言：</li>
+<li>就本质而言：</li>
 </ul>
 <div class="success">
     <blockquote>
@@ -156,7 +156,7 @@
     </blockquote>
 </div>
 
-<h4 id="In-operation-view-…"><a href="#In-operation-view-…" class="headerlink" title="In operation view …"></a>In operation view …</h4><h5 id="Review-Call-by-value"><a href="#Review-Call-by-value" class="headerlink" title="Review Call-by-value"></a><strong>Review Call-by-value</strong></h5><p>假设实参为 a，形参为 x，那么传参过程可叙述为：</p>
+<h4 id="In-operation-view-…"><a href="#In-operation-view-…" class="headerlink" title="In operation view …"></a>In operation view …</h4><h5 id="Review-call-by-value"><a href="#Review-call-by-value" class="headerlink" title="Review call-by-value"></a><strong>Review call-by-value</strong></h5><p>假设实参为 a，形参为 x，那么传参过程可叙述为：</p>
 <ul>
 <li>创建变量 x 并分配新的内存空间</li>
 <li>将 a 所对应的对象拷贝到 x 分配到的内存空间中</li>
@@ -195,7 +195,7 @@
 <p>相反，按引用传参一定是浅拷贝，此理显见</p>
 <h5 id="Lemma-when-pass-a-immutable-object-by-value-…"><a href="#Lemma-when-pass-a-immutable-object-by-value-…" class="headerlink" title="Lemma: when pass a immutable object by value …"></a><strong>Lemma: when pass a immutable object by value …</strong></h5><div class="info">
     <blockquote>
-        <p>综上所述，任何对一个不可变对象进行的 **操作** 若是按值传参的，都不会改变实参变量本身</p>
+        <p>综上所述，任何对一个不可变对象进行的 <b>操作</b> 若是按值传参的，都不会改变实参变量本身</p>
     </blockquote>
 </div>
 
@@ -203,7 +203,7 @@
 <ul>
 <li>Array 对象接受隐式的列表构造方法</li>
 <li>Set 对象可以通过构造函数显式调用一维数组实参来构造</li>
-<li>Map 对象则可通过构造函数显式调用二维数组实参来构造，其中内层数组的形式必须为 [key, value]</li>
+<li>Map 对象则可通过构造函数显式调用二维数组实参来构造，其中内层数组的形式必须为 <code>[key, value]</code></li>
 </ul>
 <h4 id="Primitive-vs-Object"><a href="#Primitive-vs-Object" class="headerlink" title="Primitive vs. Object"></a>Primitive <em>vs.</em> Object</h4><p>案：TypeScript 中 基元 &#x2F; 引用类型 的概念分野与 Java 基本相同。如 number 与 string 即属基元，而 Number, String, Array 等则属包装类型的对象</p>
 <blockquote>
@@ -240,7 +240,7 @@
 <h3 id="More-grammer-about-variable"><a href="#More-grammer-about-variable" class="headerlink" title="More grammer about variable"></a><strong>More grammer about variable</strong></h3><h4 id="declare-variable"><a href="#declare-variable" class="headerlink" title="declare variable"></a>declare variable</h4><ul>
 <li><p>TypeScript 支持变量类型的自动推断，如同 C++ 中 auto 关键字那样。但应极其谨慎地使用，否则不能给人以充分的 <strong>注释</strong></p>
 </li>
-<li><p>变量的性质部分地受限于声明时所用的关键字：</p>
+<li><p>变量的性质部分地 <strong>受限</strong> 于声明时所用的关键字：</p>
 </li>
 </ul>
 <div class="warning">
@@ -251,13 +251,13 @@
     </blockquote>
 </div>
 
-<h4 id="Record-type-and-Destructuring-assignment"><a href="#Record-type-and-Destructuring-assignment" class="headerlink" title="Record type and Destructuring assignment"></a>Record type <em>and</em> Destructuring assignment</h4><p>记录类型与对象解构是一组 <strong>对称</strong> 的语法，用于处理一组临时的对象集合</p>
+<h4 id="Record-type-and-Destructuring-assignment"><a href="#Record-type-and-Destructuring-assignment" class="headerlink" title="Record type and Destructuring assignment"></a>Record type <em>and</em> Destructuring assignment</h4><p>记录类型与对象解构是一组对称的语法，用于处理一组临时的对象集合</p>
 <ul>
 <li>记录类型（record type），类似于“匿名结构体”，用于把一组变量聚合到一个记录类型的变量上，或作为函数返回多个变量的方式。可视为 <strong>打包</strong></li>
 <li>对象解构（destructuring assignment）则可把记录类型的变量集合拆开，按顺序分别为一组新声明的同名变量赋初值。可视为 <strong>解包</strong></li>
 </ul>
 <h3 id="API"><a href="#API" class="headerlink" title="API"></a><strong>API</strong></h3><p>程序依靠不同的 API（application programming interface），来在不同的上下文中运行。程序的编写者要尽量利用通用的 API 编写代码，以使得程序与运行环境无关</p>
-<p><strong>API</strong> 对 <strong>程序实体</strong> 的描述应当给予其充分的限定性，以至于用户可以仅凭说明来使用它们</p>
+<p>API 对 <strong>程序实体</strong> 的描述应当给予其充分的限定性，以至于用户可以仅凭说明来使用它们</p>
 <div class="info">
     <blockquote>
         <p>Reading, writing, understanding, and analyzing specifications will be one of our first major undertakings in 6.031.</p>
