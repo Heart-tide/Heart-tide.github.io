@@ -52,7 +52,7 @@
 <h3 id="Tips-about-grammer"><a href="#Tips-about-grammer" class="headerlink" title="Tips about grammer"></a><strong>Tips about grammer</strong></h3><h4 id="Details"><a href="#Details" class="headerlink" title="Details"></a>Details</h4><ul>
 <li><p>TypeScript 中可以指定变量类型为 any，则编译器会跳过所有与之相关的静态类型检查。所有包含类型为 any 的变量的表达式的类型也为 any</p>
 </li>
-<li><p>在 TypeScript 中，用 for (let i in &lt;iterable&gt;) 来遍历 key，用 for (let i of &lt;iterable&gt;) 来遍历 value。案数组的 key 即其下标</p>
+<li><p>在 TypeScript 中，用 for(let i of &lt;iterable&gt;) 来遍历容器中的元素，案 Map 的元素即为形式为 [key, value] 的二元数组。在任何情况下不要使用 for(let i in &lt;iterable&gt;)</p>
 </li>
 <li><p>C++ 和 Python 里面都没有从其他类型到 string 的隐式类型转换，而 Java 和 JavaScript 是有的</p>
 </li>
@@ -92,7 +92,7 @@
 <blockquote>
 <p>Because programming is full of them, and if we don&#39;t write them down, we won&#39;t remember them, and other people who need to read or change our programs later won&#39;t know them. They&#39;ll have to guess.</p>
 </blockquote>
-<h3 id="Software-engineering"><a href="#Software-engineering" class="headerlink" title="Software engineering"></a><strong>Software engineering</strong></h3><h4 id="Hacking-vs-engineering"><a href="#Hacking-vs-engineering" class="headerlink" title="Hacking vs. engineering"></a>Hacking <em>vs.</em> engineering</h4><p>案：有风险的代码 vs. 软件工程</p>
+<h3 id="Software-engineering"><a href="#Software-engineering" class="headerlink" title="Software engineering"></a><strong>Software engineering</strong></h3><h4 id="Hacking-vs-Engineering"><a href="#Hacking-vs-Engineering" class="headerlink" title="Hacking vs. Engineering"></a>Hacking <em>vs.</em> Engineering</h4><p>案：有风险的代码 vs. 软件工程</p>
 <p>We&#39;ve written some hacky code in this reading. Hacking is often marked by unbridled optimism:</p>
 <ul>
 <li>Bad: writing lots of code before testing any of it.</li>
@@ -129,6 +129,140 @@
 </div>
 
 <p>编程语言是工具，但软件工程的思想不是。诚如儒学中“礼”与“义”之分，逻辑通路与实践通路，现已展现在眼前</p>
+<h2 id="Basic-TypeScript"><a href="#Basic-TypeScript" class="headerlink" title="Basic TypeScript"></a>Basic TypeScript</h2><h3 id="Mutability-vs-Immutability"><a href="#Mutability-vs-Immutability" class="headerlink" title="Mutability vs. Immutability"></a><strong>Mutability <em>vs.</em> Immutability</strong></h3><h4 id="Snapshot-diagram"><a href="#Snapshot-diagram" class="headerlink" title="Snapshot diagram"></a>Snapshot diagram</h4><p>内存快照（snapshot diagram）是一种 <strong>分析方法</strong>，它能直观地展示概念之间的梗概性的不同</p>
+<p>为了精当地表现这些不同，此一方法应当对自身语法有良好的规约</p>
+<h4 id="Value-vs-Reference"><a href="#Value-vs-Reference" class="headerlink" title="Value vs. Reference"></a>Value <em>vs.</em> Reference</h4><p>同上节课 const 处所述，改变内存地址的值，与改变变量映射到哪块内存区域中，是两个迥然不同的话题：</p>
+<ul>
+<li>可变对象与不可变对象之分，只在前者（value）</li>
+<li>而 const 考虑的问题，则在后者（reference）</li>
+</ul>
+<p>可变性与不可变性的话题，自此可从以上两方面分别讨论</p>
+<ul>
+<li>就理论本质而言：</li>
+</ul>
+<div class="success">
+    <blockquote>
+        <p><b>变量</b> 是编译时实体，代表一块内存空间；<b>对象</b> 为运行时实体，代表一个数据单元</p>
+        <p>二者构成如下内存视图：<b>变量名（变量的内存地址）-> 对象的值</b></p>
+    </blockquote>
+</div>
+
+<ul>
+<li>就整体实践而论：</li>
+</ul>
+<div class="warning">
+    <blockquote>
+        <p>不可变性是一条重要的设计准则</p>
+    </blockquote>
+</div>
+
+<h4 id="In-operation-view-…"><a href="#In-operation-view-…" class="headerlink" title="In operation view …"></a>In operation view …</h4><h5 id="Review-Call-by-value"><a href="#Review-Call-by-value" class="headerlink" title="Review Call-by-value"></a><strong>Review Call-by-value</strong></h5><p>假设实参为 a，形参为 x，那么传参过程可叙述为：</p>
+<ul>
+<li>创建变量 x 并分配新的内存空间</li>
+<li>将 a 所对应的对象拷贝到 x 分配到的内存空间中</li>
+</ul>
+<p>这一过程实际上创建了一个起点为 x 的信息链路，作为原起点为 a 的信息链路之副本：</p>
+<div class="success">
+    <blockquote>
+        <p>变量名 a（变量 a 的内存地址）-> 对象 M 的值</p>
+        <p>变量名 x（变量 x 的内存地址）-> 对象 M 的值</p>
+    </blockquote>
+</div>
+
+<h5 id="Review-call-by-reference"><a href="#Review-call-by-reference" class="headerlink" title="Review call-by-reference"></a><strong>Review call-by-reference</strong></h5><p>相对应地，按引用传参具有如下过程：</p>
+<ul>
+<li>创建变量 x 并将其映射到 a 的内存空间上</li>
+</ul>
+<p>这一过程创建的信息链路如下所示，注意比按值传参短了一步：</p>
+<div class="info">
+    <blockquote>
+        <p>变量名 a（变量 a 的内存地址）</p>
+        <p>变量名 x（变量 a 的内存地址）</p>
+    </blockquote>
+</div>
+
+<p>作为少有的允许按引用传参的语言，C++ 规定，一个引用类型的变量不能重新绑定到其他变量上，也即引用类型变量是隐式 const 的。这实际上维护了一定的不可变性</p>
+<h5 id="Call-by-value-x3D-Deep-copy"><a href="#Call-by-value-x3D-Deep-copy" class="headerlink" title="Call-by-value !&#x3D; Deep copy"></a><strong>Call-by-value !&#x3D; Deep copy</strong></h5><p>案对象的值有可能是一个指针，如下所示：</p>
+<div class="warning">
+    <blockquote>
+        <p>变量名（变量的内存地址）-> 对象 1 的值（对象 2 的内存地址）-> 对象 2 的值</p>
+    </blockquote>
+</div>
+
+<blockquote>
+<p>理论上，只要指针参数的阶数足够高，这个链条可以永续传递下去。而只有一直拷贝到此链条的尾部，才能在定义上算作是 <strong>深拷贝</strong>。否则即为 <strong>浅拷贝</strong><br>Java 和 Python 都是按值传参的，但如果参数是引用类型的变量，都只能做到浅拷贝，这是因为其架构中变量所对应对象的值是一个隐式的指针之缘故</p>
+</blockquote>
+<p>相反，按引用传参一定是浅拷贝，此理显见</p>
+<h5 id="Lemma-when-pass-a-immutable-object-by-value-…"><a href="#Lemma-when-pass-a-immutable-object-by-value-…" class="headerlink" title="Lemma: when pass a immutable object by value …"></a><strong>Lemma: when pass a immutable object by value …</strong></h5><div class="info">
+    <blockquote>
+        <p>综上所述，任何对一个不可变对象进行的 **操作** 若是按值传参的，都不会改变实参变量本身</p>
+    </blockquote>
+</div>
+
+<h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a><strong>Containers</strong></h3><p>Arrays, Maps, and Sets included.</p>
+<ul>
+<li>Array 对象接受隐式的列表构造方法</li>
+<li>Set 对象可以通过构造函数显式调用一维数组实参来构造</li>
+<li>Map 对象则可通过构造函数显式调用二维数组实参来构造，其中内层数组的形式必须为 [key, value]</li>
+</ul>
+<h4 id="Primitive-vs-Object"><a href="#Primitive-vs-Object" class="headerlink" title="Primitive vs. Object"></a>Primitive <em>vs.</em> Object</h4><p>案：TypeScript 中 基元 &#x2F; 引用类型 的概念分野与 Java 基本相同。如 number 与 string 即属基元，而 Number, String, Array 等则属包装类型的对象</p>
+<blockquote>
+<p>引用类型的对象的特征在于，它的值是一个隐式的、指向真正对象的一个指针</p>
+</blockquote>
+<p>详细来说，取基元的对象可以直接得到它的值，而取引用类型的对象会先经过一个隐式的指针访问，再返回对应的真正对象的值：</p>
+<div class="success">
+    <blockquote>
+        <p>基元：变量名（变量的内存地址）-> 对象 M 的值</p>
+        <p>引用类型对象：变量名（变量的内存地址）-> 指针 p（对象 N 的地址）-> 对象 N 的值</p>
+    </blockquote>
+</div>
+
+<h4 id="Insert-element"><a href="#Insert-element" class="headerlink" title="Insert element"></a>Insert element</h4><div class="info">
+    <blockquote>
+        <p>容器添加元素时均为按值传参，因而具有上节所论按值传参所有性质。对基元是深拷贝，对引用类型对象是浅拷贝</p>
+    </blockquote>
+</div>
+
+<p>TypeScript 的内嵌 Map &#x2F; Set 为 HashMap &#x2F; HashSet，这意味着它们的 key 对象需要同时满足两个条件：</p>
+<ul>
+<li>hashable</li>
+<li>immutable</li>
+</ul>
+<p>任何基元自然满足上述条件，但如果想在容器里存储引用类型的对象，则要好好思量一番了</p>
+<h4 id="Visit-element"><a href="#Visit-element" class="headerlink" title="Visit element"></a>Visit element</h4><ul>
+<li><p>如果在遍历容器时不需要元素下标，则尽量使用范围 for 循环。因为常规 for 循环给 bug 预留了更多的生存空间</p>
+</li>
+<li><p>如果试图访问容器中一个未被初始化的位置，则会返回 undefined</p>
+</li>
+<li><p>TypeScript 中数组可以在任意下标存储对象（甚至是负数下标），即使对象的存储并不连续。但这样的情况并不应多见，程序员在更多时候应当给予 Array 以 <strong>抽象数据结构</strong> list 的限定</p>
+</li>
+</ul>
+<h3 id="More-grammer-about-variable"><a href="#More-grammer-about-variable" class="headerlink" title="More grammer about variable"></a><strong>More grammer about variable</strong></h3><h4 id="declare-variable"><a href="#declare-variable" class="headerlink" title="declare variable"></a>declare variable</h4><ul>
+<li><p>TypeScript 支持变量类型的自动推断，如同 C++ 中 auto 关键字那样。但应极其谨慎地使用，否则不能给人以充分的 <strong>注释</strong></p>
+</li>
+<li><p>变量的性质部分地受限于声明时所用的关键字：</p>
+</li>
+</ul>
+<div class="warning">
+    <blockquote>
+        <p>let 关键字声明的变量具有块作用域，且应可能被重新赋值</p>
+        <p>const 关键字声明的变量具有块作用域，且不能被重新赋值</p>
+        <p>var 关键字声明的变量具有函数作用域，这点同 Python 一致，给予了变量更弱的限定性，不应被使用</p>
+    </blockquote>
+</div>
+
+<h4 id="Record-type-and-Destructuring-assignment"><a href="#Record-type-and-Destructuring-assignment" class="headerlink" title="Record type and Destructuring assignment"></a>Record type <em>and</em> Destructuring assignment</h4><p>记录类型与对象解构是一组 <strong>对称</strong> 的语法，用于处理一组临时的对象集合</p>
+<ul>
+<li>记录类型（record type），类似于“匿名结构体”，用于把一组变量聚合到一个记录类型的变量上，或作为函数返回多个变量的方式。可视为 <strong>打包</strong></li>
+<li>对象解构（destructuring assignment）则可把记录类型的变量集合拆开，按顺序分别为一组新声明的同名变量赋初值。可视为 <strong>解包</strong></li>
+</ul>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a><strong>API</strong></h3><p>程序依靠不同的 API（application programming interface），来在不同的上下文中运行。程序的编写者要尽量利用通用的 API 编写代码，以使得程序与运行环境无关</p>
+<p><strong>API</strong> 对 <strong>程序实体</strong> 的描述应当给予其充分的限定性，以至于用户可以仅凭说明来使用它们</p>
+<div class="info">
+    <blockquote>
+        <p>Reading, writing, understanding, and analyzing specifications will be one of our first major undertakings in 6.031.</p>
+    </blockquote>
+</div>
 ]]></content>
       <categories>
         <category>Programming</category>
