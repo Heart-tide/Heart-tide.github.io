@@ -16,7 +16,7 @@ document.addEventListener("pjax:success", initScrollReveal);
 <meta property="og:description" content="ForewordHello! 你好，好久不见 在消失的这段时间里，我先后学习了 CSAPP 和 CS61B 两门课程，分别对应 计算机系统基础 和 数据结构与算法 两大基本课题               现在呢，我想做一些别的！        我已经写了几万行代码，但这些代码的是否足够的好，以至于能够到所谓 工业级代码 的边儿呢？ 我想结果是否定的，所以我来到了这里，自学的第三站—— MIT 6">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-22T14:22:08.000Z">
-<meta property="article:modified_time" content="2022-10-23T13:14:44.364Z">
+<meta property="article:modified_time" content="2022-10-25T10:28:47.623Z">
 <meta property="article:author" content="朝汐">
 <meta property="article:tag" content="TypeScript">
 <meta property="article:tag" content="Software engineering">
@@ -36,7 +36,7 @@ IconifyProviders = {
     // Wait for 1 second before switching API hosts
     rotate: 1000,
   },
-};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="朝汐"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="朝汐"><span class="site-author-status" title="美好的每一天.">🎵</span></a><div class="site-author-name"><a href="/about/">朝汐</a></div><a class="site-name" href="/about/site.html">朝汐的小站</a><sub class="site-subtitle">Go forward, freely and bravely.</sub><div class="site-description">永远面向未来，永远自由</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">3</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">2</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">7</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Heart-tide" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/190140532" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:heart.zhao@foxmail.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://travellings.link" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><span class="icon iconify" data-icon="ri:train-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Foreword"><span class="toc-number">1.</span> <span class="toc-text">Foreword</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Static-Checking"><span class="toc-number">2.</span> <span class="toc-text">Static Checking</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Static-typing"><span class="toc-number">2.1.</span> <span class="toc-text">Static typing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Types"><span class="toc-number">2.1.1.</span> <span class="toc-text">Types</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Static-typing-vs-Dynamic-typing"><span class="toc-number">2.1.2.</span> <span class="toc-text">Static typing vs. Dynamic typing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Static-checking-vs-Dynamic-checking-vs-No-checking"><span class="toc-number">2.1.3.</span> <span class="toc-text">Static checking vs. Dynamic checking vs. No checking</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Gradual-typing"><span class="toc-number">2.1.4.</span> <span class="toc-text">Gradual typing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tips-about-grammer"><span class="toc-number">2.2.</span> <span class="toc-text">Tips about grammer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Details"><span class="toc-number">2.2.1.</span> <span class="toc-text">Details</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mutable-variable-and-const-identifier"><span class="toc-number">2.2.2.</span> <span class="toc-text">Mutable variable and const identifier</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comment"><span class="toc-number">2.3.</span> <span class="toc-text">Comment</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Comment-for-functions"><span class="toc-number">2.3.1.</span> <span class="toc-text">Comment for functions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Go-deeper-into-comment"><span class="toc-number">2.3.2.</span> <span class="toc-text">Go deeper into comment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Software-engineering"><span class="toc-number">2.4.</span> <span class="toc-text">Software engineering</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hacking-vs-Engineering"><span class="toc-number">2.4.1.</span> <span class="toc-text">Hacking vs. Engineering</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Goal-of-6-031"><span class="toc-number">2.4.2.</span> <span class="toc-text">Goal of 6.031</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-TypeScript"><span class="toc-number">3.</span> <span class="toc-text">Basic TypeScript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mutability-vs-Immutability"><span class="toc-number">3.1.</span> <span class="toc-text">Mutability vs. Immutability</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Snapshot-diagram"><span class="toc-number">3.1.1.</span> <span class="toc-text">Snapshot diagram</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Value-vs-Reference"><span class="toc-number">3.1.2.</span> <span class="toc-text">Value vs. Reference</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#In-operation-view-%E2%80%A6"><span class="toc-number">3.1.3.</span> <span class="toc-text">In operation view …</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Review-call-by-value"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">Review call-by-value</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Review-call-by-reference"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">Review call-by-reference</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Call-by-value-x3D-Deep-copy"><span class="toc-number">3.1.3.3.</span> <span class="toc-text">Call-by-value !&#x3D; Deep copy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Lemma-when-pass-a-immutable-object-by-value-%E2%80%A6"><span class="toc-number">3.1.3.4.</span> <span class="toc-text">Lemma: when pass a immutable object by value …</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Containers"><span class="toc-number">3.2.</span> <span class="toc-text">Containers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Primitive-vs-Object"><span class="toc-number">3.2.1.</span> <span class="toc-text">Primitive vs. Object</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Insert-element"><span class="toc-number">3.2.2.</span> <span class="toc-text">Insert element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visit-element"><span class="toc-number">3.2.3.</span> <span class="toc-text">Visit element</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#More-grammer-about-variable"><span class="toc-number">3.3.</span> <span class="toc-text">More grammer about variable</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#declare-variable"><span class="toc-number">3.3.1.</span> <span class="toc-text">declare variable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Record-type-and-Destructuring-assignment"><span class="toc-number">3.3.2.</span> <span class="toc-text">Record type and Destructuring assignment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API"><span class="toc-number">3.4.</span> <span class="toc-text">API</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://heart-tide.github.io/2022/10/22/MIT-6-031/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="朝汐"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="朝汐的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">MIT-6.031</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-10-22 22:22:08" itemprop="dateCreated datePublished" datetime="2022-10-22T22:22:08+08:00">2022-10-22</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="修改时间：2022-10-23 21:14:44" itemprop="dateModified" datetime="2022-10-23T21:14:44+08:00">2022-10-23</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">3.2k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">12m</span></span></span><span class="leancloud_visitors" id="/2022/10/22/MIT-6-031/" data-flag-title="MIT-6.031"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/2022/10/22/MIT-6-031/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/Programming/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">Programming</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/TypeScript/" style="--text-color:#317AC6"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">TypeScript</span></a><a class="tag-item" href="/tags/Software-engineering/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">Software engineering</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><p>Hello! 你好，好久不见</p>
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="朝汐"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="朝汐"><span class="site-author-status" title="美好的每一天.">🎵</span></a><div class="site-author-name"><a href="/about/">朝汐</a></div><a class="site-name" href="/about/site.html">朝汐的小站</a><sub class="site-subtitle">Go forward, freely and bravely.</sub><div class="site-description">永远面向未来，永远自由</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">3</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">2</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">7</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Heart-tide" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/190140532" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:heart.zhao@foxmail.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://travellings.link" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><span class="icon iconify" data-icon="ri:train-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Foreword"><span class="toc-number">1.</span> <span class="toc-text">Foreword</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Static-Checking"><span class="toc-number">2.</span> <span class="toc-text">Static Checking</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Static-typing"><span class="toc-number">2.1.</span> <span class="toc-text">Static typing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Types"><span class="toc-number">2.1.1.</span> <span class="toc-text">Types</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Static-typing-vs-Dynamic-typing"><span class="toc-number">2.1.2.</span> <span class="toc-text">Static typing vs. Dynamic typing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Static-checking-vs-Dynamic-checking-vs-No-checking"><span class="toc-number">2.1.3.</span> <span class="toc-text">Static checking vs. Dynamic checking vs. No checking</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Gradual-typing"><span class="toc-number">2.1.4.</span> <span class="toc-text">Gradual typing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tips-about-grammer"><span class="toc-number">2.2.</span> <span class="toc-text">Tips about grammer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Details"><span class="toc-number">2.2.1.</span> <span class="toc-text">Details</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mutable-variable-and-const-identifier"><span class="toc-number">2.2.2.</span> <span class="toc-text">Mutable variable and const identifier</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comment"><span class="toc-number">2.3.</span> <span class="toc-text">Comment</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Comment-for-functions"><span class="toc-number">2.3.1.</span> <span class="toc-text">Comment for functions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Go-deeper-into-comment"><span class="toc-number">2.3.2.</span> <span class="toc-text">Go deeper into comment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Software-engineering"><span class="toc-number">2.4.</span> <span class="toc-text">Software engineering</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hacking-vs-Engineering"><span class="toc-number">2.4.1.</span> <span class="toc-text">Hacking vs. Engineering</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Goal-of-6-031"><span class="toc-number">2.4.2.</span> <span class="toc-text">Goal of 6.031</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-TypeScript"><span class="toc-number">3.</span> <span class="toc-text">Basic TypeScript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mutability-vs-Immutability"><span class="toc-number">3.1.</span> <span class="toc-text">Mutability vs. Immutability</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Snapshot-diagram"><span class="toc-number">3.1.1.</span> <span class="toc-text">Snapshot diagram</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Value-vs-Reference"><span class="toc-number">3.1.2.</span> <span class="toc-text">Value vs. Reference</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#In-operation-view-%E2%80%A6"><span class="toc-number">3.1.3.</span> <span class="toc-text">In operation view …</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Call-by-value"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">Call-by-value</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Call-by-reference"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">Call-by-reference</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Call-by-value-x3D-Deep-copy"><span class="toc-number">3.1.3.3.</span> <span class="toc-text">Call-by-value !&#x3D; Deep copy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Lemma-when-pass-a-immutable-object-by-value-%E2%80%A6"><span class="toc-number">3.1.3.4.</span> <span class="toc-text">Lemma: when pass a immutable object by value …</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Containers"><span class="toc-number">3.2.</span> <span class="toc-text">Containers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Primitive-vs-Object"><span class="toc-number">3.2.1.</span> <span class="toc-text">Primitive vs. Object</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Insert-element"><span class="toc-number">3.2.2.</span> <span class="toc-text">Insert element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visit-element"><span class="toc-number">3.2.3.</span> <span class="toc-text">Visit element</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#More-grammer-about-variable"><span class="toc-number">3.3.</span> <span class="toc-text">More grammer about variable</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#declare-variable"><span class="toc-number">3.3.1.</span> <span class="toc-text">declare variable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Record-type-and-Destructuring-assignment"><span class="toc-number">3.3.2.</span> <span class="toc-text">Record type and Destructuring assignment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API"><span class="toc-number">3.4.</span> <span class="toc-text">API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing"><span class="toc-number">4.</span> <span class="toc-text">Testing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Validation"><span class="toc-number">4.1.</span> <span class="toc-text">Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Problems-of-existing-ways"><span class="toc-number">4.1.1.</span> <span class="toc-text">Problems of existing ways</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-first-programming"><span class="toc-number">4.2.</span> <span class="toc-text">Test-first programming</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Systematic-testing"><span class="toc-number">4.3.</span> <span class="toc-text">Systematic testing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Black-box-vs-Glass-box"><span class="toc-number">4.3.1.</span> <span class="toc-text">Black box vs. Glass box</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Coverage"><span class="toc-number">4.3.2.</span> <span class="toc-text">Coverage</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Choosing-test-cases-by-partitioning"><span class="toc-number">4.4.</span> <span class="toc-text">Choosing test cases by partitioning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mathematical-explaination-of-partitioning"><span class="toc-number">4.4.1.</span> <span class="toc-text">Mathematical explaination of partitioning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Include-boundaries-in-the-partition"><span class="toc-number">4.4.2.</span> <span class="toc-text">Include boundaries in the partition</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-testing"><span class="toc-number">4.5.</span> <span class="toc-text">Unit testing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Export-and-import"><span class="toc-number">4.5.1.</span> <span class="toc-text">Export and import</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-number">4.5.2.</span> <span class="toc-text">Example</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Constructing-project"><span class="toc-number">4.5.3.</span> <span class="toc-text">Constructing project</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Unit-testing-vs-Integration-testing"><span class="toc-number">4.5.4.</span> <span class="toc-text">Unit testing vs. Integration testing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iterative-test-first-programming"><span class="toc-number">4.6.</span> <span class="toc-text">Iterative test-first programming</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://heart-tide.github.io/2022/10/22/MIT-6-031/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="朝汐"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="朝汐的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">MIT-6.031</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-10-22 22:22:08" itemprop="dateCreated datePublished" datetime="2022-10-22T22:22:08+08:00">2022-10-22</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="修改时间：2022-10-25 18:28:47" itemprop="dateModified" datetime="2022-10-25T18:28:47+08:00">2022-10-25</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">5.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">22m</span></span></span><span class="leancloud_visitors" id="/2022/10/22/MIT-6-031/" data-flag-title="MIT-6.031"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/2022/10/22/MIT-6-031/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/Programming/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">Programming</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/TypeScript/" style="--text-color:#317AC6"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">TypeScript</span></a><a class="tag-item" href="/tags/Software-engineering/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">Software engineering</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><p>Hello! 你好，好久不见</p>
 <p>在消失的这段时间里，我先后学习了 <em>CSAPP</em> 和 <em>CS61B</em> 两门课程，分别对应 <strong>计算机系统基础</strong> 和 <strong>数据结构与算法</strong> 两大基本课题</p>
 <div class="success">
     <blockquote>
@@ -162,40 +162,42 @@ IconifyProviders = {
 </div>
 
 <p>编程语言是工具，但软件工程的思想不是。诚如儒学中“礼”与“义”之分，逻辑通路与实践通路，现已展现在眼前</p>
-<h2 id="Basic-TypeScript"><a href="#Basic-TypeScript" class="headerlink" title="Basic TypeScript"></a>Basic TypeScript</h2><div class="success">
+<h2 id="Basic-TypeScript"><a href="#Basic-TypeScript" class="headerlink" title="Basic TypeScript"></a>Basic TypeScript</h2><p>Purpose:</p>
+<ul>
+<li>Learn basic JavaScript and TypeScript syntax and semantics</li>
+<li>Transition from writing Python to writing TypeScript</li>
+</ul>
+<h3 id="Mutability-vs-Immutability"><a href="#Mutability-vs-Immutability" class="headerlink" title="Mutability vs. Immutability"></a><strong>Mutability <em>vs.</em> Immutability</strong></h3><h4 id="Snapshot-diagram"><a href="#Snapshot-diagram" class="headerlink" title="Snapshot diagram"></a>Snapshot diagram</h4><p>内存快照（snapshot diagram）是一种研究内存模型的分析方法，它能直观地展示概念之间的梗概性的不同</p>
+<p>为了精当地表现这些不同，此一方法应当对自身语法有良好的规约</p>
+<div class="info">
     <blockquote>
-        <p>术语只存在于模型中，并同其一并严格受限</p>
+        <p>术语是模型中的术语</p>
     </blockquote>
 </div>
 
-<h3 id="Mutability-vs-Immutability"><a href="#Mutability-vs-Immutability" class="headerlink" title="Mutability vs. Immutability"></a><strong>Mutability <em>vs.</em> Immutability</strong></h3><h4 id="Snapshot-diagram"><a href="#Snapshot-diagram" class="headerlink" title="Snapshot diagram"></a>Snapshot diagram</h4><p>内存快照（snapshot diagram）是一种 <strong>研究模型的分析方法</strong>，它能直观地展示概念之间的梗概性的不同</p>
-<p>为了精当地表现这些不同，此一方法应当对自身语法有良好的规约</p>
 <h4 id="Value-vs-Reference"><a href="#Value-vs-Reference" class="headerlink" title="Value vs. Reference"></a>Value <em>vs.</em> Reference</h4><p>同上节课 const 处所述，改变内存地址的值，与改变变量映射到哪块内存区域中，是两个迥然不同的话题：</p>
 <ul>
-<li>可变对象与不可变对象之分，只在前者（<strong>value</strong>）</li>
-<li>而 const 考虑的问题，则在后者（<strong>reference</strong>）</li>
+<li>可变对象与不可变对象之分，只在前者（value）</li>
+<li>而 const 考虑的问题，则在后者（reference）</li>
 </ul>
-<p>可变性与不可变性的话题，自此可从以上两方面分别讨论</p>
+<p>可变性与不可变性的话题，自此便可细分，有了讨论的切入点</p>
 <ul>
 <li>就本质而言：</li>
 </ul>
 <div class="success">
     <blockquote>
         <p><b>变量</b> 是编译时实体，代表一块内存空间；<b>对象</b> 为运行时实体，代表一个数据单元</p>
-        <p>二者构成如下内存视图：<b>变量名（变量的内存地址）-> 对象的值</b></p>
+        <p>二者构成如下内存视图：变量名（变量的内存地址）-> 对象的值</p>
     </blockquote>
 </div>
 
 <ul>
 <li>就整体实践而论：</li>
 </ul>
-<div class="warning">
-    <blockquote>
-        <p>不可变性是一条重要的设计准则</p>
-    </blockquote>
-</div>
-
-<h4 id="In-operation-view-…"><a href="#In-operation-view-…" class="headerlink" title="In operation view …"></a>In operation view …</h4><h5 id="Review-call-by-value"><a href="#Review-call-by-value" class="headerlink" title="Review call-by-value"></a><strong>Review call-by-value</strong></h5><p>假设实参为 a，形参为 x，那么传参过程可叙述为：</p>
+<blockquote>
+<p>不可变性是一条重要的设计准则</p>
+</blockquote>
+<h4 id="In-operation-view-…"><a href="#In-operation-view-…" class="headerlink" title="In operation view …"></a>In operation view …</h4><h5 id="Call-by-value"><a href="#Call-by-value" class="headerlink" title="Call-by-value"></a><strong>Call-by-value</strong></h5><p>假设实参为 a，形参为 x，那么按值传参的过程可叙述为：</p>
 <ul>
 <li>创建变量 x 并分配新的内存空间</li>
 <li>将 a 所对应的对象拷贝到 x 分配到的内存空间中</li>
@@ -208,33 +210,36 @@ IconifyProviders = {
     </blockquote>
 </div>
 
-<h5 id="Review-call-by-reference"><a href="#Review-call-by-reference" class="headerlink" title="Review call-by-reference"></a><strong>Review call-by-reference</strong></h5><p>相对应地，按引用传参具有如下过程：</p>
+<h5 id="Call-by-reference"><a href="#Call-by-reference" class="headerlink" title="Call-by-reference"></a><strong>Call-by-reference</strong></h5><p>相对应地，按引用传参具有如下过程：</p>
 <ul>
 <li>创建变量 x 并将其映射到 a 的内存空间上</li>
 </ul>
-<p>这一过程创建的信息链路如下所示，注意比按值传参短了一步：</p>
-<div class="info">
+<p>这一过程创建的信息链路如下所示，注意与按值传参的区别：</p>
+<div class="success">
     <blockquote>
-        <p>变量名 a（变量 a 的内存地址）</p>
-        <p>变量名 x（变量 a 的内存地址）</p>
+        <p>变量名 a（变量 a 的内存地址）-> 对象 M 的值</p>
+        <p>变量名 x（变量 a 的内存地址）-> 对象 M 的值</p>
     </blockquote>
 </div>
 
 <p>作为少有的允许按引用传参的语言，C++ 规定，一个引用类型的变量不能重新绑定到其他变量上，也即引用类型变量是隐式 const 的。这实际上维护了一定的不可变性</p>
-<h5 id="Call-by-value-x3D-Deep-copy"><a href="#Call-by-value-x3D-Deep-copy" class="headerlink" title="Call-by-value !&#x3D; Deep copy"></a><strong>Call-by-value !&#x3D; Deep copy</strong></h5><p>案对象的值有可能是一个指针，如下所示：</p>
+<h5 id="Call-by-value-x3D-Deep-copy"><a href="#Call-by-value-x3D-Deep-copy" class="headerlink" title="Call-by-value !&#x3D; Deep copy"></a><strong>Call-by-value !&#x3D; Deep copy</strong></h5><p>案：对象的值有可能是一个指针，如下所示：</p>
 <div class="warning">
     <blockquote>
-        <p>变量名（变量的内存地址）-> 对象 1 的值（对象 2 的内存地址）-> 对象 2 的值</p>
+        <p>变量名（变量的内存地址）</p>
+        <p>-> 对象 1 的值（对象 2 的内存地址）</p>
+        <p>-> 对象 2 的值</p>
     </blockquote>
 </div>
 
+<p>理论上，只要指针参数的阶数足够高，这个链条可以永续传递下去。而只有一直拷贝到此链条的尾部，才能在定义上算作是 <strong>深拷贝</strong>。否则即为 <strong>浅拷贝</strong></p>
 <blockquote>
-<p>理论上，只要指针参数的阶数足够高，这个链条可以永续传递下去。而只有一直拷贝到此链条的尾部，才能在定义上算作是 <strong>深拷贝</strong>。否则即为 <strong>浅拷贝</strong><br>Java 和 Python 都是按值传参的，但如果参数是引用类型的变量，都只能做到浅拷贝，这是因为其架构中变量所对应对象的值是一个隐式的指针之缘故</p>
+<p>Java 和 Python 都是按值传参的，但如果参数是引用类型的变量，都只能做到浅拷贝，这是因为其架构中变量所对应对象的值是一个隐式的指针之缘故</p>
 </blockquote>
 <p>相反，按引用传参一定是浅拷贝，此理显见</p>
 <h5 id="Lemma-when-pass-a-immutable-object-by-value-…"><a href="#Lemma-when-pass-a-immutable-object-by-value-…" class="headerlink" title="Lemma: when pass a immutable object by value …"></a><strong>Lemma: when pass a immutable object by value …</strong></h5><div class="info">
     <blockquote>
-        <p>综上所述，任何对一个不可变对象进行的 <b>操作</b> 若是按值传参的，都不会改变实参变量本身</p>
+        <p>任何对一个不可变对象进行的 <b>操作</b> 若是按值传参的，都不会改变实参变量本身</p>
     </blockquote>
 </div>
 
@@ -250,8 +255,8 @@ IconifyProviders = {
 <p>详细来说，取基元的对象可以直接得到它的值，而取引用类型的对象会先经过一个隐式的指针访问，再返回对应的真正对象的值：</p>
 <div class="success">
     <blockquote>
-        <p>基元：变量名（变量的内存地址）-> 对象 M 的值</p>
-        <p>引用类型对象：变量名（变量的内存地址）-> 指针 p（对象 N 的地址）-> 对象 N 的值</p>
+        <p>基元：变量名 -> 对象 M 的值</p>
+        <p>引用类型对象：变量名 -> 指针 p（对象 N 的地址）-> 对象 N 的值</p>
     </blockquote>
 </div>
 
@@ -263,8 +268,8 @@ IconifyProviders = {
 
 <p>TypeScript 的内嵌 Map &#x2F; Set 为 HashMap &#x2F; HashSet，这意味着它们的 key 对象需要同时满足两个条件：</p>
 <ul>
-<li>hashable</li>
-<li>immutable</li>
+<li>Hashable</li>
+<li>Immutable</li>
 </ul>
 <p>任何基元自然满足上述条件，但如果想在容器里存储引用类型的对象，则要好好思量一番了</p>
 <h4 id="Visit-element"><a href="#Visit-element" class="headerlink" title="Visit element"></a>Visit element</h4><ul>
@@ -272,16 +277,16 @@ IconifyProviders = {
 </li>
 <li><p>如果试图访问容器中一个未被初始化的位置，则会返回 undefined</p>
 </li>
-<li><p>TypeScript 中数组可以在任意下标存储对象（甚至是负数下标），即使对象的存储并不连续。但这样的情况并不应多见，程序员在更多时候应当给予 Array 以 <strong>抽象数据结构</strong> list 的限定</p>
+<li><p>TypeScript 中数组可以在任意下标存储对象（甚至是负数下标），即使对象的存储并不连续。但这样的情况并不应多见，程序员在更多时候应当给予 Array 以抽象数据结构 list 的限定</p>
 </li>
 </ul>
 <h3 id="More-grammer-about-variable"><a href="#More-grammer-about-variable" class="headerlink" title="More grammer about variable"></a><strong>More grammer about variable</strong></h3><h4 id="declare-variable"><a href="#declare-variable" class="headerlink" title="declare variable"></a>declare variable</h4><ul>
-<li><p>TypeScript 支持变量类型的自动推断，如同 C++ 中 auto 关键字那样。但应极其谨慎地使用，否则不能给人以充分的 <strong>注释</strong></p>
+<li><p>TypeScript 支持变量类型的自动推断，如同 C++ 中 auto 关键字那样。但应极其谨慎地使用，否则不能给人以充分的 注释</p>
 </li>
-<li><p>变量的性质部分地 <strong>受限</strong> 于声明时所用的关键字：</p>
+<li><p>变量的性质部分地受限于声明时所用的关键字：</p>
 </li>
 </ul>
-<div class="warning">
+<div class="info">
     <blockquote>
         <p>let 关键字声明的变量具有块作用域，且应可能被重新赋值</p>
         <p>const 关键字声明的变量具有块作用域，且不能被重新赋值</p>
@@ -295,10 +300,229 @@ IconifyProviders = {
 <li>对象解构（destructuring assignment）则可把记录类型的变量集合拆开，按顺序分别为一组新声明的同名变量赋初值。可视为 <strong>解包</strong></li>
 </ul>
 <h3 id="API"><a href="#API" class="headerlink" title="API"></a><strong>API</strong></h3><p>程序依靠不同的 API（application programming interface），来在不同的上下文中运行。程序的编写者要尽量利用通用的 API 编写代码，以使得程序与运行环境无关</p>
-<p>API 对 <strong>程序实体</strong> 的描述应当给予其充分的限定性，以至于用户可以仅凭说明来使用它们</p>
+<p>API 对程序实体的描述应当给予其充分的限定性，以至于用户可以仅凭说明来使用它们</p>
 <div class="info">
     <blockquote>
         <p>Reading, writing, understanding, and analyzing specifications will be one of our first major undertakings in 6.031.</p>
+    </blockquote>
+</div>
+
+<h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h2><p>Purpose:</p>
+<ul>
+<li>Understand the value of testing, and know the process of test-first programming</li>
+<li>Be able to judge a test suite for correctness, thoroughness, and size</li>
+<li>Be able to design a test suite for a function by partitioning its input space and choosing good test cases</li>
+<li>Be able to judge a test suite by measuring its code coverage</li>
+<li>Understand and know when to use black box vs. glass box testing, unit tests vs. integration tests, and automated regression testing</li>
+</ul>
+<h3 id="Validation"><a href="#Validation" class="headerlink" title="Validation"></a><strong>Validation</strong></h3><div class="info">
+    <blockquote>
+        <p>正确性确认（validation） 定义为通过揭露程序中的问题，来增强程序员对程序正确性的自信</p>
+    </blockquote>
+</div>
+
+<p>分为三类：</p>
+<ul>
+<li>Verification: Constructing a formal proof that a program is correct.</li>
+<li>Code review: Having somebody else carefully read your code, and reason informally about it.</li>
+<li>Testing: Running the program on carefully selected inputs and checking the results.</li>
+</ul>
+<p>通过正确性确认来完全规避 bug 是几不可能的，然而，10 缺陷 &#x2F; 千行代码 的出厂错误率已能达到工业软件之标准</p>
+<h4 id="Problems-of-existing-ways"><a href="#Problems-of-existing-ways" class="headerlink" title="Problems of existing ways"></a>Problems of existing ways</h4><ul>
+<li>完全测试：对输入的全集进行测试，过于昂贵</li>
+<li>随机测试：随机挑选样例进行测试，可靠性过低</li>
+<li>抽样测试：抽样测试的有效性依赖于缺陷在检测对象上的分布是连续或均匀的，而错误输出在输入域上的分布却是离散且突变的</li>
+</ul>
+<blockquote>
+<p>因此，需要有一种适应于软件工程特性的系统化测试方法</p>
+</blockquote>
+<h3 id="Test-first-programming"><a href="#Test-first-programming" class="headerlink" title="Test-first programming"></a><strong>Test-first programming</strong></h3><p>基本概念定义：</p>
+<ul>
+<li>模块（module）：一个系统中可以被独立设计、实现、测试、解释的单位，以下概念皆依特定模块而言</li>
+<li>说明（specification）：对模块行为的描述，包括以自然语言或程序设计语言写成的注释</li>
+<li>实现（implementation）：根据说明提供模块行为的程序实体</li>
+<li>用户（clients）：根据说明使用模块的程序实体</li>
+<li>测试样例（test case）：一个二元组，包含某个特定的输入及根据说明应有的输出，也即期望输出。测试亦属于模块用户</li>
+<li>测试集（test suite）：一组测试样例的集合</li>
+</ul>
+<div class="warning">
+    <blockquote>
+        <p>实现和用户的合法性全取决于其是否符合说明，用户对实现没有直接依赖性</p>
+    </blockquote>
+</div>
+
+<p>测试驱动开发（test-first programming）的开发顺序为 <strong>说明 -&gt; 测试 -&gt; 实现</strong>。一旦实现代码通过所有测试用例，即标志着开发的基本完成</p>
+<h3 id="Systematic-testing"><a href="#Systematic-testing" class="headerlink" title="Systematic testing"></a><strong>Systematic testing</strong></h3><p>系统化测试（systematic testing）意味着以一种规范化的方式选取测试样例，以建构兼具以下三种性质的测试集：</p>
+<ul>
+<li><strong>正确性</strong>：测试集本身是一个合法的用户，且任何合法的实现应能通过所有的测试样例</li>
+<li><strong>深透性</strong>：测试集应覆盖更多程序员易于写出的 bug，即应尽量使得有 bug 的实现不能通过所有测试样例</li>
+<li><strong>小规模</strong>：这将使测试集更易于即时书写与迅速执行，并随说明更新而更新</li>
+</ul>
+<p>上节所述三种他山石皆于深透性或小规模上有所不足，故不可用</p>
+<p>测试者应当以 <strong>使得程序不能正常运行</strong> 为目标，以最野蛮粗暴的方式对待程序（诸君，我好兴奋啊x）</p>
+<blockquote>
+<p>A good tester intentionally pokes at all the places the program might be vulnerable, so that those vulnerabilities can be eliminated.</p>
+</blockquote>
+<h4 id="Black-box-vs-Glass-box"><a href="#Black-box-vs-Glass-box" class="headerlink" title="Black box vs. Glass box"></a>Black box <em>vs.</em> Glass box</h4><ul>
+<li>黑盒测试（black box testing）是指测试样例依赖且仅依赖于说明的测试</li>
+<li>玻璃盒测试（glass box testing）是指测试样例不但依赖于说明，还参考于实现的测试，这是因为实现过程可能会引入通过说明所无法推断的边界条件。但测试样例仍然处于用户的地位，故不应对说明外的内容作任何假设</li>
+</ul>
+<p>玻璃盒测试较黑盒测试而言更为彻底，但要时刻把握自身的 <strong>用户性</strong> 而不逾越，黑盒测试则无此疑问</p>
+<p>下文主论黑盒测试，但玻璃盒测试亦同此法</p>
+<h4 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h4><p>为了衡量测试集的深透性，引入覆盖（coverage）的概念</p>
+<ul>
+<li>语句覆盖（statement coverage）定义为每条语句都被至少一个测试样例执行过，为工业级代码之普遍标准</li>
+<li>分支覆盖（branch coverage）定义为每个 if &#x2F; while 语句取 true 或者 false 的条件都被至少一个测试样例执行过，较语句覆盖更为严格</li>
+</ul>
+<p>此二种覆盖均可由自动化工具加以检测</p>
+<h3 id="Choosing-test-cases-by-partitioning"><a href="#Choosing-test-cases-by-partitioning" class="headerlink" title="Choosing test cases by partitioning"></a><strong>Choosing test cases by partitioning</strong></h3><p>基本思想：</p>
+<div class="success">
+    <blockquote>
+        <p>把整个合法的输入域，按照输入的 <b>相似程度</b> 划分为不相交的子域，从每个子域中任取一个测试样例，即得到整个测试集</p>
+    </blockquote>
+</div>
+
+<ul>
+<li>测试集中每个样例都是不相似的，因而它足够的小</li>
+<li>测试集包含了所有种类的样例，因而它足够的深透</li>
+</ul>
+<p>划分法的运用需要结合具体情况，对下文所述法则适当增删，然皆不离此处所述基本思想</p>
+<h4 id="Mathematical-explaination-of-partitioning"><a href="#Mathematical-explaination-of-partitioning" class="headerlink" title="Mathematical explaination of partitioning"></a>Mathematical explaination of partitioning</h4><p>这一过程可以从纯函数的数学本质上加以考量，函数的输入域是由每个参数的输入域之交集所构成的 n 维空间：<br>&lt;function&gt;: (&lt;Arg1_domain&gt;, …, &lt;ArgN_domain&gt;) -&gt; &lt;Result_domain&gt;</p>
+<div class="info">
+    <blockquote>
+        <p>那么，输入的相似程度则可以定义为输出与输入之间构成的某种 <b>简单函数关系</b>，大体类似于分类讨论之形式</p>
+    </blockquote>
+</div>
+
+<p>把每个输入域 &lt;Argk_domain&gt; 划分为子域集合 $ A_k &#x3D; {D_{k0}, D_{k1}, …, D_{kM}} $，则每个测试样例映射到该输入域上，都一定取到且仅取到一个子域 $ D_{ki} $</p>
+<p>那么，一个合理的测试集中的所有测试样例，在任一输入域上的映射，都应处于互不相交的子域之中，且该输入域上的每个子域都被大于等于一的、但尽量少的测试样例取到</p>
+<p>依照此法，我们得到的测试集的规模，与最大的输入域子域集合的基数相等，但同时对每种情况都有一定强度的测试，即可同时满足优秀测试集的小规模和深透两个重要条件</p>
+<p>但要注意的是，在这里，对所有子域集合取笛卡儿积是不合理的。它虽然足够深透，但却会导致测试集大小和参数个数呈指数相关，很快其规模就会变得过于庞大而不适用</p>
+<h4 id="Include-boundaries-in-the-partition"><a href="#Include-boundaries-in-the-partition" class="headerlink" title="Include boundaries in the partition"></a>Include boundaries in the partition</h4><div class="warning">
+    <blockquote>
+        <p>边界情况（boundary）定义为两个划分域交界处的输入，应给予单独的、充分的测试</p>
+    </blockquote>
+</div>
+
+<p>边界情况通常难以被 general 的代码解决，或由于 off-by-one mistakes 的易发性，而容易成为程序中 bug 的出现之处</p>
+<p>Common boundaries：</p>
+<ul>
+<li>0, Tmax, Tmin</li>
+<li>emptiness for collection types</li>
+<li>the first and last element of a sequence</li>
+</ul>
+<h3 id="Unit-testing"><a href="#Unit-testing" class="headerlink" title="Unit testing"></a><strong>Unit testing</strong></h3><div class="success">
+    <blockquote>
+        <p>自动化的单元测试工具有利于测试集的维护与反复执行，使得测试集得以与模块一同不断迭代，保障渐进性开发中的正确性</p>
+    </blockquote>
+</div>
+
+<p>mocha 是 JavaScript 语言的一种单元测试工具，故所有待测试的 TypeScript 文件均需被提前编译为对应的 JavaScript 文件</p>
+<h4 id="Export-and-import"><a href="#Export-and-import" class="headerlink" title="Export and import"></a>Export and import</h4><p>由于测试文件必需访问待测试文件中的模块，这就涉及到 JavaScript 文件间名字的导入与导出：</p>
+<p>JavaScript 中，名字的导入导出有两种规范，CommonJs 格式和 ES 格式</p>
+<ul>
+<li>CommonJs 格式中，导入使用 exports 全局变量，导出使用 require 函数</li>
+<li>ES 格式中，导入使用 export 关键词，导出使用 import 关键词</li>
+</ul>
+<p>TypeScript 文件会默认以 CommonJs 格式进行编译，故在测试文件中也应以 CommonJs 格式的 require 导入模块</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>以 .&#x2F;test&#x2F;sum.test.js 为例，测试代码示例如下：</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> assert <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"assert"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// just search the name "assert" and import it</span>
+<span class="token keyword">const</span> sum_file <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../out/sum.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// treat sum.js as a module to be imported</span>
+<span class="token keyword">const</span> sum <span class="token operator">=</span> sum_file<span class="token punctuation">.</span>sum<span class="token punctuation">;</span>                   <span class="token comment">// get the name "sum" in file sum.js</span>
+
+<span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">"test sum"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/**
+     * divide strategy:
+     *  - empty list
+     *  - non-empty list
+     * 
+     * to see the result as well as if the src list is changed
+     */</span>
+
+    <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">"test empty list"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">const</span> src <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        assert<span class="token punctuation">.</span><span class="token function">strictEqual</span><span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        assert<span class="token punctuation">.</span><span class="token function">strictEqual</span><span class="token punctuation">(</span>src<span class="token punctuation">.</span>length<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">"test non-empty list"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">const</span> src <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> src_save <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        assert<span class="token punctuation">.</span><span class="token function">strictEqual</span><span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        assert<span class="token punctuation">.</span><span class="token function">deepEqual</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> src_save<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>经同步迭代，得到 .&#x2F;src&#x2F;sum.ts 代码如下：</p>
+<pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token comment">/**
+ * evaluate the sum of a given number list
+ * without change the content of it
+ * @param list - a number list
+ * @returns - the sum of all the numbers in the list;
+ *          - if list is empty, return zero;
+ *          - the precise of output is depend on type 'number'.
+ */</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span>list<span class="token operator">:</span> <span class="token builtin">Array</span><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> val <span class="token keyword">of</span> list<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        result <span class="token operator">+=</span> val<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="Constructing-project"><a href="#Constructing-project" class="headerlink" title="Constructing project"></a>Constructing project</h4><p>围绕上文例子架构项目，整体层次设计如下：</p>
+<pre class="language-none"><code class="language-none">test
+    -*.test.js
+src
+    -*.ts
+out
+    -*.js
+package.json
+tsconfig.json</code></pre>
+
+<p>建构过程如下：</p>
+<ul>
+<li>使用 <code>npm init -y</code> 创建 package.json，并为其中的 “scripts” 域作修改如下，之后即可用 <code>npm run &lt;script&gt;</code> 来运行它们</li>
+</ul>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"compile"</span><span class="token operator">:</span> <span class="token string">"tsc"</span><span class="token punctuation">,</span>
+    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"npm run compile &amp;&amp; mocha"</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>使用 <code>tsc --init</code> 创建 tsconfig.json，并作修改：</li>
+</ul>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"./src/*.ts"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"out"</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>创建源文件和测试文件，进行测试驱动程序设计，直至迭代完成</li>
+</ul>
+<h4 id="Unit-testing-vs-Integration-testing"><a href="#Unit-testing-vs-Integration-testing" class="headerlink" title="Unit testing vs. Integration testing"></a>Unit testing <em>vs.</em> Integration testing</h4><ul>
+<li>单元测试（unit test）定义为对单个模块隔离进行测试，上文所述皆属此部</li>
+<li>融合测试（integration test）定义为同时对多个模块一起进行的测试</li>
+</ul>
+<p>融合测试是必要的，它能按照各模块之间的依赖关系对其进行校验。也正因此，对模块集合的融合测试必须在被其依赖的各个模块经单元测试通过后进行，以符合 <strong>立即出错</strong> 的原则</p>
+<h3 id="Iterative-test-first-programming"><a href="#Iterative-test-first-programming" class="headerlink" title="Iterative test-first programming"></a><strong>Iterative test-first programming</strong></h3><p>Iterate on a target module from scratch:</p>
+<div class="info">
+    <blockquote>
+        <p>1. Update specification for the module.</p>
+        <p>2. Update tests that exercise the spec. If any problem is found, goto step 1.</p>
+        <p>3. Update implementation until it can pass all tests. If any problem is found, goto step 1.</p>
+    </blockquote>
+</div>
+
+<p>After the basic version is constructed, iterate the module while using it:</p>
+<div class="success">
+    <blockquote>
+        <p>4. If any optimizing changes of implementation is done, goto step 3.</p>
+        <p>5. If any bug of this module is found, add it to the test set, then goto step 1.</p>
     </blockquote>
 </div>
 </div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>朝汐</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://heart-tide.github.io/2022/10/22/MIT-6-031/" title="MIT-6.031">https://heart-tide.github.io/2022/10/22/MIT-6-031/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/2022/06/16/%E8%AE%A9%E6%88%91%E4%BB%AC%E6%9D%A5%E5%81%9A%E6%B8%B8%E6%88%8F%E5%90%A7/" rel="next" title="让我们来做游戏吧！"><span class="post-nav-text">让我们来做游戏吧！</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎前往 <a href="https://github.com/Heart-tide/Heart-tide.github.io/discussions" target="_blank">GitHub Discussions</a> 与我交流。</span><br></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/2022/10/22/MIT-6-031/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ph:waves"></span></span><span class="author"> 朝汐</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.4</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
