@@ -468,9 +468,15 @@ tsconfig.json</code></pre>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<ul>
-<li>创建源文件和测试文件，进行测试驱动程序设计，直至迭代完成</li>
-</ul>
+<p>可在 IDE 里修改上述配置文件的模板，到时候它们就可以被自动创建啦~</p>
+<p>类似的，C++ 的单元测试可以通过 GoogleTest 包来实现，而 CMake 文件也可以被存储为模板以自动创建</p>
+<div class="success">
+    <blockquote>
+        <p>相较于娇小的 vscode，IDE 在干粗活累活方面上有其独特的优势</p>
+        <p>能认识到不同工具的特征并加以开发利用，并依具体情况选择合适的工具，亦是一重要课题</p>
+    </blockquote>
+</div>
+
 <h4 id="Unit-testing-vs-Integration-testing"><a href="#Unit-testing-vs-Integration-testing" class="headerlink" title="Unit testing vs. Integration testing"></a>Unit testing <em>vs.</em> Integration testing</h4><ul>
 <li>单元测试（unit test）定义为对单个模块隔离进行测试，上文所述皆属此部</li>
 <li>融合测试（integration test）定义为同时对多个模块一起进行的测试</li>
