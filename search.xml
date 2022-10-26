@@ -213,7 +213,7 @@
 <h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a><strong>Containers</strong></h3><ul>
 <li>Array 对象接受隐式的列表构造方法</li>
 <li>Set 对象可以通过构造函数显式调用一维数组实参来构造</li>
-<li>Map 对象则可通过构造函数显式调用二维数组实参来构造，其中内层数组的形式必须为 <code>[key, value]</code></li>
+<li>Map 对象则可通过构造函数显式调用一维数组实参来构造，其元素类型必须为 <code>[Key, Value]</code></li>
 </ul>
 <h4 id="Primitive-vs-Object"><a href="#Primitive-vs-Object" class="headerlink" title="Primitive vs. Object"></a>Primitive <em>vs.</em> Object</h4><p>案：TypeScript 中 基元 &#x2F; 引用类型 的概念分野与 Java 基本相同</p>
 <blockquote>
@@ -498,6 +498,140 @@ tsconfig.json</code></pre>
         <p>5. If any bug of this module is found, add it to the test set, then goto step 1.</p>
     </blockquote>
 </div>
+
+<h2 id="Code-Review"><a href="#Code-Review" class="headerlink" title="Code Review"></a>Code Review</h2><p>Objectives to learn:</p>
+<ul>
+<li>code review: reading and discussing code written by somebody else</li>
+<li>general principles of good coding: things you can look for in every code review, regardless of programming language or program purpose</li>
+</ul>
+<h3 id="Code-review"><a href="#Code-review" class="headerlink" title="Code review"></a><strong>Code review</strong></h3><p>代码评审（code review）是对他人源码详细的、系统化的研究</p>
+<p>代码评审的目的</p>
+<ul>
+<li>提升代码质量：发现 bug，预测可能的 bug，检查代码的清晰性，检查项目编程风格的一致性</li>
+<li>提升程序设计者的水平：促进其互相学习新的语言特性、新的技术，以及项目编程风格的改变</li>
+</ul>
+<blockquote>
+<p>It&#39;s important to be self-consistent, however, and it&#39;s very important to follow the conventions of the project you&#39;re working on.</p>
+</blockquote>
+<h3 id="Don-39-t-repeat-yourself-DRY"><a href="#Don-39-t-repeat-yourself-DRY" class="headerlink" title="Don&#39;t repeat yourself (DRY)"></a><strong>Don&#39;t repeat yourself (DRY)</strong></h3><p>代码拷贝会为内里潜藏的各种问题带来一份相近的副本，so Don&#39;t repeat yourself</p>
+<h3 id="Comments-where-needed"><a href="#Comments-where-needed" class="headerlink" title="Comments where needed"></a><strong>Comments where needed</strong></h3><div class="success">
+    <blockquote>
+        <p>好的程序设计者会以一种 <b>明智而审慎</b>（judiciously）的方式书写注释</p>
+    </blockquote>
+</div>
+
+<p>注释的功用：</p>
+<ul>
+<li>给予程序实体的行为以充分的限定性，这种注释可视作假设的书面化</li>
+<li>标明所引代码段的来源，网站名及作者名等</li>
+</ul>
+<p>然而，注释不是对代码的重复，而是在代码的基础上对其进行的补充，无需对代码段已 <strong>明确</strong> 表明之信息再添注释</p>
+<h3 id="Fail-fast"><a href="#Fail-fast" class="headerlink" title="Fail fast"></a><strong>Fail fast</strong></h3><div class="info">
+    <blockquote>
+        <p>快速出错（fail fast）意味着程序应当尽早地让自身的 bug 显露出来，以便在其未产生连锁反应、且易于定位时即消灭之</p>
+    </blockquote>
+</div>
+
+<p>快速出错的方式包括但不限于：</p>
+<ul>
+<li>充分利用类型检查机制（静态检查）</li>
+<li>检查输入的合法性并抛出异常（动态检查）</li>
+<li>单元测试</li>
+</ul>
+<p>但检查输入的合法性并以返回值标示并不是一个很好的做法，程序的设计者不能假定用户会检查返回值是否为特定值，因而此法不像抛出异常那样具有强制性</p>
+<h3 id="Avoid-magic-numbers"><a href="#Avoid-magic-numbers" class="headerlink" title="Avoid magic numbers"></a><strong>Avoid magic numbers</strong></h3><div class="success">
+    <blockquote>
+        <p>每个非平凡的字面量都被称作魔法数（magic number），每个魔法数都应该被设计为一个有着明确名字的常值</p>
+    </blockquote>
+</div>
+
+<p>消灭魔法数的益处：</p>
+<ul>
+<li>增加代码的可读性，减少错误理解</li>
+<li>避免由魔法数衍生出来的、更容易令人迷惑的新魔法数的直接书写</li>
+<li>利用编译器对名字的检查，避免魔法数多次书写中的笔误</li>
+<li>利于魔法数未来的修改</li>
+</ul>
+<p>大量的魔法数则可以数据结构的形式相组织</p>
+<p>如果魔法数无法约简、且难以被赋予明确名字，则应附以适当注释以解释之，例如闰年算法中的 4 &#x2F; 100 &#x2F; 400 均属此类不可约简的魔法数</p>
+<h3 id="One-purpose-for-each-variable"><a href="#One-purpose-for-each-variable" class="headerlink" title="One purpose for each variable"></a><strong>One purpose for each variable</strong></h3><div class="warning">
+    <blockquote>
+        <p>Don't reuse parameters, and don't reuse variables. </p>
+    </blockquote>
+</div>
+
+<p>Variables are not a scarce resource in programming. </p>
+<p>Introduce them freely, give them good names, and just stop using them when you stop needing them.</p>
+<h3 id="Use-good-names"><a href="#Use-good-names" class="headerlink" title="Use good names"></a><strong>Use good names</strong></h3><div class="info">
+    <blockquote>
+        <p>好的名字应该是长且具有自文档性（self-descriptive）的</p>
+    </blockquote>
+</div>
+
+<p>名字和注释同属代码中 <strong>说明</strong> 的类别，均能给予程序实体以限定性。因而如果名字已经具有充分的自文档性，则代码的可读性已能借此而保障，进而使得注释事实上是可以被取消的</p>
+<blockquote>
+<p>In general, variable names like tmp, temp, and data are awful and meaningless, symptoms of extreme programmer laziness.</p>
+</blockquote>
+<p>此外，除了惯常所用的 i, j 等易于理解的循环变量名外，单字母命名也应极力避免</p>
+<h4 id="Choose-a-good-name"><a href="#Choose-a-good-name" class="headerlink" title="Choose a good name"></a>Choose a good name</h4><p>名字的 <strong>书写形式</strong> 要遵循所用语言的惯例。但通用的包括以大驼峰法书写的类名、以小驼峰法书写的函数名，变量名则按各语言所规：</p>
+<ul>
+<li>Python：变量名-小写下划线</li>
+<li>Java &#x2F; JavaScript：全局不可变量-大写下划线，局部变量-小驼峰</li>
+<li>C &#x2F; C++：全局不可变量-大写下划线，局部变量-小写下划线</li>
+</ul>
+<p>名字的 <strong>用词类型</strong> 通常与程序实体的类型相关：</p>
+<ul>
+<li>函数名：动词短语</li>
+<li>类名和变量名：名词短语</li>
+</ul>
+<p>命名时，应当选择简短而具有明确含义的 <strong>词语</strong>，但要避免缩写。名字的长是为能充分表达意义所需的长，而不是无谓的冗长，更不是词不达意的短</p>
+<blockquote>
+<p>好的变量名应当能隐式或显式地标明其类型，好的函数名也应当能标明其返回值类型，这对动态类型语言更为关键</p>
+</blockquote>
+<h3 id="Use-whitespace-to-help-the-reader"><a href="#Use-whitespace-to-help-the-reader" class="headerlink" title="Use whitespace to help the reader"></a><strong>Use whitespace to help the reader</strong></h3><div class="success">
+    <blockquote>
+        <p>在表达式的元素间使用空格，在同组语句前使用一致的缩进</p>
+    </blockquote>
+</div>
+
+<p>但不要在文本文件中留下 tab 字符，而要以空格代替。因其在不同编辑器中长度解释不同</p>
+<h3 id="Don-39-t-use-global-variables"><a href="#Don-39-t-use-global-variables" class="headerlink" title="Don&#39;t use global variables"></a><strong>Don&#39;t use global variables</strong></h3><div class="info">
+    <blockquote>
+        <p>全局可变量（global variables），即不具 const 属性的全局变量，是应当被避免的</p>
+    </blockquote>
+</div>
+
+<p>避免全局可变量的方法包括但不限于：</p>
+<ul>
+<li>转化为函数参数</li>
+<li>转化为函数返回值</li>
+<li>封装成对象的数据成员</li>
+</ul>
+<h3 id="Functions-should-return-results-not-print-them"><a href="#Functions-should-return-results-not-print-them" class="headerlink" title="Functions should return results, not print them"></a><strong>Functions should return results, not print them</strong></h3><div class="warning">
+    <blockquote>
+        <p>在函数内同时完成计算和打印两项工作并不合适，这会导致计算结果的不可留存，因而这样的函数不能 ready to change</p>
+    </blockquote>
+</div>
+
+<p>整体而言，计算性函数属于底层架构，它只应强调其作为数学函数的性质；另一方面，只有顶层架构的代码才负责与用户交互。二者权责应分立</p>
+<h3 id="Avoid-special-case-code"><a href="#Avoid-special-case-code" class="headerlink" title="Avoid special-case code"></a><strong>Avoid special-case code</strong></h3><div class="info">
+    <blockquote>
+        <p>能应付更多情况的 general code 可以减少 bug</p>
+        <p>因为它不仅减少了代码的复杂度，而且给予了输入更少的假设，从而输入域的连续性被加强了，由于实现所引入的边界条件减少了</p>
+    </blockquote>
+</div>
+
+<p>程序设计者应当首先书写 general code，然后再来思考单独处理特殊情况的必要性：</p>
+<blockquote>
+<p>If you find yourself writing an if statement for a special case, stop what you&#39;re doing, and instead think harder about the general-case code:<br>either to confirm that it can actually already handle the special case you&#39;re worrying about (which is often true!), or put in a little more effort to make it handle the special case.</p>
+</blockquote>
+<h3 id="Sleep"><a href="#Sleep" class="headerlink" title="Sleep!"></a><strong>Sleep!</strong></h3><div class="success">
+    <blockquote>
+        <p>程序设计者的精神状态可能比具体的技术本身更会影响代码的优劣哦！</p>
+    </blockquote>
+</div>
+
+<p>所以，睡~个~好~觉~吧~</p>
 ]]></content>
       <categories>
         <category>Programming</category>
