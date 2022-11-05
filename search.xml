@@ -50,13 +50,11 @@
 <h4 id="Gradual-typing"><a href="#Gradual-typing" class="headerlink" title="Gradual typing"></a>Gradual typing</h4><p>很多动态类型的语言现在也支持使用静态类型，这实际上使得渐进类型（gradual typing）得以存在，即同一程序的一部分使用静态类型，而另一部分使用动态类型</p>
 <p>利用渐进类型，一个快速成型的动态类型小 demo ，逐渐成长为大型静态类型 project 的这一过程，就可以具有一条更平滑的曲线了</p>
 <h3 id="Tips-about-grammer"><a href="#Tips-about-grammer" class="headerlink" title="Tips about grammer"></a><strong>Tips about grammer</strong></h3><h4 id="Details"><a href="#Details" class="headerlink" title="Details"></a>Details</h4><ul>
-<li><p>TypeScript 中可以指定变量类型为 any，则编译器会跳过所有与之相关的静态类型检查。所有包含类型为 any 的变量的表达式的类型也为 any</p>
-</li>
 <li><p>在 TypeScript 中，用 for(let i of &lt;iterable&gt;) 来遍历容器中的元素，案 Map 的元素即为形式为 [key, value] 的二元数组。在任何情况下不要使用 for(let i in &lt;iterable&gt;)</p>
 </li>
 <li><p>C++ 和 Python 里面都没有从其他类型到 string 的隐式类型转换，而 Java 和 JavaScript 是有的</p>
 </li>
-<li><p>null 类型和 undefined 同为 TypeScript 的基本类型，但其各自自成一派，无法赋值给其他任何非属 null 或 undefined 的类型</p>
+<li><p>null 类型和 undefined 同为 TypeScript 的基本类型，但其各自自成一派。在开启严格类型检查的编译选项时，它们无法赋值给其他任何非属 null 或 undefined 的类型</p>
 </li>
 </ul>
 <h4 id="Mutable-variable-and-const-identifier"><a href="#Mutable-variable-and-const-identifier" class="headerlink" title="Mutable variable and const identifier"></a>Mutable variable and const identifier</h4><blockquote>
@@ -134,23 +132,12 @@
 <li>Learn basic JavaScript and TypeScript syntax and semantics</li>
 <li>Transition from writing Python to writing TypeScript</li>
 </ul>
-<h3 id="Mutability-vs-Immutability"><a href="#Mutability-vs-Immutability" class="headerlink" title="Mutability vs. Immutability"></a><strong>Mutability <em>vs.</em> Immutability</strong></h3><h4 id="Snapshot-diagram"><a href="#Snapshot-diagram" class="headerlink" title="Snapshot diagram"></a>Snapshot diagram</h4><p>内存快照（snapshot diagram）是一种研究内存模型的分析方法，它能直观地展示概念之间的梗概性的不同</p>
-<p>为了精当地表现这些不同，此一方法应当对自身语法有良好的规约</p>
-<div class="info">
-    <blockquote>
-        <p>术语是模型中的术语</p>
-    </blockquote>
-</div>
-
-<h4 id="Value-vs-Reference"><a href="#Value-vs-Reference" class="headerlink" title="Value vs. Reference"></a>Value <em>vs.</em> Reference</h4><p>同上节课 const 处所述，改变内存地址的值，与改变变量映射到哪块内存区域中，是两个迥然不同的话题：</p>
+<h3 id="再论可变性——值与引用"><a href="#再论可变性——值与引用" class="headerlink" title="再论可变性——值与引用"></a><strong>再论可变性——值与引用</strong></h3><p>同上节课 const 处所述，改变内存地址的值，与改变变量映射到哪块内存区域中，是两个迥然不同的话题：</p>
 <ul>
 <li>可变对象与不可变对象之分，只在前者（value）</li>
 <li>而 const 考虑的问题，则在后者（reference）</li>
 </ul>
 <p>可变性与不可变性的话题，自此便可细分，有了讨论的切入点</p>
-<ul>
-<li>就本质而言：</li>
-</ul>
 <div class="success">
     <blockquote>
         <p><b>变量</b> 是编译时实体，代表一块内存空间；<b>对象</b> 为运行时实体，代表一个数据单元</p>
@@ -158,13 +145,7 @@
     </blockquote>
 </div>
 
-<ul>
-<li>就整体实践而论：</li>
-</ul>
-<blockquote>
-<p>不可变性是一条重要的设计准则</p>
-</blockquote>
-<h4 id="In-operation-view-…"><a href="#In-operation-view-…" class="headerlink" title="In operation view …"></a>In operation view …</h4><h5 id="Call-by-value"><a href="#Call-by-value" class="headerlink" title="Call-by-value"></a><strong>Call-by-value</strong></h5><p>假设实参为 a，形参为 x，那么按值传参的过程可叙述为：</p>
+<h4 id="按值传参"><a href="#按值传参" class="headerlink" title="按值传参"></a>按值传参</h4><p>假设实参为 a，形参为 x，那么按值传参的过程可叙述为：</p>
 <ul>
 <li>创建变量 x 并分配新的内存空间</li>
 <li>将 a 所对应的对象拷贝到 x 分配到的内存空间中</li>
@@ -177,7 +158,7 @@
     </blockquote>
 </div>
 
-<h5 id="Call-by-reference"><a href="#Call-by-reference" class="headerlink" title="Call-by-reference"></a><strong>Call-by-reference</strong></h5><p>相对应地，按引用传参具有如下过程：</p>
+<h4 id="按引用传参"><a href="#按引用传参" class="headerlink" title="按引用传参"></a>按引用传参</h4><p>相对应地，按引用传参具有如下过程：</p>
 <ul>
 <li>创建变量 x 并将其映射到 a 的内存空间上</li>
 </ul>
@@ -190,7 +171,7 @@
 </div>
 
 <p>作为少有的允许按引用传参的语言，C++ 规定，一个引用类型的变量不能重新绑定到其他变量上，也即引用类型变量是隐式 const 的。这实际上维护了一定的不可变性</p>
-<h5 id="Call-by-value-x3D-Deep-copy"><a href="#Call-by-value-x3D-Deep-copy" class="headerlink" title="Call-by-value !&#x3D; Deep copy"></a><strong>Call-by-value !&#x3D; Deep copy</strong></h5><p>案：对象的值有可能是一个指针，如下所示：</p>
+<h4 id="按值传参不一定是深拷贝"><a href="#按值传参不一定是深拷贝" class="headerlink" title="按值传参不一定是深拷贝"></a>按值传参不一定是深拷贝</h4><p>这是因为对象的值有可能是一个指针，如下所示：</p>
 <div class="warning">
     <blockquote>
         <p>变量名（变量的内存地址）</p>
@@ -204,18 +185,13 @@
 <p>Java 和 Python 都是按值传参的，但如果参数是引用类型的变量，都只能做到浅拷贝，这是因为其架构中变量所对应对象的值是一个隐式的指针之缘故</p>
 </blockquote>
 <p>相反，按引用传参一定是浅拷贝，此理显见</p>
-<h5 id="Lemma-when-pass-a-immutable-object-by-value-…"><a href="#Lemma-when-pass-a-immutable-object-by-value-…" class="headerlink" title="Lemma: when pass a immutable object by value …"></a><strong>Lemma: when pass a immutable object by value …</strong></h5><div class="info">
-    <blockquote>
-        <p>任何对一个不可变对象进行的 <b>操作</b> 若是按值传参的，都不会改变实参变量本身</p>
-    </blockquote>
-</div>
-
+<h4 id="引理：对不可变对象进行按值传参时……"><a href="#引理：对不可变对象进行按值传参时……" class="headerlink" title="引理：对不可变对象进行按值传参时……"></a>引理：对不可变对象进行按值传参时……</h4><p>任何对一个不可变对象进行的 <strong>操作</strong> 若是按值传参的，都不会改变实参变量本身</p>
 <h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a><strong>Containers</strong></h3><ul>
 <li>Array 对象接受隐式的列表构造方法</li>
 <li>Set 对象可以通过构造函数显式调用一维数组实参来构造</li>
 <li>Map 对象则可通过构造函数显式调用一维数组实参来构造，其元素类型必须为 <code>[Key, Value]</code></li>
 </ul>
-<h4 id="Primitive-vs-Object"><a href="#Primitive-vs-Object" class="headerlink" title="Primitive vs. Object"></a>Primitive <em>vs.</em> Object</h4><p>案：TypeScript 中 基元 &#x2F; 引用类型 的概念分野与 Java 基本相同</p>
+<h4 id="Primitive-vs-Object"><a href="#Primitive-vs-Object" class="headerlink" title="Primitive vs. Object"></a>Primitive <em>vs.</em> Object</h4><p>TypeScript 中 基元 &#x2F; 引用类型 的概念分野与 Java 基本相同</p>
 <blockquote>
 <p>引用类型的对象的特征在于，它的值是一个隐式的、指向真正对象的一个指针</p>
 </blockquote>
@@ -229,7 +205,7 @@
 
 <h4 id="Insert-element"><a href="#Insert-element" class="headerlink" title="Insert element"></a>Insert element</h4><div class="info">
     <blockquote>
-        <p>容器添加元素时均为按值传参，因而具有上节所论按值传参所有性质。对基元是深拷贝，对引用类型对象是浅拷贝</p>
+        <p>容器添加元素时均为按值传参，因而具有上节所论按值传参所有性质：对基元是深拷贝，对引用类型对象是浅拷贝</p>
     </blockquote>
 </div>
 
@@ -244,10 +220,8 @@
 </li>
 <li><p>如果试图访问容器中一个未被初始化的位置，则会返回 undefined</p>
 </li>
-<li><p>TypeScript 中数组可以在任意下标存储对象（甚至是负数下标），即使对象的存储并不连续。但这样的情况并不应多见，程序员在更多时候应当给予 Array 以抽象数据结构 list 的限定</p>
-</li>
 </ul>
-<h3 id="More-grammer-about-variable"><a href="#More-grammer-about-variable" class="headerlink" title="More grammer about variable"></a><strong>More grammer about variable</strong></h3><h4 id="declare-variable"><a href="#declare-variable" class="headerlink" title="declare variable"></a>declare variable</h4><ul>
+<h3 id="变量相关的更多语法"><a href="#变量相关的更多语法" class="headerlink" title="变量相关的更多语法"></a><strong>变量相关的更多语法</strong></h3><h4 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h4><ul>
 <li><p>TypeScript 支持变量类型的自动推断，如同 C++ 中 auto 关键字那样。但应极其谨慎地使用，否则不能给人以充分的 注释</p>
 </li>
 <li><p>变量的性质部分地受限于声明时所用的关键字：</p>
@@ -261,19 +235,11 @@
     </blockquote>
 </div>
 
-<h4 id="Record-type-and-Destructuring-assignment"><a href="#Record-type-and-Destructuring-assignment" class="headerlink" title="Record type and Destructuring assignment"></a>Record type <em>and</em> Destructuring assignment</h4><p>记录类型与对象解构是一组对称的语法，用于处理一组临时的对象集合</p>
+<h4 id="记录类型与对象解构"><a href="#记录类型与对象解构" class="headerlink" title="记录类型与对象解构"></a>记录类型与对象解构</h4><p>记录类型与对象解构是一组对称的语法，用于处理一组临时的对象集合</p>
 <ul>
 <li>记录类型（record type），类似于“匿名结构体”，用于把一组变量聚合到一个记录类型的变量上，或作为函数返回多个变量的方式。可视为 <strong>打包</strong></li>
 <li>对象解构（destructuring assignment）则可把记录类型的变量集合拆开，按顺序分别为一组新声明的同名变量赋初值。可视为 <strong>解包</strong></li>
 </ul>
-<h3 id="API"><a href="#API" class="headerlink" title="API"></a><strong>API</strong></h3><p>程序依靠不同的 API（application programming interface），来在不同的上下文中运行。程序的编写者要尽量利用通用的 API 编写代码，以使得程序与运行环境无关</p>
-<p>API 对程序实体的描述应当给予其充分的限定性，以至于用户可以仅凭说明来使用它们</p>
-<div class="info">
-    <blockquote>
-        <p>Reading, writing, understanding, and analyzing specifications will be one of our first major undertakings in 6.031.</p>
-    </blockquote>
-</div>
-
 <h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h2><p>Purpose:</p>
 <ul>
 <li>Understand the value of testing, and know the process of test-first programming</li>
@@ -290,19 +256,11 @@
 
 <p>分为三类：</p>
 <ul>
-<li>Verification: Constructing a formal proof that a program is correct.</li>
-<li>Code review: Having somebody else carefully read your code, and reason informally about it.</li>
-<li>Testing: Running the program on carefully selected inputs and checking the results.</li>
+<li>形式化证明</li>
+<li>Code review</li>
+<li>测试</li>
 </ul>
 <p>通过正确性确认来完全规避 bug 是几不可能的，然而，10 缺陷 &#x2F; 千行代码 的出厂错误率已能达到工业软件之标准</p>
-<h4 id="Problems-of-existing-ways"><a href="#Problems-of-existing-ways" class="headerlink" title="Problems of existing ways"></a>Problems of existing ways</h4><ul>
-<li>完全测试：对输入的全集进行测试，过于昂贵</li>
-<li>随机测试：随机挑选样例进行测试，可靠性过低</li>
-<li>抽样测试：抽样测试的有效性依赖于缺陷在检测对象上的分布是连续或均匀的，而错误输出在输入域上的分布却是离散且突变的</li>
-</ul>
-<blockquote>
-<p>因此，需要有一种适应于软件工程特性的系统化测试方法</p>
-</blockquote>
 <h3 id="Test-first-programming"><a href="#Test-first-programming" class="headerlink" title="Test-first programming"></a><strong>Test-first programming</strong></h3><p>基本概念定义：</p>
 <ul>
 <li>模块（module）：一个系统中可以被独立设计、实现、测试、解释的单位，以下概念皆依特定模块而言</li>
@@ -354,7 +312,7 @@
 <li>测试集包含了所有种类的样例，因而它足够的深透</li>
 </ul>
 <p>划分法的运用需要结合具体情况，对下文所述法则适当增删，然皆不离此处所述基本思想</p>
-<h4 id="Mathematical-explaination-of-partitioning"><a href="#Mathematical-explaination-of-partitioning" class="headerlink" title="Mathematical explaination of partitioning"></a>Mathematical explaination of partitioning</h4><p>这一过程可以从纯函数的数学本质上加以考量，函数的输入域是由每个参数的输入域之交集所构成的 n 维空间：<br>&lt;function&gt;: (&lt;Arg1_domain&gt;, …, &lt;ArgN_domain&gt;) -&gt; &lt;Result_domain&gt;</p>
+<h4 id="划分法的数学解释"><a href="#划分法的数学解释" class="headerlink" title="划分法的数学解释"></a>划分法的数学解释</h4><p>这一过程可以从纯函数的数学本质上加以考量，函数的输入域是由每个参数的输入域之交集所构成的 n 维空间：<br>&lt;function&gt;: (&lt;Arg1_domain&gt;, …, &lt;ArgN_domain&gt;) -&gt; &lt;Result_domain&gt;</p>
 <div class="info">
     <blockquote>
         <p>那么，输入的相似程度则可以定义为输出与输入之间构成的某种 <b>简单函数关系</b>，大体类似于分类讨论之形式</p>
@@ -364,8 +322,8 @@
 <p>把每个输入域 &lt;Argk_domain&gt; 划分为子域集合 $ A_k &#x3D; {D_{k0}, D_{k1}, …, D_{kM}} $，则每个测试样例映射到该输入域上，都一定取到且仅取到一个子域 $ D_{ki} $</p>
 <p>那么，一个合理的测试集中的所有测试样例，在任一输入域上的映射，都应处于互不相交的子域之中，且该输入域上的每个子域都被大于等于一的、但尽量少的测试样例取到</p>
 <p>依照此法，我们得到的测试集的规模，与最大的输入域子域集合的基数相等，但同时对每种情况都有一定强度的测试，即可同时满足优秀测试集的小规模和深透两个重要条件</p>
-<p>但要注意的是，在这里，对所有子域集合取笛卡儿积是不合理的。它虽然足够深透，但却会导致测试集大小和参数个数呈指数相关，很快其规模就会变得过于庞大而不适用</p>
-<h4 id="Include-boundaries-in-the-partition"><a href="#Include-boundaries-in-the-partition" class="headerlink" title="Include boundaries in the partition"></a>Include boundaries in the partition</h4><div class="warning">
+<p>但要注意的是，在这里对所有子域集合取笛卡儿积是不合理的。它虽然足够深透，但却会导致测试集大小和参数个数呈指数相关，很快其规模就会变得过于庞大而不适用</p>
+<h4 id="在划分中包含边界"><a href="#在划分中包含边界" class="headerlink" title="在划分中包含边界"></a>在划分中包含边界</h4><div class="warning">
     <blockquote>
         <p>边界情况（boundary）定义为两个划分域交界处的输入，应给予单独的、充分的测试</p>
     </blockquote>
@@ -423,11 +381,8 @@
 <p>经同步迭代，得到 .&#x2F;src&#x2F;sum.ts 代码如下：</p>
 <pre class="language-typescript" data-language="typescript"><code class="language-typescript"><span class="token comment">/**
  * evaluate the sum of a given number list
- * without change the content of it
- * @param list - a number list
  * @returns - the sum of all the numbers in the list;
  *          - if list is empty, return zero;
- *          - the precise of output is depend on type 'number'.
  */</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span>list<span class="token operator">:</span> <span class="token builtin">Array</span><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -437,51 +392,11 @@
     <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h4 id="Constructing-project"><a href="#Constructing-project" class="headerlink" title="Constructing project"></a>Constructing project</h4><p>围绕上文例子架构项目，整体层次设计如下：</p>
-<pre class="language-none"><code class="language-none">test
-    -*.test.js
-src
-    -*.ts
-out
-    -*.js
-package.json
-tsconfig.json</code></pre>
-
-<p>建构过程如下：</p>
-<ul>
-<li>使用 <code>npm init -y</code> 创建 package.json，并为其中的 “scripts” 域作修改如下，之后即可用 <code>npm run &lt;script&gt;</code> 来运行它们</li>
-</ul>
-<pre class="language-json" data-language="json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">"compile"</span><span class="token operator">:</span> <span class="token string">"tsc"</span><span class="token punctuation">,</span>
-    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"npm run compile &amp;&amp; mocha"</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<ul>
-<li>使用 <code>tsc --init</code> 创建 tsconfig.json，并作修改：</li>
-</ul>
-<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  <span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token string">"./src/*.ts"</span>
-  <span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"out"</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>可在 IDE 里修改上述配置文件的模板，到时候它们就可以被自动创建啦~</p>
-<p>类似的，C++ 的单元测试可以通过 GoogleTest 包来实现，而 CMake 文件也可以被存储为模板以自动创建</p>
-<div class="success">
-    <blockquote>
-        <p>相较于娇小的 vscode，IDE 在干粗活累活方面上有其独特的优势</p>
-        <p>能认识到不同工具的特征并加以开发利用，并依具体情况选择合适的工具，亦是一重要课题</p>
-    </blockquote>
-</div>
-
 <h4 id="Unit-testing-vs-Integration-testing"><a href="#Unit-testing-vs-Integration-testing" class="headerlink" title="Unit testing vs. Integration testing"></a>Unit testing <em>vs.</em> Integration testing</h4><ul>
 <li>单元测试（unit test）定义为对单个模块隔离进行测试，上文所述皆属此部</li>
 <li>融合测试（integration test）定义为同时对多个模块一起进行的测试</li>
 </ul>
-<p>融合测试是必要的，它能按照各模块之间的依赖关系对其进行校验。也正因此，对模块集合的融合测试必须在被其依赖的各个模块经单元测试通过后进行，以符合 <strong>立即出错</strong> 的原则</p>
+<p>融合测试是必要的，它能按照各模块之间的依赖关系对其进行校验。也正因此，对模块集合的融合测试必须在被其依赖的各个模块经单元测试通过后进行，以符合立即出错的原则</p>
 <h3 id="Iterative-test-first-programming"><a href="#Iterative-test-first-programming" class="headerlink" title="Iterative test-first programming"></a><strong>Iterative test-first programming</strong></h3><p>Iterate on a target module from scratch:</p>
 <div class="info">
     <blockquote>
@@ -504,22 +419,16 @@ tsconfig.json</code></pre>
 <li>code review: reading and discussing code written by somebody else</li>
 <li>general principles of good coding: things you can look for in every code review, regardless of programming language or program purpose</li>
 </ul>
-<h3 id="Code-review"><a href="#Code-review" class="headerlink" title="Code review"></a><strong>Code review</strong></h3><p>代码评审（code review）是对他人源码详细的、系统化的研究</p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><strong>Introduction</strong></h3><p>代码评审（code review）是对他人源码详细的、系统化的研究</p>
 <p>代码评审的目的</p>
 <ul>
 <li>提升代码质量：发现 bug，预测可能的 bug，检查代码的清晰性，检查项目编程风格的一致性</li>
 <li>提升程序设计者的水平：促进其互相学习新的语言特性、新的技术，以及项目编程风格的改变</li>
 </ul>
-<blockquote>
-<p>It&#39;s important to be self-consistent, however, and it&#39;s very important to follow the conventions of the project you&#39;re working on.</p>
+<h3 id="Don-39-t-repeat-yourself-DRY"><a href="#Don-39-t-repeat-yourself-DRY" class="headerlink" title="Don&#39;t repeat yourself (DRY)"></a><strong>Don&#39;t repeat yourself (DRY)</strong></h3><p>代码拷贝会为内里潜藏的各种问题带来一份相近的副本，这会增加 bug 的修复难度</p>
+<h3 id="Comments-where-needed"><a href="#Comments-where-needed" class="headerlink" title="Comments where needed"></a><strong>Comments where needed</strong></h3><blockquote>
+<p>好的程序设计者会以一种明智而审慎（judiciously）的方式书写注释</p>
 </blockquote>
-<h3 id="Don-39-t-repeat-yourself-DRY"><a href="#Don-39-t-repeat-yourself-DRY" class="headerlink" title="Don&#39;t repeat yourself (DRY)"></a><strong>Don&#39;t repeat yourself (DRY)</strong></h3><p>代码拷贝会为内里潜藏的各种问题带来一份相近的副本，so Don&#39;t repeat yourself</p>
-<h3 id="Comments-where-needed"><a href="#Comments-where-needed" class="headerlink" title="Comments where needed"></a><strong>Comments where needed</strong></h3><div class="success">
-    <blockquote>
-        <p>好的程序设计者会以一种 <b>明智而审慎</b>（judiciously）的方式书写注释</p>
-    </blockquote>
-</div>
-
 <p>注释的功用：</p>
 <ul>
 <li>给予程序实体的行为以充分的限定性，这种注释可视作假设的书面化</li>
@@ -538,93 +447,53 @@ tsconfig.json</code></pre>
 <li>检查输入的合法性并抛出异常（动态检查）</li>
 <li>单元测试</li>
 </ul>
-<p>但检查输入的合法性并以返回值标示并不是一个很好的做法，程序的设计者不能假定用户会检查返回值是否为特定值，因而此法不像抛出异常那样具有强制性</p>
-<h3 id="Avoid-magic-numbers"><a href="#Avoid-magic-numbers" class="headerlink" title="Avoid magic numbers"></a><strong>Avoid magic numbers</strong></h3><div class="success">
-    <blockquote>
-        <p>每个非平凡的字面量都被称作魔法数（magic number），每个魔法数都应该被设计为一个有着明确名字的常值</p>
-    </blockquote>
-</div>
-
-<p>消灭魔法数的益处：</p>
-<ul>
-<li>增加代码的可读性，减少错误理解</li>
-<li>避免由魔法数衍生出来的、更容易令人迷惑的新魔法数的直接书写</li>
-<li>利用编译器对名字的检查，避免魔法数多次书写中的笔误</li>
-<li>利于魔法数未来的修改</li>
-</ul>
-<p>大量的魔法数则可以数据结构的形式相组织</p>
+<h3 id="Avoid-magic-numbers"><a href="#Avoid-magic-numbers" class="headerlink" title="Avoid magic numbers"></a><strong>Avoid magic numbers</strong></h3><p>每个非平凡的字面量都被称作魔法数（magic number）。每个魔法数都应该被设计为一个有着明确名字的常值，大量的魔法数则可以数据结构的形式相组织</p>
 <p>如果魔法数无法约简、且难以被赋予明确名字，则应附以适当注释以解释之，例如闰年算法中的 4 &#x2F; 100 &#x2F; 400 均属此类不可约简的魔法数</p>
-<h3 id="One-purpose-for-each-variable"><a href="#One-purpose-for-each-variable" class="headerlink" title="One purpose for each variable"></a><strong>One purpose for each variable</strong></h3><div class="warning">
-    <blockquote>
-        <p>Don't reuse parameters, and don't reuse variables. </p>
-    </blockquote>
-</div>
-
-<p>Variables are not a scarce resource in programming. </p>
-<p>Introduce them freely, give them good names, and just stop using them when you stop needing them.</p>
-<h3 id="Use-good-names"><a href="#Use-good-names" class="headerlink" title="Use good names"></a><strong>Use good names</strong></h3><div class="info">
+<h3 id="One-purpose-for-each-variable"><a href="#One-purpose-for-each-variable" class="headerlink" title="One purpose for each variable"></a><strong>One purpose for each variable</strong></h3><blockquote>
+<p>Don’t reuse parameters, and don’t reuse variables.</p>
+</blockquote>
+<p>Variables are not a scarce resource in programming. Introduce them freely, give them good names, and just stop using them when you stop needing them.</p>
+<h3 id="Use-good-names"><a href="#Use-good-names" class="headerlink" title="Use good names"></a><strong>Use good names</strong></h3><div class="success">
     <blockquote>
         <p>好的名字应该是长且具有自文档性（self-descriptive）的</p>
     </blockquote>
 </div>
 
 <p>名字和注释同属代码中 <strong>说明</strong> 的类别，均能给予程序实体以限定性。因而如果名字已经具有充分的自文档性，则代码的可读性已能借此而保障，进而使得注释事实上是可以被取消的</p>
-<blockquote>
-<p>In general, variable names like tmp, temp, and data are awful and meaningless, symptoms of extreme programmer laziness.</p>
-</blockquote>
-<p>此外，除了惯常所用的 i, j 等易于理解的循环变量名外，单字母命名也应极力避免</p>
-<h4 id="Choose-a-good-name"><a href="#Choose-a-good-name" class="headerlink" title="Choose a good name"></a>Choose a good name</h4><p>名字的 <strong>书写形式</strong> 要遵循所用语言的惯例。但通用的包括以大驼峰法书写的类名、以小驼峰法书写的函数名，变量名则按各语言所规：</p>
+<h4 id="Choose-a-good-name"><a href="#Choose-a-good-name" class="headerlink" title="Choose a good name"></a>Choose a good name</h4><p>名字的书写形式要遵循所用语言的惯例。但通用的包括以大驼峰法书写的类名、以小驼峰法书写的函数名，变量名则按各语言所规：</p>
 <ul>
 <li>Python：变量名-小写下划线</li>
 <li>Java &#x2F; JavaScript：全局不可变量-大写下划线，局部变量-小驼峰</li>
 <li>C &#x2F; C++：全局不可变量-大写下划线，局部变量-小写下划线</li>
 </ul>
-<p>名字的 <strong>用词类型</strong> 通常与程序实体的类型相关：</p>
+<p>名字用词类型通常与程序实体的类型相关：</p>
 <ul>
 <li>函数名：动词短语</li>
 <li>类名和变量名：名词短语</li>
 </ul>
-<p>命名时，应当选择简短而具有明确含义的 <strong>词语</strong>，但要避免缩写。名字的长是为能充分表达意义所需的长，而不是无谓的冗长，更不是词不达意的短</p>
+<p>命名时，应当选择简短而具有明确含义的词语</p>
 <blockquote>
 <p>好的变量名应当能隐式或显式地标明其类型，好的函数名也应当能标明其返回值类型，这对动态类型语言更为关键</p>
 </blockquote>
-<h3 id="Use-whitespace-to-help-the-reader"><a href="#Use-whitespace-to-help-the-reader" class="headerlink" title="Use whitespace to help the reader"></a><strong>Use whitespace to help the reader</strong></h3><div class="success">
-    <blockquote>
-        <p>在表达式的元素间使用空格，在同组语句前使用一致的缩进</p>
-    </blockquote>
-</div>
-
+<h3 id="Use-whitespace-to-help-the-reader"><a href="#Use-whitespace-to-help-the-reader" class="headerlink" title="Use whitespace to help the reader"></a><strong>Use whitespace to help the reader</strong></h3><p>在表达式的元素间使用空格，在同组语句前使用一致的缩进</p>
 <p>但不要在文本文件中留下 tab 字符，而要以空格代替。因其在不同编辑器中长度解释不同</p>
-<h3 id="Don-39-t-use-global-variables"><a href="#Don-39-t-use-global-variables" class="headerlink" title="Don&#39;t use global variables"></a><strong>Don&#39;t use global variables</strong></h3><div class="info">
-    <blockquote>
-        <p>全局可变量（global variables），即不具 const 属性的全局变量，是应当被避免的</p>
-    </blockquote>
-</div>
-
+<h3 id="Don-39-t-use-global-variables"><a href="#Don-39-t-use-global-variables" class="headerlink" title="Don&#39;t use global variables"></a><strong>Don&#39;t use global variables</strong></h3><p>全局可变量（global variables），即不具 const 属性的全局变量，是应当被避免的</p>
 <p>避免全局可变量的方法包括但不限于：</p>
 <ul>
 <li>转化为函数参数</li>
 <li>转化为函数返回值</li>
 <li>封装成对象的数据成员</li>
 </ul>
-<h3 id="Functions-should-return-results-not-print-them"><a href="#Functions-should-return-results-not-print-them" class="headerlink" title="Functions should return results, not print them"></a><strong>Functions should return results, not print them</strong></h3><div class="warning">
+<h3 id="Functions-should-return-results-not-print-them"><a href="#Functions-should-return-results-not-print-them" class="headerlink" title="Functions should return results, not print them"></a><strong>Functions should return results, not print them</strong></h3><p>在函数内同时完成计算和打印两项工作并不合适，这会导致计算结果的不可留存</p>
+<div class="info">
     <blockquote>
-        <p>在函数内同时完成计算和打印两项工作并不合适，这会导致计算结果的不可留存，因而这样的函数不能 ready to change</p>
+        <p>整体而言，计算性函数属于底层架构，它只应强调其作为数学函数的性质</p>
+        <p>另一方面，只有顶层架构的代码才负责与用户交互</p>
     </blockquote>
 </div>
 
-<p>整体而言，计算性函数属于底层架构，它只应强调其作为数学函数的性质；另一方面，只有顶层架构的代码才负责与用户交互。二者权责应分立</p>
-<h3 id="Avoid-special-case-code"><a href="#Avoid-special-case-code" class="headerlink" title="Avoid special-case code"></a><strong>Avoid special-case code</strong></h3><div class="info">
-    <blockquote>
-        <p>能应付更多情况的 general code 可以减少 bug</p>
-        <p>因为它不仅减少了代码的复杂度，而且给予了输入更少的假设，从而输入域的连续性被加强了，由于实现所引入的边界条件减少了</p>
-    </blockquote>
-</div>
-
-<p>程序设计者应当首先书写 general code，然后再来思考单独处理特殊情况的必要性：</p>
-<blockquote>
-<p>If you find yourself writing an if statement for a special case, stop what you&#39;re doing, and instead think harder about the general-case code:<br>either to confirm that it can actually already handle the special case you&#39;re worrying about (which is often true!), or put in a little more effort to make it handle the special case.</p>
-</blockquote>
+<h3 id="Avoid-special-case-code"><a href="#Avoid-special-case-code" class="headerlink" title="Avoid special-case code"></a><strong>Avoid special-case code</strong></h3><p>能应付更多情况的 general code 可以减少 bug。因为它不仅减少了代码的复杂度，而且给予了输入更少的假设，从而加强了输入域的连续性</p>
+<p>如非必要，决不在代码中添加排他条件</p>
 <h3 id="Sleep"><a href="#Sleep" class="headerlink" title="Sleep!"></a><strong>Sleep!</strong></h3><div class="success">
     <blockquote>
         <p>程序设计者的精神状态可能比具体的技术本身更会影响代码的优劣哦！</p>
@@ -632,6 +501,108 @@ tsconfig.json</code></pre>
 </div>
 
 <p>所以，睡~个~好~觉~吧~</p>
+<h2 id="Specifications"><a href="#Specifications" class="headerlink" title="Specifications"></a>Specifications</h2><p>Objectives:</p>
+<ul>
+<li>Understand preconditions and postconditions in function specifications, and be able to write correct specifications</li>
+<li>Be able to write tests against a specification</li>
+<li>Understand how to use exceptions</li>
+</ul>
+<h3 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a><strong>Introduction</strong></h3><div class="info">
+    <blockquote>
+        <p>说明（specification）是 API 的书面化。</p>
+        <p>在功能角度讲、对所述的程序实体具有限定性，在使用角度讲、对外界用户侧和内部实现侧均具有约定性。</p>
+    </blockquote>
+</div>
+
+<p>从说明的使用角度演绎出来，则可知说明在时序上亦必须优先于用户侧和实现侧被完成。</p>
+<p>说明的作用：</p>
+<ul>
+<li>说明对于概念的明晰，是维持一个良好体系的必要条件。</li>
+<li>说明对于概念的确定与限定，有助于缩小问题规模，利于简化用户和实现者思考的范围。</li>
+<li>说明作为具有中介性的抽象层，自然地具有解耦合的作用，避免用户和实现直接相互依赖。</li>
+</ul>
+<div class="success">
+    <blockquote>
+        <p>结构良好的 + 概念明确的 -> 易于维护的 + 利于改变的</p>
+    </blockquote>
+</div>
+
+<h3 id="Behavioral-equivalence"><a href="#Behavioral-equivalence" class="headerlink" title="Behavioral equivalence"></a><strong>Behavioral equivalence</strong></h3><p>行为等价性（behavioral equivalence）指在 <strong>一定前提条件下</strong>，两个实现的所表现出的行为是否等价。</p>
+<p>不同实现之间绝对的等价是不存在的。不过，实现是面向 API、进而面向用户的，用户只能观测到被 API 限定的实现，而无法（或不应该）直接观测到裸露的实现本身。因而，实现的行为等价性必须是在用户的可观测范围内，也即 API 限定范围内定义的，这样才有意义。</p>
+<p>因此，行为等价性是 API 视域下对实现所提出的一种规范。程序设计体系中，三者实为一整体，不可孤立而看。</p>
+<blockquote>
+<p>强大的前提条件或虚弱的后置条件，都能提高实现行为等价类的范围。</p>
+</blockquote>
+<h3 id="API-与函数的抽象属性——过程"><a href="#API-与函数的抽象属性——过程" class="headerlink" title="API 与函数的抽象属性——过程"></a><strong>API 与函数的抽象属性——过程</strong></h3><div class="info">
+    <blockquote>
+        <p>从行为等价性一节可以看出，API 是从一个抽象的角度看待实现的。</p>
+        <p>一个实体意义上的函数（function），被抽象成了一个概念意义上的过程（procedure）。</p>
+    </blockquote>
+</div>
+
+<p>抽象地说，描述 API 的说明乃由三部分组成：</p>
+<ul>
+<li>函数签名，包括函数名，参数的数量、类型和名称，以及返回值类型</li>
+<li>一个 require 从句，描述对参数的进一步限定</li>
+<li>一个 effects 从句，描述返回值、可能抛出的异常和函数副作用</li>
+</ul>
+<p>也正因为 API 的抽象视域，它不能谈及任何关于函数具体实现的内容——API 本身在程序设计体系中，也是一个应当被严格界定的概念。</p>
+<h4 id="过程中的前提条件与后置条件"><a href="#过程中的前提条件与后置条件" class="headerlink" title="过程中的前提条件与后置条件"></a>过程中的前提条件与后置条件</h4><p>归纳而言，说明包含对这一 procedure 的两部分制约：<br>前提条件（precondition）、后置条件（postcondition），二者分别是以输入和输出为变元的谓词。</p>
+<div class="info">
+    <blockquote>
+        <p>前提条件乃是在过程调用前为真的命题，满足它们是用户的责任。</p>
+        <p>后置条件（或称为从前提条件到后置条件的映射关系）乃是在过程调用后为真的命题，满足它们是实现的责任。</p>
+    </blockquote>
+</div>
+
+<p>注意一点，后置条件是在前提条件被满足的情况下才要求成立的。如果前提条件不满足，则函数的行为不受后置条件限制。然而，作为一个习惯良好的程序设计者，此时程序应依照上一章所述的 Fail Fast 原则迅速告知用户异常。</p>
+<p>前提条件范畴：</p>
+<ul>
+<li>函数签名中的参数类型及名称</li>
+<li>说明对每个参数范围的进一步规约，结果是参数只能取其类型范围的一个子集</li>
+<li>参数之间的相互制约</li>
+</ul>
+<p>后置条件范畴：</p>
+<ul>
+<li>函数签名中的返回值类型</li>
+<li>返回值如何关联于参数</li>
+<li>哪些异常可能会被抛出，在何种情况下会被抛出</li>
+<li>参数是否可变，如果是，会被以何种方式改变</li>
+</ul>
+<h4 id="函数是过程的实例"><a href="#函数是过程的实例" class="headerlink" title="函数是过程的实例"></a>函数是过程的实例</h4><p>自此，我们用论述的方法，把对程序的认识从函数这样的 <strong>程序实体</strong> 层面，提高到了过程这样的 <strong>抽象概念</strong> 层面。</p>
+<p>但仍要分清：函数不是过程，函数是过程的实例。</p>
+<h3 id="说明的编程语言实现——注释与函数签名"><a href="#说明的编程语言实现——注释与函数签名" class="headerlink" title="说明的编程语言实现——注释与函数签名"></a><strong>说明的编程语言实现——注释与函数签名</strong></h3><p>在实现中，函数注释的简洁性尤为重要。</p>
+<pre class="language-TypeScript" data-language="TypeScript"><code class="language-TypeScript">&#x2F;**
+ * &lt;过程概述，包括前提条件和后置条件的部分属性&gt;
+ * @param &lt;参数名&gt; &lt;与参数有关的其他前提条件&gt;
+ * @returns &lt;与返回值有关的其他后置条件&gt;
+ * @throws &lt;可能抛出的异常&gt;
+ *&#x2F;</code></pre>
+
+<p>函数注释中不应当包含任何与类型有关的信息，它们都应该被置于函数签名中。</p>
+<h4 id="Avoid-null"><a href="#Avoid-null" class="headerlink" title="Avoid null"></a>Avoid null</h4><p>作为良好的编程习惯之约定，函数的参数和返回值隐式地不应当在其任何位置含有 Null&#x2F;None 或其他不具有本类型性质的值，除非经注释特别说明。</p>
+<p>相反，空的容器对象具有本类型的所有性质，所以是隐式被允许的。</p>
+<h4 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h4><p>除非经注释特别说明，我们通常认为参数是不会被改变的。</p>
+<p>在编写 API 的时候，要特别注意多个指针类型的参数能否指向同一对象这一 corner case，它是隐式被允许的。</p>
+<h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p>异常是可预见的错误，这意味着：函数可能抛出的异常是后置条件的一部分。因此只有当前提条件满足时，这些异常才需要被说明。</p>
+<p>通过减弱前提条件的限制性，我们可以扩宽函数的定义域，并对扩宽的那一部分子域引入异常：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">if</span> 满足 <span class="token operator">&lt;</span>旧前提<span class="token operator">></span><span class="token punctuation">:</span>
+    旧后置条件
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token operator">&lt;</span>以方式a不满足旧前提<span class="token operator">></span><span class="token punctuation">:</span>
+    抛出异常a
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre>
+
+<p>由于 TypeScript 是 JavaScript 的超集，其类型在编译后便会被抹除，因此在运行时可抛出与捕获的异常类型只有 Error。也即，不可能通过被捕获异常的类型来断定出现的错误，也不可能选择性地只捕获某些异常。</p>
+<p>另外，异常可能会导致迭代的中断，此时可能只有部分元素被处理过了。把异常处理机制放到迭代的过程中，可改善这一点。</p>
+<h4 id="特殊的返回值"><a href="#特殊的返回值" class="headerlink" title="特殊的返回值"></a>特殊的返回值</h4><div class="warning">
+    <blockquote>
+        <p>异常同时表征着用户难于处理的错误，这些错误严重到可以使得程序终止。</p>
+        <p>但对于另外一些不那么严重的错误，使用异常未免显得杀鸡牛刀。</p>
+    </blockquote>
+</div>
+
+<p>尤其是对于“处理用户输入”这种应当给予“第二次机会”的过程来说，在用户输入错误时终止程序显然是有问题的做法。</p>
+<p>对于那些不那么严重的错误，函数应当返回一个特殊值。在 TypeScript 中，使用 Union 类型的返回值，可以令函数在严格类型检查的情况下具备返回 undefined 或其他特殊值的能力。</p>
 ]]></content>
       <categories>
         <category>Programming</category>
@@ -639,23 +610,6 @@ tsconfig.json</code></pre>
       <tags>
         <tag>TypeScript</tag>
         <tag>Software engineering</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>愚者【浅谈 euphoria 之主题】</title>
-    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
-    <content><![CDATA[<p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
-<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
-<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
-<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
-<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>Galgame</category>
-      </categories>
-      <tags>
-        <tag>gal</tag>
-        <tag>hello world</tag>
       </tags>
   </entry>
   <entry>
@@ -1293,6 +1247,23 @@ painter<span class="token punctuation">.</span><span class="token function">draw
         <tag>C++</tag>
         <tag>Qt</tag>
         <tag>Arknights</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>愚者【浅谈 euphoria 之主题】</title>
+    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
+    <content><![CDATA[<p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
+<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
+<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
+<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
+<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>Galgame</category>
+      </categories>
+      <tags>
+        <tag>gal</tag>
+        <tag>hello world</tag>
       </tags>
   </entry>
 </search>
