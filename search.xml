@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>愚者【浅谈 euphoria 之主题】</title>
-    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
-    <content><![CDATA[<p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
-<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
-<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
-<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
-<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>Galgame</category>
-      </categories>
-      <tags>
-        <tag>gal</tag>
-        <tag>hello world</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MIT-6.031</title>
     <url>/2022/10/22/MIT-6-031/</url>
     <content><![CDATA[<h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><p>Hello! 你好，好久不见</p>
@@ -569,7 +552,7 @@
 <p>注意一点，后置条件是在前提条件被满足的情况下才要求成立的。如果前提条件不满足，则函数的行为不受后置条件限制。然而，作为一个习惯良好的程序设计者，此时程序应依照上一章所述的 Fail Fast 原则迅速告知用户异常。</p>
 <p>前提条件范畴：</p>
 <ul>
-<li>函数签名中的参数类型及名称</li>
+<li>函数签名中的参数类型及名称（以及实例方法中的隐式参数：this 指针）</li>
 <li>说明对每个参数范围的进一步规约，结果是参数只能取其类型范围的一个子集</li>
 <li>参数之间的相互制约</li>
 </ul>
@@ -584,10 +567,14 @@
 <p>但仍要分清：函数不是过程，函数是过程的实例。</p>
 <h3 id="说明的编程语言实现——注释与函数签名"><a href="#说明的编程语言实现——注释与函数签名" class="headerlink" title="说明的编程语言实现——注释与函数签名"></a><strong>说明的编程语言实现——注释与函数签名</strong></h3><p>在实现中，函数注释的简洁性尤为重要。</p>
 <pre class="language-TypeScript" data-language="TypeScript"><code class="language-TypeScript">&#x2F;**
+&#x2F;**
  * &lt;过程概述，包括前提条件和后置条件的部分属性&gt;
+ * Modifies &lt;参数名&gt; by &lt;造成的改变&gt;
+ * 
  * @param &lt;参数名&gt; &lt;与参数有关的其他前提条件&gt;
  * @returns &lt;与返回值有关的其他后置条件&gt;
  * @throws &lt;可能抛出的异常&gt;
+ *&#x2F;
  *&#x2F;</code></pre>
 
 <p>函数注释中不应当包含任何与类型有关的信息，它们都应该被置于函数签名中。</p>
@@ -705,6 +692,93 @@
 </div>
 
 <p>既然 API 直接影响着程序的好坏，若要改变，也当由 API 始。</p>
+<h2 id="Mutability-amp-Immutability"><a href="#Mutability-amp-Immutability" class="headerlink" title="Mutability &amp; Immutability"></a>Mutability &amp; Immutability</h2><p>Objectives:</p>
+<ul>
+<li>Understand mutability and mutable objects</li>
+<li>Identify aliasing and understand the dangers of mutability</li>
+<li>Use immutability to improve correctness, clarity, &amp; changeability</li>
+</ul>
+<h3 id="变量名层级的不可变性"><a href="#变量名层级的不可变性" class="headerlink" title="变量名层级的不可变性"></a><strong>变量名层级的不可变性</strong></h3><p>TypeScript 为每个内置容器类都定义了相对应的只读接口，程序员可以利用这些接口声明变量。</p>
+<p>虽然这些变量所绑定的对象之动态类型仍是可变的，但依赖静态类型检查机制，用户无法在通过以只读接口声明的变量来改变它们。</p>
+<p>但这种依靠静态类型检查机制获得的不可变性是有缺陷的：</p>
+<div class="warning">
+    <blockquote>
+        <p>它们是对变量名的检查，而不是对对象本身的检查。</p>
+    </blockquote>
+</div>
+
+<p>如果通过赋值等操作，这些对象被绑定到了其他以读写接口声明的变量名下，那么它们将仍可以通过这些变量访问并被改变。</p>
+<h3 id="可变对象的风险"><a href="#可变对象的风险" class="headerlink" title="可变对象的风险"></a><strong>可变对象的风险</strong></h3><div class="info">
+    <blockquote>
+        <p>可变对象的隐患只有在其 <b>别名</b>（aliases）<b>在不同地方出现</b> 时才会显露出来。</p>
+    </blockquote>
+</div>
+
+<p>在对象与多个名字相绑定时，不同名字的使用者可能在互不知情的情况下改变该对象的值。</p>
+<p>最常见的是在函数调用的过程中：</p>
+<ul>
+<li>传参时：利用良好的说明风格，程序设计者固然可以把参数类型设为可变对象。但此一规则不具有强制性，可变参数本身就为 bug 的出现带来了可能。</li>
+<li>返回时：不要在返回值中传递函数缓存区中可变对象的引用，可以通过返回时的防御性拷贝来防止这一点。</li>
+</ul>
+<p>而以上问题，都可以通过在最初就把对象设计成不可变的而得以防止，毕竟：</p>
+<blockquote>
+<p>消除 bug 的最有效方式是令 bug 在设计时就没有存在的空间。</p>
+</blockquote>
+<h3 id="可变对象与契约"><a href="#可变对象与契约" class="headerlink" title="可变对象与契约"></a><strong>可变对象与契约</strong></h3><div class="info">
+    <blockquote>
+        <p>对象在程序结构中的广泛传播，同时要求了其契约的广泛传播。</p>
+    </blockquote>
+</div>
+
+<p>对于不可变对象，并无此顾虑，因为一处错误的使用不会影响到其他用户。</p>
+<p>而于可变对象而言，在一个地方改变对象、然后通知其他所有用户是事实上难于实现的。在此种前提下，该可变对象的不同用户之间必须达成对可变性的某种契约。这种契约被迫要在对象的整个生命周期内、在多处使用该对象的用户手中保存。</p>
+<blockquote>
+<p>一个不具有 <strong>局部作用域</strong> 的、复杂的契约，会大大增加程序设计者的脑力消耗和出错概率。</p>
+</blockquote>
+<p>在实际使用上，我们给出如下提议：</p>
+<ul>
+<li>如果一个对象不需频繁修改，那么它最好被设计成不可变的，这还有利于它在不同程序实体、不同时间段内上被广泛共享</li>
+<li>如果一个对象要被频繁修改、且在时空上都能保持良好的局部作用域，那么它可以被设计成可变的</li>
+</ul>
+<h2 id="Avoid-Debugging"><a href="#Avoid-Debugging" class="headerlink" title="Avoid Debugging"></a>Avoid Debugging</h2><p>Objectives:<br>We’re going to look at ways to write code that either avoids debugging entirely, or at least makes it easy when we have to do it.</p>
+<h3 id="First-defense-make-bugs-impossible"><a href="#First-defense-make-bugs-impossible" class="headerlink" title="First defense: make bugs impossible"></a><strong>First defense: make bugs impossible</strong></h3><p>御敌于千里之外，包括前文已述的对静态检查和不可变性的利用。</p>
+<h3 id="Second-defense-localize-bugs"><a href="#Second-defense-localize-bugs" class="headerlink" title="Second defense: localize bugs"></a><strong>Second defense: localize bugs</strong></h3><p>遵循 Fast Fail 的原则：</p>
+<ul>
+<li>尽量检查函数的前提条件是否被满足——这是被称作防御性编程（defensive programming）的设计方法。</li>
+<li>另一方面，可在返回前检查后置条件是否被满足，这点被称作自我查验（self check）。</li>
+</ul>
+<p>所有前提条件和后置条件都可以被称作 <strong>不变量</strong>（invariant）。它不一定是某一个值，而是当前时空下满足的某种性质或联系。</p>
+<div class="success">
+    <blockquote>
+        <p>把工作量局限在时空的局部范围内。</p>
+    </blockquote>
+</div>
+
+<h4 id="Assertion"><a href="#Assertion" class="headerlink" title="Assertion"></a>Assertion</h4><p>assert 是对 <strong>检查条件</strong> 这一过程的封装函数，用于开发和调试。它也像 const 等关键词或注释一样，属于假设的书面化。</p>
+<p>由于 assert 的使用有可能会使代码变得杂乱，因此程序员应当明智地使用它们：</p>
+<ul>
+<li>非平凡的：assert 是注释的一种，所以与注释一样，不要做平凡的校验——<strong>程序设计的基础是对数学理论和编程语言固有设施的完全信任</strong>。</li>
+<li>针对内部的固有问题：assert 的作用是指出程序中的 bug，这暗示着该 bug 是由程序的内部结构导致的；对于来自程序外部的输入，不要 assert——使用特定返回值或抛出异常来解决这一点。</li>
+<li>无副作用的：assert 是在调试时使用的，这意味着它们会在 release 版本中会被默认关闭。因此有无 assert 不应当影响程序的正确性，即 assert 不应当引发副作用。</li>
+<li>无人区校验：在程序不应当到达的地方，如 switch 语句的 default 段等，可以作 assert 进行校验。</li>
+</ul>
+<h4 id="时间上：递进式开发"><a href="#时间上：递进式开发" class="headerlink" title="时间上：递进式开发"></a>时间上：递进式开发</h4><p>递进式开发（incremental development）是从开发的动态过程层面使 bug 局部化的方法，包括前文已提及的单元测试和回返性测试的方法。</p>
+<h4 id="空间上：增强模块化和封装性"><a href="#空间上：增强模块化和封装性" class="headerlink" title="空间上：增强模块化和封装性"></a>空间上：增强模块化和封装性</h4><p>即使是设计最优良的 API，也仍然属于契约的范畴。只要是契约，就使得程序的正确性部分地依赖于用户方的自觉而成立。我们无法保证作为人类的用户不犯任何错误，因此任何契约也都应当把自身的可见性限制在狭窄的局部。</p>
+<div class="info">
+    <blockquote>
+        <p>避免契约的过度传播，我们使用模块化和封装来做到这一点。</p>
+    </blockquote>
+</div>
+
+<p>把每个过程的可见性限定在很紧致的范围内：</p>
+<ul>
+<li>把尽可能少的接口，即 public 成员，暴露给用户。</li>
+</ul>
+<p>把每个变量的作用域限定在很紧致的范围内：</p>
+<ul>
+<li>不要使用全局可变量。</li>
+<li>只有当首次需要一个变量时，才声明它。</li>
+</ul>
 ]]></content>
       <categories>
         <category>Programming</category>
@@ -1349,6 +1423,23 @@ painter<span class="token punctuation">.</span><span class="token function">draw
         <tag>C++</tag>
         <tag>Qt</tag>
         <tag>Arknights</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>愚者【浅谈 euphoria 之主题】</title>
+    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
+    <content><![CDATA[<p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
+<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
+<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
+<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
+<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>Galgame</category>
+      </categories>
+      <tags>
+        <tag>gal</tag>
+        <tag>hello world</tag>
       </tags>
   </entry>
 </search>
