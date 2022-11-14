@@ -567,14 +567,12 @@
 <p>但仍要分清：函数不是过程，函数是过程的实例。</p>
 <h3 id="说明的编程语言实现——注释与函数签名"><a href="#说明的编程语言实现——注释与函数签名" class="headerlink" title="说明的编程语言实现——注释与函数签名"></a><strong>说明的编程语言实现——注释与函数签名</strong></h3><p>在实现中，函数注释的简洁性尤为重要。</p>
 <pre class="language-TypeScript" data-language="TypeScript"><code class="language-TypeScript">&#x2F;**
-&#x2F;**
  * &lt;过程概述，包括前提条件和后置条件的部分属性&gt;
  * Modifies &lt;参数名&gt; by &lt;造成的改变&gt;
  * 
  * @param &lt;参数名&gt; &lt;与参数有关的其他前提条件&gt;
  * @returns &lt;与返回值有关的其他后置条件&gt;
  * @throws &lt;可能抛出的异常&gt;
- *&#x2F;
  *&#x2F;</code></pre>
 
 <p>函数注释中不应当包含任何与类型有关的信息，它们都应该被置于函数签名中。</p>
