@@ -1,660 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>愚者【浅谈 euphoria 之主题】</title>
-    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
-    <content><![CDATA[<p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
-<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
-<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
-<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
-<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>Galgame</category>
-      </categories>
-      <tags>
-        <tag>gal</tag>
-        <tag>hello world</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>让我们来做游戏吧！</title>
-    <url>/2022/06/16/%E8%AE%A9%E6%88%91%E4%BB%AC%E6%9D%A5%E5%81%9A%E6%B8%B8%E6%88%8F%E5%90%A7/</url>
-    <content><![CDATA[<p>如何从零开始写一个塔防游戏呢？</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>伴随着期末考试到来的，是大一学年的结末。<br>有赖于学校<strong>紧凑</strong>的时间安排，我得以在考试周享有三天半的小长假，何其幸运。</p>
-<p>我确信我已找到前进的方向，作为诸多开始中的一个，博客这里我就以一篇小小的技术类文章来开个小头。<br>这也是在上一篇章里我所承诺过的。</p>
-<p>看惯了静态的命令行和 OJ，来点图形化或许会更有动感？</p>
-<span id="more"></span>
-
-<img src="/images/让我们来做游戏吧/final.png" width = "550" align=center loading="lazy">
-
-<h2 id="从零开始？"><a href="#从零开始？" class="headerlink" title="从零开始？"></a>从零开始？</h2><blockquote>
-<p>忽然抚尺一下，群响毕绝。撤屏视之，一人、一桌、一椅、一扇、一抚尺而已。<br>——林嗣环《口技》</p>
-</blockquote>
-<p>实际上，我们并非完全“从零开始”，概念是我们的武器。</p></p>
-<h3 id="一个塔防游戏需要什么？"><a href="#一个塔防游戏需要什么？" class="headerlink" title="一个塔防游戏需要什么？"></a>一个塔防游戏需要什么？</h3><div class="warning">
-    <blockquote>
-        <p>我们首先考虑战斗界面，因为它是游戏的主体与核心，是塔防游戏不可或缺的部分。</p>
-    </blockquote>
-</div>
-
-<p>而其他界面是次要的，他们完全可以留到后面再来完成（咕咕咕……）<br>那么问题简化成：</p>
-<h3 id="一个战斗界面需要什么？"><a href="#一个战斗界面需要什么？" class="headerlink" title="一个战斗界面需要什么？"></a>一个战斗界面需要什么？</h3><p>从全局考虑，战斗发生在一张地图上，并有敌我双方：</p>
-<ol>
-<li><p>怪物从地图上的出怪口出发，并沿着既定路线前进，直到到达我方的基地为止。<br> 敌方的战略目的是将尽可能多的敌方单位送至我方基地中（<del>给博士手撕</del>）</p>
-</li>
-<li><p>我方可以在地图上的特定位置部署单位，阻拦或攻击敌人。<br> 我方的战略目的是尽可能地阻止敌人接近我方基地。</p>
-</li>
-</ol>
-<div class="success">
-    <blockquote>
-        <p>那么逻辑结构便明确了，一个地图类、一个我方单位类、一个敌方单位类。</p>
-        <p>最后我再用一个 GameState 类管理全局游戏状态，大功告成。</p>
-    </blockquote>
-</div>
-
-<h3 id="完成它们就够了吗？"><a href="#完成它们就够了吗？" class="headerlink" title="完成它们就够了吗？"></a>完成它们就够了吗？</h3><p>当然不够，我们还需要摩多摩多~</p>
-<div class="info">
-    <blockquote>
-        <p>但在这之前，我们必须认识到：要让程序运转起来的最小代码量是什么。这就是程序的核心框架、主要矛盾。</p>
-    </blockquote>
-</div>
-
-<p>《口技》虽繁，盖“一人、一桌、一椅、一扇、一抚尺而已”，程序设计亦是如此。<br>战略在战术之前，语义在语法之前。</p>
-<h2 id="动起来！"><a href="#动起来！" class="headerlink" title="动起来！"></a>动起来！</h2><p>基本数据结构的设计，我们在上一节已经大致完成。虽然它暂时还略显简陋，不过就其功用来讲已是绰绰有余。</p>
-<div class="warning">
-    <blockquote>
-        <p>下面的问题是，如何让代码动起来？</p>
-    </blockquote>
-</div>
-
-<p>毕竟俗话说得好：</p>
-<blockquote>
-<p>代码和人，总得有一个能跑的。</p>
-</blockquote>
-<h3 id="如何动？"><a href="#如何动？" class="headerlink" title="如何动？"></a>如何动？</h3><p>Qt 提供了简单的 QTimer 类来帮助我们完成这个需求。</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp">QTimer<span class="token operator">*</span> _timer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">QTimer</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token comment">// 创建一个计时器</span>
-_timer<span class="token operator">-></span><span class="token function">start</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//* 每 20ms 更新一次！</span>
-<span class="token function">connect</span><span class="token punctuation">(</span>_timer<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QTimer<span class="token double-colon punctuation">::</span>timeout<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>GameState<span class="token double-colon punctuation">::</span>update<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 每次更新时调用 update 函数</span>
-
-size_t _time <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 记录从计时器开始计时至今过去了多少帧。</span></code></pre>
-
-<div class="info">
-    <blockquote>
-        <p>发生在连续量上的问题，考虑起来总是很复杂的。</p>
-        <p>但如果我们能把连续量离散化，分别考虑每个离散点，结果说不定就会不一样。正如我们微积分时所做的那样。</p>
-    </blockquote>
-</div>
-
-<p>QTimer 类的对象启动后，每隔一定时间触发一次更新，因此我们只需要编写自己的 update 函数就好啦~</p>
-<p>只要相邻两次更新的间隔足够短，在玩家看起来游戏就是连续的。</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">GameState</span><span class="token double-colon punctuation">::</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    _time<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">reunionStragegy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 敌方出怪策略</span>
-        <span class="token function">reunionAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 所有敌方依次行动</span>
-        <span class="token function">operatorAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 所有我方依次行动</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>GameOverException<span class="token operator">&amp;</span> exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">gameOver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token function">stateInfoUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>带有函数式编程风格的代码，非常简洁漂亮。</p>
-<p>书接上文，这里之所以采用 GameState::update 统一调配各单位的行动，而非各单位分别计时、自己安排自己的行动，一是为了逻辑上的简洁，二是为了避免程序中多线程导致的数据竞争。</p>
-<div class="warning">
-    <blockquote>
-        <p>试考虑以下情景：</p>
-        <p>我方单位 A 和 B 同时索敌敌方单位 C，A 先手击杀单位 C，但 C 已经在 B 的索敌状态下，此时有两个选择：</p>
-        <p>1. 析构 C，则出现悬空指针，B 攻击时报错。</p>
-        <p>2. 不析构 C，此时 B 只能再次攻击“死亡”后的 C，而这显然是荒谬的。</p>
-    </blockquote>
-</div>
-
-<p>综上所述，多线程常常会导致奇怪的不安全性，因此除非有足够充分的理由，需要尽量避免使用。</p>
-<h3 id="但是行动很慢……"><a href="#但是行动很慢……" class="headerlink" title="但是行动很慢……"></a>但是行动很慢……</h3><p>我们很快就会发现上文的不足之处：每 20ms 更新一次游戏状态，但是对象的行动，如移动或攻击频率却肯定不是 20ms 一次的，不然会让人眼花缭乱的……</p>
-<p>怎么办？</p>
-<div class="info">
-    <blockquote>
-        <p>一个简单的解决方案是给每个单位设定一个行动间隔，记录其两次行动间需要隔开的帧数。</p>
-        <p>每次行动后，只有至少又过去了这么多帧，才进行下一次行动，否则等待。</p>
-    </blockquote>
-</div>
-
-<p>举个栗子，我把敌方战斗兵种“无人机”的 action 函数这么编写：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">UAV</span><span class="token double-colon punctuation">::</span><span class="token function">action</span><span class="token punctuation">(</span>size_t time<span class="token punctuation">,</span> size_t<span class="token operator">&amp;</span> hp<span class="token punctuation">,</span> Infected<span class="token operator">*</span> op<span class="token punctuation">,</span> Map<span class="token operator">*</span> map<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">// 攻击和移动共享行动间隔</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>time <span class="token operator">-</span> _last_action_time <span class="token operator">&lt;</span> _interval<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token comment">// 重置行动冷却时间</span>
-    _last_action_time <span class="token operator">=</span> time<span class="token punctuation">;</span>
-
-    <span class="token comment">// 如果攻击范围内有敌人，则攻击！</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>op <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">attack</span><span class="token punctuation">(</span>op<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token comment">// 无论是否攻击，移动总是正常进行</span>
-    <span class="token function">move</span><span class="token punctuation">(</span>hp<span class="token punctuation">,</span> map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>我们会发现，在上述代码编写下的无人机，采取的是畏战策略，即“边打边跑”。稍微变动两行代码，我们就可以得到好战类型的兵种：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">GroundReunion</span><span class="token double-colon punctuation">::</span><span class="token function">action</span><span class="token punctuation">(</span>size_t time<span class="token punctuation">,</span> size_t<span class="token operator">&amp;</span> hp<span class="token punctuation">,</span> Infected<span class="token operator">*</span> op<span class="token punctuation">,</span> Map<span class="token operator">*</span> map<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>time <span class="token operator">-</span> _last_action_time <span class="token operator">&lt;</span> _interval<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    _last_action_time <span class="token operator">=</span> time<span class="token punctuation">;</span>
-
-    <span class="token comment">// 只要攻击范围内存在敌人，就会站着不动、持续进行攻击</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>op <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">attack</span><span class="token punctuation">(</span>op<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">move</span><span class="token punctuation">(</span>hp<span class="token punctuation">,</span> map<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>我方单位的行动策略相对来说更简单一些，因为只用攻击、不用移动。</p>
-<blockquote>
-<p>塔防游戏嘛，“塔”怎么移动呢？</p>
-</blockquote>
-<h3 id="做个小-demo"><a href="#做个小-demo" class="headerlink" title="做个小 demo"></a>做个小 demo</h3><p>有了之前叙述的组合逻辑电路和时序逻辑电路，我们就可以做出一个小 demo，效果如下：</p>
-<img src="/images/让我们来做游戏吧/phase-1.png" width = "550" align=center loading="lazy">
-
-<p>虽然大多数人可能会对这样一个朴素的命令行游戏产生不了什么兴趣，但它实际上已经囊括最终版本的大多数核心逻辑。</p>
-<p>千里之行，始于足下！</p>
-<div class="success">
-    <blockquote>
-        <p>不管目标程序的代码量有多么大，从一个能跑的版本开始，不断增量更新并即时确定更新版本的正确性，是高效编写程序的关键。</p>
-    </blockquote>
-</div>
-
-<h2 id="从现在开始迭代"><a href="#从现在开始迭代" class="headerlink" title="从现在开始迭代"></a>从现在开始迭代</h2><blockquote>
-<p>迭代的过程和滚雪球很像，不过这可是门精细得多的手艺。</p>
-</blockquote>
-<p>demo 的展现形式是命令行，可最终我们要的呈现效果可是图形化界面，要做好这个转换，最重要的地方是移动的连续化。</p>
-<h3 id="移动的连续化"><a href="#移动的连续化" class="headerlink" title="移动的连续化"></a>移动的连续化</h3><p>所谓移动的连续化，就是每帧都进行一次移动。只有这样，我们看到的动画才不会是一个怪物突然就从一个格子“瞬移”到另外一个格子，而是逐渐地移动到标定位置。</p>
-<div class="info">
-    <blockquote>
-        <p>虽然逻辑层中怪物的位置仍然与地图格子相绑定，但这不妨碍我们在图形层中给它一个平滑的过渡~</p>
-    </blockquote>
-</div>
-
-<p>假设我们需要怪物 A 在 t 帧内横向移动一格，每格宽度为 100 个像素点，那么它每帧移动的像素点数 _move_speed &#x3D; 100 &#x2F; t。我们把这个结论拓展到二维空间中，引入二维速度向量，即可达成坐标的有效更新：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Reunion</span><span class="token double-colon punctuation">::</span><span class="token function">move</span><span class="token punctuation">(</span>size_t<span class="token operator">&amp;</span> hp<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">// 按速度向量更新坐标</span>
-    <span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> direction<span class="token punctuation">.</span>first<span class="token punctuation">,</span> <span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> direction<span class="token punctuation">.</span>second<span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 判断是否到达下一个路径点，误差一个像素点</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span>_route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-
-        <span class="token comment">// 在逻辑层上，移动至下一个路径点</span>
-        <span class="token function">removeFrom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">addTo</span><span class="token punctuation">(</span>_route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        _route<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment">// 更新速度向量</span>
-        direction<span class="token punctuation">.</span>first <span class="token operator">=</span> <span class="token punctuation">(</span>_route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _place<span class="token operator">-></span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">100</span> <span class="token operator">*</span> _move_speed<span class="token punctuation">;</span>
-        direction<span class="token punctuation">.</span>second <span class="token operator">=</span> <span class="token punctuation">(</span>_route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _place<span class="token operator">-></span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">100</span> <span class="token operator">*</span> _move_speed<span class="token punctuation">;</span>
-
-        <span class="token comment">// 如果到达我方基地，移除该怪物，并减少基地生命值</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>_place<span class="token operator">-></span><span class="token function">isBase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            _is_active <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">--</span>hp <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token keyword">throw</span> <span class="token function">LoseGameException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>看似大功告成，实际上这段代码并不是完美的：</p>
-<div class="warning">
-    <blockquote>
-        <p>在某些前提条件，如特殊的 _move_speed 值或斜飞路径下，速度向量的各分量可能并非整数。</p>
-        <p>但 (x,y) 坐标点必须为整数，那么速度向量的小数部分就会被舍弃。</p>
-        <p>每 20ms 进行移动时，新坐标都会向着固定方向产生固定偏差，则最后的误差可能是难以想象的，甚至会导致无法到达预计目标点。</p>
-    </blockquote>
-</div>
-
-<p>这个问题几乎折磨了我一夜，最后的解决方案如下：</p>
-<div class="success">
-    <blockquote>
-        <p>分别记录速度向量的小数部分和整数部分，整数部分每帧直接加到坐标上。</p>
-        <p>小数部分每帧独立计算累加和，一旦累加和向量某分量的绝对值大于 1，就在当前帧把 ±1 加到坐标对应分量上，±1 的符号取决于溢出分量的符号。</p>
-    </blockquote>
-</div>
-
-<p>事实上，这个解决方案十分精确，在斜飞时，它可以误差两个像素点到达指定位置。</p>
-<p>但源代码过长，就不放上来了，感兴趣的读者可至我的 github 仓库内下载查看。</p>
-<h3 id="干员朝向机制"><a href="#干员朝向机制" class="headerlink" title="干员朝向机制"></a>干员朝向机制</h3><p>如果让我说《明日方舟》区别于其他塔防游戏的独特之处，我想阻挡数和干员朝向是当之无愧的两颗明珠。</p>
-<blockquote>
-<p>有限的阻挡数使得有选择地漏怪成为可能；<br>而干员朝向特化了我方单位的攻击范围，极大地丰富了游戏部署策略的可能。</p>
-</blockquote>
-<p>阻挡数的实现较为简单，我下面主要说一说干员朝向机制：</p>
-<div class="info">
-    <blockquote>
-        <p>加入干员朝向机制后，我方单位的实际攻击范围由三个元素共同决定：</p>
-        <p>干员纸面攻击范围、干员部署位置、干员朝向。</p>
-    </blockquote>
-</div>
-
-<ol>
-<li>干员纸面攻击范围是干员的属性，一般来讲是一个矩形。我这里用 <code>QPair&lt;int, int&gt; getAttackArea()</code> 来简单表示。</li>
-<li>干员部署位置由玩家在游戏时确定，是地图上的一个点。由于在逻辑层中，我们之前已经把地图离散化表示为二维地图格数组，这里可以直接用一个格子来表示干员部署位置。</li>
-<li>干员朝向也由玩家指定，且必然是 上、下、左、右 中的一个方向，我们完全可以对其进行分类讨论。</li>
-</ol>
-<p>最后，干员的实际攻击范围也可以表示为格子的集合。由于格子与其上的怪物也是绑定的，这实际上有利于我们的索敌机制。</p>
-<p>由于 GameState 全知全能，我们让它来在部署干员时计算其有效攻击范围：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">GameState</span><span class="token double-colon punctuation">::</span><span class="token function">findAttackPlaces</span><span class="token punctuation">(</span>Operator<span class="token operator">*</span> op<span class="token punctuation">)</span> <span class="token keyword">const</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> height <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> width <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token comment">// 获取干员朝向，并参考其纸面攻击范围，确定相对于部署位置的实际攻击范围。</span>
-    <span class="token keyword">switch</span> <span class="token punctuation">(</span>op<span class="token operator">-></span><span class="token function">getOrientation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">case</span> UP<span class="token operator">:</span>
-        height <span class="token operator">=</span> op<span class="token operator">-></span><span class="token function">getAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>second<span class="token punctuation">;</span>
-        width <span class="token operator">=</span> op<span class="token operator">-></span><span class="token function">getAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">;</span>
-        x <span class="token operator">=</span> op<span class="token operator">-></span><span class="token function">getPlace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">showID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>second <span class="token operator">-</span> width <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-        y <span class="token operator">=</span> op<span class="token operator">-></span><span class="token function">getPlace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">showID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first <span class="token operator">-</span> <span class="token punctuation">(</span>height <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>
-    <span class="token comment">// 其余三个方向同理，这里不再赘述</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token comment">// 在表示地图的二维数组中，取出所有被该干员攻击范围覆盖的格子，注意不要访问越界。</span>
-    QVector<span class="token operator">&lt;</span>Place<span class="token operator">*</span><span class="token operator">></span> attack_area<span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token generic-function"><span class="token function">min</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>x <span class="token operator">+</span> width<span class="token punctuation">,</span> _map<span class="token operator">-></span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token generic-function"><span class="token function">min</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>y <span class="token operator">+</span> height<span class="token punctuation">,</span> _map<span class="token operator">-></span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            attack_area<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>_map<span class="token punctuation">)</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token comment">// 把攻击范围传递给干员保存。</span>
-    op<span class="token operator">-></span><span class="token function">setAttackPlaces</span><span class="token punctuation">(</span>attack_area<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<h3 id="模板的浅浅应用"><a href="#模板的浅浅应用" class="headerlink" title="模板的浅浅应用"></a>模板的浅浅应用</h3><p>你可能注意到，在上文防止数组越界的过程中，我用了模板函数 max 和 min 来限制范围。</p>
-<p>事实上，模板是很适合写泛型的 helper 函数的：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span>
-<span class="token keyword">inline</span> T <span class="token function">max</span><span class="token punctuation">(</span>T x<span class="token punctuation">,</span> T y<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">></span> y<span class="token punctuation">)</span> <span class="token operator">?</span> x <span class="token operator">:</span> y<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span>
-<span class="token keyword">inline</span> T <span class="token function">min</span><span class="token punctuation">(</span>T x<span class="token punctuation">,</span> T y<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> y<span class="token punctuation">)</span> <span class="token operator">?</span> x <span class="token operator">:</span> y<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span>
-T <span class="token function">getRandomUnit</span><span class="token punctuation">(</span>QVector<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">&amp;</span> units<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token function">srand</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">static_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">unsigned</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> units<span class="token punctuation">[</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> units<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<blockquote>
-<p>省时省力省心，你值得拥有</p>
-</blockquote>
-<h3 id="优化交互方式"><a href="#优化交互方式" class="headerlink" title="优化交互方式"></a>优化交互方式</h3><p>既然有了图形化界面了，对应的鼠标交互也得跟上才是~</p>
-<p>在本游戏中，交互的大头落在了部署干员这件事上。那么又回到那个熟悉的问题：</p>
-<blockquote>
-<p>把大象放进冰箱需要几步？</p>
-</blockquote>
-<p>对应的，我们必须把“干员部署”这一概念逐层细分，类似于广度优先搜索那样，才能知道我们应该如何做。</p>
-<div class="success">
-    <blockquote>
-        <p>把干员放进战场需要几步？</p>
-        <p>第一步：选择要部署的干员</p>
-        <p>第二步：选择干员部署位置</p>
-        <p>第三步：选择干员朝向</p>
-    </blockquote>
-</div>
-
-<p>我计划这三步都由鼠标完成互动，那么我们必须在后面的步骤中记录下前面步骤的状态：</p>
-<ol>
-<li>第一步中：记录下所选择的干员，直到第三步结束</li>
-<li>第二步中：记录下干员部署位置，直到第三步结束</li>
-</ol>
-<p>第一步比较好解决：我把干员的大头照以 QLabel 形式放在游戏区域右下角，每次点击的时候，用 _operatorSelected 记录下所点击的干员。</p>
-<p>第二、三步，《明日方舟》中采取的是分别进行的模式。我做了一个小小的创新：</p>
-<div class="info">
-    <blockquote>
-        <p>点击要部署的格子并向 上、下、左、右 中的一个方向拖动光标，即可同时完成二、三步。</p>
-    </blockquote>
-</div>
-
-<p>这一点在实现上还是分为两部分的，且听我细细道来~</p>
-<p>伟大的 Qt 提供了鼠标点击事件和鼠标释放事件的支持，由于干员是与格子而非地图绑定的，所以我对 Place 类的对应函数进行重载：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Place</span><span class="token double-colon punctuation">::</span><span class="token function">mousePressEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">// 当鼠标左键按下时，记录下点击处的坐标</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token operator">-></span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        _prees_point <span class="token operator">=</span> event<span class="token operator">-></span><span class="token function">pos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">void</span> <span class="token class-name">Place</span><span class="token double-colon punctuation">::</span><span class="token function">mouseReleaseEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">// 仍然是当鼠标左键释放时才触发</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token operator">-></span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token comment">// 以释放处坐标与点击处坐标相减，得到鼠标位移向量 delta</span>
-    <span class="token keyword">int</span> delta_x <span class="token operator">=</span> event<span class="token operator">-></span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _prees_point<span class="token punctuation">.</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> delta_y <span class="token operator">=</span> event<span class="token operator">-></span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _prees_point<span class="token punctuation">.</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 判断鼠标总的来说，是向左右位移得多还是向上下位移得多</span>
-    <span class="token comment">// 然后进一步，由位移的正负性判断具体的位移方向</span>
-    <span class="token comment">// 最后调用 GameState 的友元函数 deployOperator，把信息都交给它，完成干员的部署。</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>delta_x<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token function">abs</span><span class="token punctuation">(</span>delta_y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>delta_x <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token function">deployOperator</span><span class="token punctuation">(</span>_gamestate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> RIGHT<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-            <span class="token function">deployOperator</span><span class="token punctuation">(</span>_gamestate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> LEFT<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>delta_x<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token function">abs</span><span class="token punctuation">(</span>delta_y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>delta_y <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token function">deployOperator</span><span class="token punctuation">(</span>_gamestate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> UP<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-            <span class="token function">deployOperator</span><span class="token punctuation">(</span>_gamestate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> DOWN<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<div class="warning">
-    <blockquote>
-        <p>这里要注意一点：必须监测鼠标的点击和释放事件，而不能检测鼠标移动事件。</p>
-        <p>如果我们把鼠标的整个移动过程当作一个整体，那么只有点击位置和释放位置是能代表这个整体的。</p>
-        <p>每一帧的移动都只是局部，而局部的移动方向往往不能充分反映整体，望周知。</p>
-    </blockquote>
-</div>
-
-<p>这其实与平均速度、瞬时速度之间的关系有异曲同工之处。</p>
-<p>此外，让我们回顾一下刚才的整个过程：</p>
-<div class="success">
-    <blockquote>
-        <p>先分步处理，每一步都造成状态的改变，最后应用这些状态的累积，得到目标计算结果（一个部署好的干员）。</p>
-    </blockquote>
-</div>
-
-<p>不知道各位读者有联想到什么没有，在这一节，我们其实实现了一个微型的有限状态机，或者不如说：</p>
-<p>我们的整个程序都只不过是一个稍大点的有限状态机。</p>
-<blockquote>
-<p>程序设计，很奇妙吧~</p>
-</blockquote>
-<h3 id="让小人动起来"><a href="#让小人动起来" class="headerlink" title="让小人动起来"></a>让小人动起来</h3><p>如何让场上的单位都有自己的待机动画呢，这实际上与先前的 update 函数更新有着相同的原理：</p>
-<div class="info">
-    <blockquote>
-        <p>只要相邻两帧之间的间隔足够短，相邻图片的内容差异足够小，图片的连续播放就会看起来像动画一样。</p>
-    </blockquote>
-</div>
-
-<p>Qt 为我们提供了 <code>void paintEvent(QPaintEvent*)</code> 虚函数，每当我们调用同一单位的 update 函数时，paintEvent 函数就会紧接着被调用。</p>
-<p>所以我们只需要一系列的图片，然后把它们扔进 paintEvent 函数里，就能做出人物的待机动画？</p>
-<p>NO NO NO ~</p>
-<div class="success">
-    <blockquote>
-        <p>事实上，伟大的明日方舟 wiki （https://prts.wiki ）已经为我们准备好了所有人物的 gif 动画。我们只需要每隔 20ms 从 gif 里截取一帧，设为人物的当前画面，就可以啦！</p>
-    </blockquote>
-</div>
-
-<blockquote>
-<p>快说：谢谢明日方舟 wiki。</p>
-</blockquote>
-<p>并且，为了人物动画看起来不那么单一，我们在攻击时设置 _is_attacking 标志位，绘出人物图像时按照 _is_attacking 的真值，选择截取不同的 gif：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Operator</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent<span class="token operator">*</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    QPainter <span class="token function">painter</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    QImage image<span class="token punctuation">;</span>
-    <span class="token comment">// 人物总是在攻击状态和待机状态之间切换，选择截取需要的动画，将不需要的暂停，以节约资源</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>_is_attacking<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        _attack_movie<span class="token operator">-></span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        _idle_movie<span class="token operator">-></span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        image <span class="token operator">=</span> _attack_movie<span class="token operator">-></span><span class="token function">currentImage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-        _idle_movie<span class="token operator">-></span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        _attack_movie<span class="token operator">-></span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        image <span class="token operator">=</span> _idle_movie<span class="token operator">-></span><span class="token function">currentImage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    painter<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span><span class="token function">QRect</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span> image<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<div class="warning">
-    <blockquote>
-        <p>这样简单的播放暂停会导致另一个问题，即攻击与攻击动画不同步。</p>
-        <p>我暂时还没有想到什么简单明了的解决方案。</p>
-    </blockquote>
-</div>
-
-<p>可是就算这样，怎么还是显得比较单调捏……</p>
-<div class="info">
-    <blockquote>
-        <p>所以我们再增加一个受击动画，让受击单位泛红闪烁一下。为了过渡的自然性，再为这个泛红程度增加一点渐入渐出的效果。</p>
-    </blockquote>
-</div>
-
-<p>让我们分解这个问题：</p>
-<ol>
-<li>首先是受击的时候，要设置一个倒计时 <code>_is_attacked_count = 10</code>。每 20ms 更新一次，则泛红状态持续 200ms。</li>
-<li>然后在 paintEvent 的重载中调用 convertToRedImage 函数，处理所需要被展示的图片。</li>
-<li>在 convertToRedImage 内部，我们希望在 200ms 内，泛红的程度的增加量能先线性地增加，再线性地降低。<br> 于是求出 R 分量增加量函数 <code>100 - 20 * abs(_is_attacked_count - 5)</code>，并将其写入 convertToRedImage 中。</li>
-</ol>
-<p>作函数如下：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Infected</span><span class="token double-colon punctuation">::</span><span class="token function">convertToRedImage</span><span class="token punctuation">(</span>QImage<span class="token operator">&amp;</span> img<span class="token punctuation">,</span> <span class="token keyword">int</span> degree<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">//* 四通道 8bit-8bit-8bit-8bit 的 rgba 色彩模式，前三位分别表示 rgb，最后一位表示透明度</span>
-    <span class="token comment">//* 8bit 为每位的值域，每个像素点的四位在色彩空间数组中临近存储</span>
-    img <span class="token operator">=</span> <span class="token function">QImage</span><span class="token punctuation">(</span>img<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">convertToFormat</span><span class="token punctuation">(</span>QImage<span class="token double-colon punctuation">::</span>Format_RGBA8888<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">uint8_t</span><span class="token operator">*</span> rgb <span class="token operator">=</span> img<span class="token punctuation">.</span><span class="token function">bits</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">//* 将 R 分量二次函数式地增加 300 个点，然后按同样规则衰退回原状态</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> img<span class="token punctuation">.</span><span class="token function">width</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> img<span class="token punctuation">.</span><span class="token function">height</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> new_red_degree <span class="token operator">=</span> rgb<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">-</span> <span class="token number">20</span> <span class="token operator">*</span> <span class="token function">abs</span><span class="token punctuation">(</span>degree <span class="token operator">-</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        rgb<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> new_red_degree <span class="token operator">></span> <span class="token number">255</span> <span class="token operator">?</span> <span class="token number">255</span> <span class="token operator">:</span> new_red_degree<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>随后在刚才的 paintEvent 中 here 的位置添加两行代码即告成功：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>_is_attacked_count <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token function">convertToRedImage</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> _is_attacked_count<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    _is_attacked_count<span class="token operator">--</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<h3 id="更多样的提示信息"><a href="#更多样的提示信息" class="headerlink" title="更多样的提示信息"></a>更多样的提示信息</h3><p>在命令行时代，我们只能通过文字来输出游戏状态。</p>
-<p>但现在不同了，不仅是图形化，更多样的提示信息才是我们所需要的。</p>
-<blockquote>
-<p>I need that ! ! !</p>
-</blockquote>
-<h4 id="人物血量显示"><a href="#人物血量显示" class="headerlink" title="人物血量显示"></a>人物血量显示</h4><p>你觉得血条怎样显示最方便简洁？</p>
-<div class="success">
-    <blockquote>
-        <p>可能你脑中已然闪过了 114514 个答案。但血条是什么？</p>
-        <p>从图形的角度来看，它可能真的只是一个长度正比于血量的红色长方体。</p>
-    </blockquote>
-</div>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp">QBrush <span class="token function">red_brush</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span><span class="token string">"#EE0000"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span>red_brush<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置笔刷为红色</span>
-<span class="token keyword">float</span> rate <span class="token operator">=</span> <span class="token number">1.0</span> <span class="token operator">*</span> _health <span class="token operator">/</span> _max_health<span class="token punctuation">;</span>
-painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> rate <span class="token operator">*</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 从 (15, 5) 的位置开始，画一个最大大小为 80 * 5 的长方体</span></code></pre>
-
-<h4 id="干员攻击范围显示"><a href="#干员攻击范围显示" class="headerlink" title="干员攻击范围显示"></a>干员攻击范围显示</h4><p>正如前文已经提到过的，干员攻击范围同时受<strong>干员纸面攻击范围、干员部署位置、干员朝向</strong>三个属性影响。</p>
-<div class="info">
-    <blockquote>
-        <p>对于这种复杂的、不直观的内容，用易于理解的、直观的形式表示，这正是图形化界面的初衷。</p>
-    </blockquote>
-</div>
-
-<p>来吧，还记得我们的干员攻击范围在逻辑层是用什么存储的吗？地块的集合。攻击范围的显示也是在地块上。</p>
-<p>这就是说，对于一个干员，我们可以简单地召集他攻击范围内的所有地块，让它们分别显示出蓝色条条，就完成了整个攻击范围的显示。这正是：</p>
-<blockquote>
-<p>化整为零，分而治之。</p>
-</blockquote>
-<p>为了保证只要鼠标处于点击状态，就显示攻击范围，所以干员类的鼠标点击函数和鼠标释放函数都应该重载：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Operator</span><span class="token double-colon punctuation">::</span><span class="token function">mousePressEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token operator">-></span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Place<span class="token operator">*</span><span class="token operator">&amp;</span> place <span class="token operator">:</span> _attack_places<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            place<span class="token operator">-></span><span class="token function">paintAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">void</span> <span class="token class-name">Operator</span><span class="token double-colon punctuation">::</span><span class="token function">mouseReleaseEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token operator">-></span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Place<span class="token operator">*</span><span class="token operator">&amp;</span> place <span class="token operator">:</span> _attack_places<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            place<span class="token operator">-></span><span class="token function">paintAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>为什么这两个函数内容完全一致呢？这里采用了一个相对简洁的写法，秘密在下头：</p>
-<div class="info">
-    <blockquote>
-        <p>地块类这边接收信息，通过改变标志位，来改变 paintEvent 的效果。这正是按照状态显示不同信息时的通用手法。</p>
-    </blockquote>
-</div>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Place</span><span class="token double-colon punctuation">::</span><span class="token function">paintAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    _isPainted <span class="token operator">=</span> <span class="token operator">!</span>_isPainted<span class="token punctuation">;</span> <span class="token comment">// 打印状态取反，相比于 if-else 更简洁</span>
-    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">void</span> <span class="token class-name">Place</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent<span class="token operator">*</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>_isPainted<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        QPainter <span class="token function">painter</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>NoPen<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 取消描边</span>
-        painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span><span class="token function">QBrush</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>blue<span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>FDiagPattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置刷子格式为蓝色条纹状</span>
-        painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 画！</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<h4 id="通用的日志打印接口"><a href="#通用的日志打印接口" class="headerlink" title="通用的日志打印接口"></a>通用的日志打印接口</h4><p>为了复杂信息的说明，我还在游戏左下角留出了一个日志窗口。</p>
-<blockquote>
-<p>规格严格，功夫到家。</p>
-</blockquote>
-<p>秉持着以上原则，我为这个日志窗口封装了统一的日志打印函数，它负责打印出如下形式的日志：</p>
-<head/><body>
-    <p>
-        <span style=" font-weight:600;color:#66ccff;"> TYPE </span> info
-    </p>
-</body>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">printLog</span><span class="token punctuation">(</span><span class="token keyword">const</span> QString<span class="token operator">&amp;</span> color<span class="token punctuation">,</span> <span class="token keyword">const</span> QString<span class="token operator">&amp;</span> type<span class="token punctuation">,</span> <span class="token keyword">const</span> QString<span class="token operator">&amp;</span> info<span class="token punctuation">,</span> Map<span class="token operator">*</span> map_init<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">//* 仅在第一次调用时传参 map_init，形成闭包</span>
-    <span class="token keyword">static</span> Map<span class="token operator">*</span> map <span class="token operator">=</span> map_init<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>map<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        map<span class="token operator">-></span>ui<span class="token operator">-></span>text_log<span class="token operator">-></span><span class="token function">appendHtml</span><span class="token punctuation">(</span><span class="token function">QString</span><span class="token punctuation">(</span><span class="token raw-string string">R"(&lt;html>&lt;head/>&lt;body>&lt;p>
-                &lt;span style=" font-weight:600;color:%1;"> %2 &lt;/span> %3 
-                &lt;/p>&lt;/body>&lt;/html>)"</span><span class="token punctuation">)</span>
-                                    <span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span>
-                                    <span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span>
-                                    <span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>你可能会对代码中的 map_init 感到疑惑，事实上，printLog 不是 map 的成员函数，这意味着它无法在游戏初始化时自行“找到” map。可不找到 map 就无法用 text_log 打印日志信息，所以才采用了这个取巧的方法：</p>
-<div class="success">
-    <blockquote>
-        <p>通过函数内的静态变量构成闭包，在首次传参时确定下来。</p>
-    </blockquote>
-</div>
-
-<h3 id="时间管理者"><a href="#时间管理者" class="headerlink" title="时间管理者"></a>时间管理者</h3><p>众所周知，时间管理向来不是一件容易的事情，但由于之前的合理规划，我们的整个游戏逻辑是由一个时钟控制的：</p>
-<ol>
-<li><p>只需要将 _timer 的触发时间间隔减半，就能实现二倍速。</p>
-</li>
-<li><p>只需要将 _timer 暂停，就能实现游戏的暂停。</p>
-</li>
-</ol>
-<p>为什么我只说“整个游戏逻辑”是由一个时钟控制的，而不是“整个游戏”呢？</p>
-<p>区别在于，我力图达到图形层与逻辑层的尽量分离，每个单位重载了它的 timerEvent 以更新自身图像显示，这是全局 _timer 所不管的：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Infected</span><span class="token double-colon punctuation">::</span><span class="token function">timerEvent</span><span class="token punctuation">(</span>QTimerEvent<span class="token operator">*</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token function">startTimer</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 启动计时器。这句话写在 Infected 的构造函数中</span></code></pre>
-
-<p>也恰因此，当我们控制时间的时候，二倍速和暂停都不会影响到对象的动画正常播放。我认为这一点不算坏。</p>
-<div class="warning">
-    <blockquote>
-        <p>经过试验，图像更新会消耗大量资源。如果不异步处理，则会造成严重的卡顿。</p>
-        <p>并且，图像更新基本上是“无害”的，也即不会造成逻辑层的影响，便不会导致数据竞争，可以放心使用多线程处理。</p>
-    </blockquote>
-</div>
-
-<h3 id="游戏如何结束"><a href="#游戏如何结束" class="headerlink" title="游戏如何结束"></a>游戏如何结束</h3><p>最后的最后，请让我回收一个开头的伏笔：</p>
-<div class="info">
-    <blockquote>
-        <p>在全局 update 函数中，我采用了一个 try-catch 语句来接收 GameOverException 类的异常。</p>
-        <p>把游戏结束定义为异常，这很怪，不是么？</p>
-    </blockquote>
-</div>
-
-<p>但此举实际上好处多多，最重要的一点在于：</p>
-<blockquote>
-<p>异常处理机制，使得游戏结束的信号可以迅速地脱离层层栈展开，以回到 update 函数内被马上处理掉。<br>这正是“游戏结束”与“异常”这两个看似毫不相关的概念之共性。</p>
-</blockquote>
-<p>简单地写一下代码吧家人们~</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">GameOverException</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">QException</span></span> <span class="token punctuation">&#123;</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token keyword">virtual</span> QString <span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">noexcept</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// what 函数必须是不抛出异常的</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-
-<span class="token keyword">class</span> <span class="token class-name">WinGameException</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">GameOverException</span></span> <span class="token punctuation">&#123;</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    QString <span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">noexcept</span> <span class="token keyword">override</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token string">"You Win"</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-
-<span class="token keyword">class</span> <span class="token class-name">LoseGameException</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">GameOverException</span></span> <span class="token punctuation">&#123;</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    QString <span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">noexcept</span> <span class="token keyword">override</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token string">"You Lose"</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-<p>用基类引用类型捕获到异常之后，可以直接把 <code>exception.what()</code> 丢进 printLog 打印，而无需去管到底是玩家赢了还是输了。</p>
-<p>至此神功大成，你会发出由衷的赞叹：</p>
-<div class="success">
-    <blockquote>
-        <p>程序设计，真好啊~</p>
-    </blockquote>
-</div>
-
-<h2 id="资源链接"><a href="#资源链接" class="headerlink" title="资源链接"></a>资源链接</h2><p>github 仓库地址：</p>
-<blockquote>
-<p><a href="https://github.com/Heart-tide/proj-arknights">https://github.com/Heart-tide/proj-arknights</a></p>
-</blockquote>
-<p>游戏完整版下载地址：</p>
-<blockquote>
-<p>链接：<a href="https://wwu.lanzoub.com/iSLZf06ib75i">https://wwu.lanzoub.com/iSLZf06ib75i</a><br>密码：7kcd</p>
-</blockquote>
-<h2 id="在这一切之后"><a href="#在这一切之后" class="headerlink" title="在这一切之后"></a>在这一切之后</h2><p>屋外天色已晚，一切都沉入沉沉的夜色……</p>
-<p>望着这 2k 行的代码、6k 字博客，你有什么收获、又有什么遗憾呢？</p>
-<p>不管你想到了什么，请你记住它，然后——</p>
-<p>明天见，我的朋友！</p>
-<blockquote>
-<p>忽然抚尺一下，群响毕绝。撤屏视之，一人、一桌、一椅、一扇、一抚尺而已。<br>——林嗣环《口技》</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Programming</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>Qt</tag>
-        <tag>Arknights</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MIT-6.031</title>
     <url>/2022/10/22/MIT-6-031/</url>
     <content><![CDATA[<h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><p>Hello! 你好，好久不见</p>
@@ -1435,12 +781,6 @@ painter<span class="token punctuation">.</span><span class="token function">draw
 <li>不要使用全局可变量。</li>
 <li>只有当首次需要一个变量时，才声明它。</li>
 </ul>
-<h2 id="停更相关事宜"><a href="#停更相关事宜" class="headerlink" title="停更相关事宜"></a>停更相关事宜</h2><p>你可能注意到，自十一月中旬至今，我暂停了对此博客的更新。</p>
-<p>这倒不是因为我的懒惰，或者工作繁忙所致。而是，从人之为人的价值体系上来讲，我深感有比这工具理性之运用更为重要的事。</p>
-<p>在这“白色的弥撒”中，我实是不忍不去探寻当代社会和当代人所需的解药。</p>
-<p>没有比这再重要的事了，于是这些博文，也自然地被放置在了当下思维之外的范畴之中。</p>
-<p>诸君，“向前走，莫停留”。我们终会再会。</p>
-<p>2022年12月10日</p>
 ]]></content>
       <categories>
         <category>Programming</category>
@@ -1448,6 +788,700 @@ painter<span class="token punctuation">.</span><span class="token function">draw
       <tags>
         <tag>TypeScript</tag>
         <tag>Software engineering</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>庄子哲学札记</title>
+    <url>/2022/12/17/%E5%BA%84%E5%AD%90%E5%93%B2%E5%AD%A6%E6%9C%AD%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>庄子哲学是追求人之自由的哲学。</p>
+<p>欲求人之自由，首先要解明“人”的范畴。哪些属于人？哪些不属于人？就庄子看来，凡人力所不逮的，皆应归于“非人”，也即物的范畴；而完全由人之自主精神所能把握的，才是我们真正要关切的、人的范畴。此谓之“天人之分”。</p>
+<span id="more"></span>
+
+<p>这种分类法的确立是很重要的。因为只要有人力所不能及，便要求于物，便要“有所待”。庄子把这称作“天食”，也就是靠天吃饭。如此一来，人便有了束缚，还怎么求得真正的、完全的、彻底的自由？因此，人是通过不断地把外物排除出去所达到的一个范畴。</p>
+<p>也正因为对天的承认，对自然和人事现实的无可奈何，庄子对于物的看法是：“知其不可奈何而安之若命”。既然触及不到、改变不了，便要安，物便“不足以扰心之和”。</p>
+<p>可若说，庄子之于物完全是处于一个消极的状态，倒也不完全。这里牵涉到庄子哲学的另一重要问题，即人的生命之安顿问题，也就是“养生”。此“生”可分为两部：一部分为生命的维系，也就是人的物质存在之保全问题；另一部分是精神的生机，也就是人的精神生活之保养问题。</p>
+<p>生命，显然是物质范畴内的对象，然而又为人之存在之不可避之基础。由此，庄子对于物的认识之积极性的部分，几乎是完全围绕着对生命之保全的。这部分依赖于知识：人可凭借着自然和社会知识，即“缘督以为经”，来“批大郤，导大窾，因其固然”，在社会的缝隙之中游走，躲避不时而至的屠刀，从而努力保全自身。即便如此，仍有些“人刑”是不可免的，那也只能“安之若命”了。</p>
+<p>除此以外，物是不值得、不应当去被考虑的。否则，便生执念。与人刑相对应的，庄子称之为“天刑”。天刑是以人助天而伤害自身，比人刑更隐蔽而更深刻而难于消解。主要体现在对某一人设之价值体系的追求上，譬如对生死、名利、仁义、情感乃至于知识的看重。以上种种，皆被庄子归到物的范畴内。</p>
+<p>不管是庄子的年代还是当下，人们的心疾总在于“逐万物而不反”。人们总在追求一些“人之外”的东西，而忘了最应该被看重、被关注的人之本身，也就是自己。模糊了自我和外物的界限所导致的必然结果，就是以物为我，为物所扰、被物所困。即使是通常意义下所说的“自私”的人，他们所求的，不也是那些属于身外之物的利益吗？</p>
+<p>犹鲍德里亚所言，生活在当代社会的人们，已经失去了主动定义自我的能力，也即主体性。人们只是求助于诸多符号，来从其所区分出的众多人类群体集合之交集中，来框定出一个实际上什么也没有的范畴，并把那叫做“自我”。在这一行为中，人们的精神是否全部献身于“以有涯逐无涯”的过程之中而不见踪影了，只剩一具行走的空壳、一个“活死人”？</p>
+<p>天刑的根源在于“成心”，也就是心中有外物，因而不得自已。此时的人犹如被倒挂一般，被不安的言语所充斥着，那是将死之人的预兆，心灵怎得平静？那么欲去天刑， 便要“忘”于外物。上文已述，不断把外物排除，就达到人。忘所体现的就是这一“取消”的过程。</p>
+<p>庄子哲学的超越，是通过取消一切符号体系之后达到的。这既包括所有的知识体系，又包括所有的价值评判体系。它们是“成心”中的硬块、那个阻塞了人们心灵的结。而只有通过忘才能达到虚心，达到“虚室生白”，在一无所有的心灵空间中生出莫大的光明。就积极性而言，忘记从来不只是忘记，而是为了记住那些不能被忘记的东西。</p>
+<p>关于取消价值体系这件事，老子有一句话说得很明白：“失道而后德，失德而后仁，失仁而后义，失义而后礼”。在儒家的哲学体系中，仁是最高之超越境界；义较低一些，是为观念之正当性；礼境界更低，停留在行动的规范层面。那么，这句看似极难解的话，实际上是在说：若知晓义则无重要于礼，若知晓仁则无重要于义，如此等等，而以道为最高。</p>
+<p>从中我们可以看出超越一词的内涵：何谓之超越？不是说被超越的对象被否定了，而只是说，我们要建立一个新的价值体系，而在此价值体系中，原先被超越的对象变得不再重要了。这是主体对客体之关注程度的区别，和是非之论是半点关系也没有的。而且，是非之论只能在同一价值体系下进行，而超越是价值体系整体的推翻。</p>
+<p>因此，庄子对于世俗之一切观念，不持支持态度也不持反对态度，而是一种不在乎的、无所谓的态度。凡有符号体系则有外物，因而便有心结。故而，只有取消一切价值及知识体系，乃至于泯除自我的概念，以万物为一，才能把人从倒悬的境地下解救出来，也就是“帝之县解”。</p>
+<p>从这里我们看出，庄子所谓的“道”也并非什么过于玄妙之哲学概念，而只是去除一切人为之差别后，万物化而为一的那个独立之对象。这里是无所谓仁义、无所谓好坏、更无所谓你我的，有的只有“虚”的平静，和“化”的自由。</p>
+<p>在人间世中，固然有很多不得已。但是知晓它们，便有办法超越。当人“通”于道时，便能回归到赤子般的真正自由的人的状态，是为“真人”。真人的一切都是那么的自然，没有人力的矫饰，有的只是对于人力所不能及的外物的、与时俱化的不得已，也是“不足以扰心之和”的。所谓“安时而处顺，哀乐不能入也”。</p>
+<p>“人固无情”的生存状态在常人看来，可能是莫大的悲哀。然而若情本身为禁锢，为囚笼，又当如何？庄子在这里有一个著名的寓言：“泉涸，鱼相与处于陆，相呴以湿，相濡以沫，不如相忘于江湖。”在陆地上，鱼固然可以追逐温暖的幻梦而勉强存活，可终究是失去了自由。那为何不归于大海，真真个求得个无拘无束呢？</p>
+<p>庄子的形体仍在人间世，这是无可奈何的。但他的精神早已超越了一切束缚，而在那个被称为道的故乡，得到了永恒的平静与自得。作为鲲的形体留在了寒冷的北冥，但是作为鹏的灵魂却向遥远的南冥飞去。这便是庄子哲学，一段自北向南的心之归途。</p>
+<h2 id="几句题外话"><a href="#几句题外话" class="headerlink" title="几句题外话"></a>几句题外话</h2><ul>
+<li>我以为庄子哲学是离 <em>【素晴日】</em> 很近的。“幸福地活下去吧”这句箴言，不应当以俗常的“幸福”意义来做解说。以所谓代表“天”的音无彩名的说法，对死之恐惧是与对生之祝福相对而生的。此乃由形物而生的心结，在这里，心之“容器”是被外物所填满的。而只有“知其不可奈何而安之若命”，取消死生的神圣性与重要性，让光明照耀心灵、“虚室生白”，人才能在超越中获得真自由、“幸福地活下去”。若以通常幸福意义论之，则仍以生死、情感为重，怎能获得一生的幸福？</li>
+<li>鲍德里亚在 <em>【消费社会】</em> 中所揭示的，以无意识为作用方式的社会符号控制体系，我认为，当属于当代人所受“天刑”中最主要之一部。要想获得自由，首先要意识到束缚，因为自由是被束缚所定义并在其反面的（所以一个时代才有一个时代的哲学）；其次，如上野千鹤子所言，“解放的思想要有解放的理论”。我观今人呼唤之自由，不是空喊口号、言之无物，就是资本主义之民主概念下之自由神话。或是无意识的戒律过于深刻，就上述追求自由之两要素而言，是风马牛不相及，怎能成功？是以哀之。</li>
+</ul>
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>最后，既称札记，则以上文字全来自我对两部书的阅读体验，特以感谢。它们是：</p>
+<ul>
+<li><em>【庄子哲学】</em> 王博，北京大学出版社</li>
+<li><em>【庄子今注今译】</em> 陈鼓应，中华书局</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Philosophy</category>
+      </categories>
+      <tags>
+        <tag>庄子</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>愚者【浅谈 euphoria 之主题】</title>
+    <url>/2021/03/20/%E6%84%9A%E8%80%85/</url>
+    <content><![CDATA[<p>过去已经注定，未来还待我们的双手去创造。决不可以以过去累未来，更不可以沉浸于过去之中。</p>
+<p>“乐园”绝非他物，更不是什么“睡美人”的梦境。能引导人们走入乐园的，只有自己对自己主观能动性的否定，放弃思考、成为zombie的愚蠢想法。</p>
+<p>在塔罗牌中，愚者是[0]，是塔罗牌中的第一张牌，也是最后一张牌，甚至可以是中间任意一张牌。</p>
+<p>它既是结束，又是起始。它代表一种不确定性，也代表着面对不确定性的豁达，与因准备充足而持有的勇气。</p>
+<p>从情节上看，这句话是一个转变，标志着惠辅在认识上的新生，他不再在“爱”与“欲”或者是“理”与“爱”中犹豫徘徊，而是坚定地向着自己心中的遥远彼方，进发。</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>Galgame</category>
+      </categories>
+      <tags>
+        <tag>gal</tag>
+        <tag>hello world</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>让我们来做游戏吧！</title>
+    <url>/2022/06/16/%E8%AE%A9%E6%88%91%E4%BB%AC%E6%9D%A5%E5%81%9A%E6%B8%B8%E6%88%8F%E5%90%A7/</url>
+    <content><![CDATA[<p>如何从零开始写一个塔防游戏呢？</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>伴随着期末考试到来的，是大一学年的结末。<br>有赖于学校<strong>紧凑</strong>的时间安排，我得以在考试周享有三天半的小长假，何其幸运。</p>
+<p>我确信我已找到前进的方向，作为诸多开始中的一个，博客这里我就以一篇小小的技术类文章来开个小头。<br>这也是在上一篇章里我所承诺过的。</p>
+<p>看惯了静态的命令行和 OJ，来点图形化或许会更有动感？</p>
+<span id="more"></span>
+
+<img src="/images/让我们来做游戏吧/final.png" width = "550" align=center loading="lazy">
+
+<h2 id="从零开始？"><a href="#从零开始？" class="headerlink" title="从零开始？"></a>从零开始？</h2><blockquote>
+<p>忽然抚尺一下，群响毕绝。撤屏视之，一人、一桌、一椅、一扇、一抚尺而已。<br>——林嗣环《口技》</p>
+</blockquote>
+<p>实际上，我们并非完全“从零开始”，概念是我们的武器。</p></p>
+<h3 id="一个塔防游戏需要什么？"><a href="#一个塔防游戏需要什么？" class="headerlink" title="一个塔防游戏需要什么？"></a>一个塔防游戏需要什么？</h3><div class="warning">
+    <blockquote>
+        <p>我们首先考虑战斗界面，因为它是游戏的主体与核心，是塔防游戏不可或缺的部分。</p>
+    </blockquote>
+</div>
+
+<p>而其他界面是次要的，他们完全可以留到后面再来完成（咕咕咕……）<br>那么问题简化成：</p>
+<h3 id="一个战斗界面需要什么？"><a href="#一个战斗界面需要什么？" class="headerlink" title="一个战斗界面需要什么？"></a>一个战斗界面需要什么？</h3><p>从全局考虑，战斗发生在一张地图上，并有敌我双方：</p>
+<ol>
+<li><p>怪物从地图上的出怪口出发，并沿着既定路线前进，直到到达我方的基地为止。<br> 敌方的战略目的是将尽可能多的敌方单位送至我方基地中（<del>给博士手撕</del>）</p>
+</li>
+<li><p>我方可以在地图上的特定位置部署单位，阻拦或攻击敌人。<br> 我方的战略目的是尽可能地阻止敌人接近我方基地。</p>
+</li>
+</ol>
+<div class="success">
+    <blockquote>
+        <p>那么逻辑结构便明确了，一个地图类、一个我方单位类、一个敌方单位类。</p>
+        <p>最后我再用一个 GameState 类管理全局游戏状态，大功告成。</p>
+    </blockquote>
+</div>
+
+<h3 id="完成它们就够了吗？"><a href="#完成它们就够了吗？" class="headerlink" title="完成它们就够了吗？"></a>完成它们就够了吗？</h3><p>当然不够，我们还需要摩多摩多~</p>
+<div class="info">
+    <blockquote>
+        <p>但在这之前，我们必须认识到：要让程序运转起来的最小代码量是什么。这就是程序的核心框架、主要矛盾。</p>
+    </blockquote>
+</div>
+
+<p>《口技》虽繁，盖“一人、一桌、一椅、一扇、一抚尺而已”，程序设计亦是如此。<br>战略在战术之前，语义在语法之前。</p>
+<h2 id="动起来！"><a href="#动起来！" class="headerlink" title="动起来！"></a>动起来！</h2><p>基本数据结构的设计，我们在上一节已经大致完成。虽然它暂时还略显简陋，不过就其功用来讲已是绰绰有余。</p>
+<div class="warning">
+    <blockquote>
+        <p>下面的问题是，如何让代码动起来？</p>
+    </blockquote>
+</div>
+
+<p>毕竟俗话说得好：</p>
+<blockquote>
+<p>代码和人，总得有一个能跑的。</p>
+</blockquote>
+<h3 id="如何动？"><a href="#如何动？" class="headerlink" title="如何动？"></a>如何动？</h3><p>Qt 提供了简单的 QTimer 类来帮助我们完成这个需求。</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">QTimer<span class="token operator">*</span> _timer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">QTimer</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token comment">// 创建一个计时器</span>
+_timer<span class="token operator">-></span><span class="token function">start</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//* 每 20ms 更新一次！</span>
+<span class="token function">connect</span><span class="token punctuation">(</span>_timer<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QTimer<span class="token double-colon punctuation">::</span>timeout<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>GameState<span class="token double-colon punctuation">::</span>update<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 每次更新时调用 update 函数</span>
+
+size_t _time <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 记录从计时器开始计时至今过去了多少帧。</span></code></pre>
+
+<div class="info">
+    <blockquote>
+        <p>发生在连续量上的问题，考虑起来总是很复杂的。</p>
+        <p>但如果我们能把连续量离散化，分别考虑每个离散点，结果说不定就会不一样。正如我们微积分时所做的那样。</p>
+    </blockquote>
+</div>
+
+<p>QTimer 类的对象启动后，每隔一定时间触发一次更新，因此我们只需要编写自己的 update 函数就好啦~</p>
+<p>只要相邻两次更新的间隔足够短，在玩家看起来游戏就是连续的。</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">GameState</span><span class="token double-colon punctuation">::</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    _time<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">reunionStragegy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 敌方出怪策略</span>
+        <span class="token function">reunionAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 所有敌方依次行动</span>
+        <span class="token function">operatorAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 所有我方依次行动</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>GameOverException<span class="token operator">&amp;</span> exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">gameOver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">stateInfoUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>带有函数式编程风格的代码，非常简洁漂亮。</p>
+<p>书接上文，这里之所以采用 GameState::update 统一调配各单位的行动，而非各单位分别计时、自己安排自己的行动，一是为了逻辑上的简洁，二是为了避免程序中多线程导致的数据竞争。</p>
+<div class="warning">
+    <blockquote>
+        <p>试考虑以下情景：</p>
+        <p>我方单位 A 和 B 同时索敌敌方单位 C，A 先手击杀单位 C，但 C 已经在 B 的索敌状态下，此时有两个选择：</p>
+        <p>1. 析构 C，则出现悬空指针，B 攻击时报错。</p>
+        <p>2. 不析构 C，此时 B 只能再次攻击“死亡”后的 C，而这显然是荒谬的。</p>
+    </blockquote>
+</div>
+
+<p>综上所述，多线程常常会导致奇怪的不安全性，因此除非有足够充分的理由，需要尽量避免使用。</p>
+<h3 id="但是行动很慢……"><a href="#但是行动很慢……" class="headerlink" title="但是行动很慢……"></a>但是行动很慢……</h3><p>我们很快就会发现上文的不足之处：每 20ms 更新一次游戏状态，但是对象的行动，如移动或攻击频率却肯定不是 20ms 一次的，不然会让人眼花缭乱的……</p>
+<p>怎么办？</p>
+<div class="info">
+    <blockquote>
+        <p>一个简单的解决方案是给每个单位设定一个行动间隔，记录其两次行动间需要隔开的帧数。</p>
+        <p>每次行动后，只有至少又过去了这么多帧，才进行下一次行动，否则等待。</p>
+    </blockquote>
+</div>
+
+<p>举个栗子，我把敌方战斗兵种“无人机”的 action 函数这么编写：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">UAV</span><span class="token double-colon punctuation">::</span><span class="token function">action</span><span class="token punctuation">(</span>size_t time<span class="token punctuation">,</span> size_t<span class="token operator">&amp;</span> hp<span class="token punctuation">,</span> Infected<span class="token operator">*</span> op<span class="token punctuation">,</span> Map<span class="token operator">*</span> map<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 攻击和移动共享行动间隔</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>time <span class="token operator">-</span> _last_action_time <span class="token operator">&lt;</span> _interval<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 重置行动冷却时间</span>
+    _last_action_time <span class="token operator">=</span> time<span class="token punctuation">;</span>
+
+    <span class="token comment">// 如果攻击范围内有敌人，则攻击！</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>op <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">attack</span><span class="token punctuation">(</span>op<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 无论是否攻击，移动总是正常进行</span>
+    <span class="token function">move</span><span class="token punctuation">(</span>hp<span class="token punctuation">,</span> map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>我们会发现，在上述代码编写下的无人机，采取的是畏战策略，即“边打边跑”。稍微变动两行代码，我们就可以得到好战类型的兵种：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">GroundReunion</span><span class="token double-colon punctuation">::</span><span class="token function">action</span><span class="token punctuation">(</span>size_t time<span class="token punctuation">,</span> size_t<span class="token operator">&amp;</span> hp<span class="token punctuation">,</span> Infected<span class="token operator">*</span> op<span class="token punctuation">,</span> Map<span class="token operator">*</span> map<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>time <span class="token operator">-</span> _last_action_time <span class="token operator">&lt;</span> _interval<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    _last_action_time <span class="token operator">=</span> time<span class="token punctuation">;</span>
+
+    <span class="token comment">// 只要攻击范围内存在敌人，就会站着不动、持续进行攻击</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>op <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">attack</span><span class="token punctuation">(</span>op<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">move</span><span class="token punctuation">(</span>hp<span class="token punctuation">,</span> map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>我方单位的行动策略相对来说更简单一些，因为只用攻击、不用移动。</p>
+<blockquote>
+<p>塔防游戏嘛，“塔”怎么移动呢？</p>
+</blockquote>
+<h3 id="做个小-demo"><a href="#做个小-demo" class="headerlink" title="做个小 demo"></a>做个小 demo</h3><p>有了之前叙述的组合逻辑电路和时序逻辑电路，我们就可以做出一个小 demo，效果如下：</p>
+<img src="/images/让我们来做游戏吧/phase-1.png" width = "550" align=center loading="lazy">
+
+<p>虽然大多数人可能会对这样一个朴素的命令行游戏产生不了什么兴趣，但它实际上已经囊括最终版本的大多数核心逻辑。</p>
+<p>千里之行，始于足下！</p>
+<div class="success">
+    <blockquote>
+        <p>不管目标程序的代码量有多么大，从一个能跑的版本开始，不断增量更新并即时确定更新版本的正确性，是高效编写程序的关键。</p>
+    </blockquote>
+</div>
+
+<h2 id="从现在开始迭代"><a href="#从现在开始迭代" class="headerlink" title="从现在开始迭代"></a>从现在开始迭代</h2><blockquote>
+<p>迭代的过程和滚雪球很像，不过这可是门精细得多的手艺。</p>
+</blockquote>
+<p>demo 的展现形式是命令行，可最终我们要的呈现效果可是图形化界面，要做好这个转换，最重要的地方是移动的连续化。</p>
+<h3 id="移动的连续化"><a href="#移动的连续化" class="headerlink" title="移动的连续化"></a>移动的连续化</h3><p>所谓移动的连续化，就是每帧都进行一次移动。只有这样，我们看到的动画才不会是一个怪物突然就从一个格子“瞬移”到另外一个格子，而是逐渐地移动到标定位置。</p>
+<div class="info">
+    <blockquote>
+        <p>虽然逻辑层中怪物的位置仍然与地图格子相绑定，但这不妨碍我们在图形层中给它一个平滑的过渡~</p>
+    </blockquote>
+</div>
+
+<p>假设我们需要怪物 A 在 t 帧内横向移动一格，每格宽度为 100 个像素点，那么它每帧移动的像素点数 _move_speed &#x3D; 100 &#x2F; t。我们把这个结论拓展到二维空间中，引入二维速度向量，即可达成坐标的有效更新：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Reunion</span><span class="token double-colon punctuation">::</span><span class="token function">move</span><span class="token punctuation">(</span>size_t<span class="token operator">&amp;</span> hp<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 按速度向量更新坐标</span>
+    <span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> direction<span class="token punctuation">.</span>first<span class="token punctuation">,</span> <span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> direction<span class="token punctuation">.</span>second<span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 判断是否到达下一个路径点，误差一个像素点</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span>_route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+        <span class="token comment">// 在逻辑层上，移动至下一个路径点</span>
+        <span class="token function">removeFrom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">addTo</span><span class="token punctuation">(</span>_route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _route<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 更新速度向量</span>
+        direction<span class="token punctuation">.</span>first <span class="token operator">=</span> <span class="token punctuation">(</span>_route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _place<span class="token operator">-></span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">100</span> <span class="token operator">*</span> _move_speed<span class="token punctuation">;</span>
+        direction<span class="token punctuation">.</span>second <span class="token operator">=</span> <span class="token punctuation">(</span>_route<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _place<span class="token operator">-></span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">100</span> <span class="token operator">*</span> _move_speed<span class="token punctuation">;</span>
+
+        <span class="token comment">// 如果到达我方基地，移除该怪物，并减少基地生命值</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>_place<span class="token operator">-></span><span class="token function">isBase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            _is_active <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">--</span>hp <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">throw</span> <span class="token function">LoseGameException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>看似大功告成，实际上这段代码并不是完美的：</p>
+<div class="warning">
+    <blockquote>
+        <p>在某些前提条件，如特殊的 _move_speed 值或斜飞路径下，速度向量的各分量可能并非整数。</p>
+        <p>但 (x,y) 坐标点必须为整数，那么速度向量的小数部分就会被舍弃。</p>
+        <p>每 20ms 进行移动时，新坐标都会向着固定方向产生固定偏差，则最后的误差可能是难以想象的，甚至会导致无法到达预计目标点。</p>
+    </blockquote>
+</div>
+
+<p>这个问题几乎折磨了我一夜，最后的解决方案如下：</p>
+<div class="success">
+    <blockquote>
+        <p>分别记录速度向量的小数部分和整数部分，整数部分每帧直接加到坐标上。</p>
+        <p>小数部分每帧独立计算累加和，一旦累加和向量某分量的绝对值大于 1，就在当前帧把 ±1 加到坐标对应分量上，±1 的符号取决于溢出分量的符号。</p>
+    </blockquote>
+</div>
+
+<p>事实上，这个解决方案十分精确，在斜飞时，它可以误差两个像素点到达指定位置。</p>
+<p>但源代码过长，就不放上来了，感兴趣的读者可至我的 github 仓库内下载查看。</p>
+<h3 id="干员朝向机制"><a href="#干员朝向机制" class="headerlink" title="干员朝向机制"></a>干员朝向机制</h3><p>如果让我说《明日方舟》区别于其他塔防游戏的独特之处，我想阻挡数和干员朝向是当之无愧的两颗明珠。</p>
+<blockquote>
+<p>有限的阻挡数使得有选择地漏怪成为可能；<br>而干员朝向特化了我方单位的攻击范围，极大地丰富了游戏部署策略的可能。</p>
+</blockquote>
+<p>阻挡数的实现较为简单，我下面主要说一说干员朝向机制：</p>
+<div class="info">
+    <blockquote>
+        <p>加入干员朝向机制后，我方单位的实际攻击范围由三个元素共同决定：</p>
+        <p>干员纸面攻击范围、干员部署位置、干员朝向。</p>
+    </blockquote>
+</div>
+
+<ol>
+<li>干员纸面攻击范围是干员的属性，一般来讲是一个矩形。我这里用 <code>QPair&lt;int, int&gt; getAttackArea()</code> 来简单表示。</li>
+<li>干员部署位置由玩家在游戏时确定，是地图上的一个点。由于在逻辑层中，我们之前已经把地图离散化表示为二维地图格数组，这里可以直接用一个格子来表示干员部署位置。</li>
+<li>干员朝向也由玩家指定，且必然是 上、下、左、右 中的一个方向，我们完全可以对其进行分类讨论。</li>
+</ol>
+<p>最后，干员的实际攻击范围也可以表示为格子的集合。由于格子与其上的怪物也是绑定的，这实际上有利于我们的索敌机制。</p>
+<p>由于 GameState 全知全能，我们让它来在部署干员时计算其有效攻击范围：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">GameState</span><span class="token double-colon punctuation">::</span><span class="token function">findAttackPlaces</span><span class="token punctuation">(</span>Operator<span class="token operator">*</span> op<span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> height <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> width <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment">// 获取干员朝向，并参考其纸面攻击范围，确定相对于部署位置的实际攻击范围。</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>op<span class="token operator">-></span><span class="token function">getOrientation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">case</span> UP<span class="token operator">:</span>
+        height <span class="token operator">=</span> op<span class="token operator">-></span><span class="token function">getAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+        width <span class="token operator">=</span> op<span class="token operator">-></span><span class="token function">getAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">;</span>
+        x <span class="token operator">=</span> op<span class="token operator">-></span><span class="token function">getPlace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">showID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>second <span class="token operator">-</span> width <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        y <span class="token operator">=</span> op<span class="token operator">-></span><span class="token function">getPlace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">showID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first <span class="token operator">-</span> <span class="token punctuation">(</span>height <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token comment">// 其余三个方向同理，这里不再赘述</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 在表示地图的二维数组中，取出所有被该干员攻击范围覆盖的格子，注意不要访问越界。</span>
+    QVector<span class="token operator">&lt;</span>Place<span class="token operator">*</span><span class="token operator">></span> attack_area<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token generic-function"><span class="token function">min</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>x <span class="token operator">+</span> width<span class="token punctuation">,</span> _map<span class="token operator">-></span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token generic-function"><span class="token function">min</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>y <span class="token operator">+</span> height<span class="token punctuation">,</span> _map<span class="token operator">-></span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            attack_area<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>_map<span class="token punctuation">)</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 把攻击范围传递给干员保存。</span>
+    op<span class="token operator">-></span><span class="token function">setAttackPlaces</span><span class="token punctuation">(</span>attack_area<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="模板的浅浅应用"><a href="#模板的浅浅应用" class="headerlink" title="模板的浅浅应用"></a>模板的浅浅应用</h3><p>你可能注意到，在上文防止数组越界的过程中，我用了模板函数 max 和 min 来限制范围。</p>
+<p>事实上，模板是很适合写泛型的 helper 函数的：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">inline</span> T <span class="token function">max</span><span class="token punctuation">(</span>T x<span class="token punctuation">,</span> T y<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">></span> y<span class="token punctuation">)</span> <span class="token operator">?</span> x <span class="token operator">:</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">inline</span> T <span class="token function">min</span><span class="token punctuation">(</span>T x<span class="token punctuation">,</span> T y<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> y<span class="token punctuation">)</span> <span class="token operator">?</span> x <span class="token operator">:</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span>
+T <span class="token function">getRandomUnit</span><span class="token punctuation">(</span>QVector<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">&amp;</span> units<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">srand</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">static_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">unsigned</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> units<span class="token punctuation">[</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> units<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<blockquote>
+<p>省时省力省心，你值得拥有</p>
+</blockquote>
+<h3 id="优化交互方式"><a href="#优化交互方式" class="headerlink" title="优化交互方式"></a>优化交互方式</h3><p>既然有了图形化界面了，对应的鼠标交互也得跟上才是~</p>
+<p>在本游戏中，交互的大头落在了部署干员这件事上。那么又回到那个熟悉的问题：</p>
+<blockquote>
+<p>把大象放进冰箱需要几步？</p>
+</blockquote>
+<p>对应的，我们必须把“干员部署”这一概念逐层细分，类似于广度优先搜索那样，才能知道我们应该如何做。</p>
+<div class="success">
+    <blockquote>
+        <p>把干员放进战场需要几步？</p>
+        <p>第一步：选择要部署的干员</p>
+        <p>第二步：选择干员部署位置</p>
+        <p>第三步：选择干员朝向</p>
+    </blockquote>
+</div>
+
+<p>我计划这三步都由鼠标完成互动，那么我们必须在后面的步骤中记录下前面步骤的状态：</p>
+<ol>
+<li>第一步中：记录下所选择的干员，直到第三步结束</li>
+<li>第二步中：记录下干员部署位置，直到第三步结束</li>
+</ol>
+<p>第一步比较好解决：我把干员的大头照以 QLabel 形式放在游戏区域右下角，每次点击的时候，用 _operatorSelected 记录下所点击的干员。</p>
+<p>第二、三步，《明日方舟》中采取的是分别进行的模式。我做了一个小小的创新：</p>
+<div class="info">
+    <blockquote>
+        <p>点击要部署的格子并向 上、下、左、右 中的一个方向拖动光标，即可同时完成二、三步。</p>
+    </blockquote>
+</div>
+
+<p>这一点在实现上还是分为两部分的，且听我细细道来~</p>
+<p>伟大的 Qt 提供了鼠标点击事件和鼠标释放事件的支持，由于干员是与格子而非地图绑定的，所以我对 Place 类的对应函数进行重载：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Place</span><span class="token double-colon punctuation">::</span><span class="token function">mousePressEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 当鼠标左键按下时，记录下点击处的坐标</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token operator">-></span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        _prees_point <span class="token operator">=</span> event<span class="token operator">-></span><span class="token function">pos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">Place</span><span class="token double-colon punctuation">::</span><span class="token function">mouseReleaseEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 仍然是当鼠标左键释放时才触发</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token operator">-></span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 以释放处坐标与点击处坐标相减，得到鼠标位移向量 delta</span>
+    <span class="token keyword">int</span> delta_x <span class="token operator">=</span> event<span class="token operator">-></span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _prees_point<span class="token punctuation">.</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> delta_y <span class="token operator">=</span> event<span class="token operator">-></span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> _prees_point<span class="token punctuation">.</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 判断鼠标总的来说，是向左右位移得多还是向上下位移得多</span>
+    <span class="token comment">// 然后进一步，由位移的正负性判断具体的位移方向</span>
+    <span class="token comment">// 最后调用 GameState 的友元函数 deployOperator，把信息都交给它，完成干员的部署。</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>delta_x<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token function">abs</span><span class="token punctuation">(</span>delta_y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>delta_x <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">deployOperator</span><span class="token punctuation">(</span>_gamestate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> RIGHT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">deployOperator</span><span class="token punctuation">(</span>_gamestate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> LEFT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>delta_x<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token function">abs</span><span class="token punctuation">(</span>delta_y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>delta_y <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">deployOperator</span><span class="token punctuation">(</span>_gamestate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> UP<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">deployOperator</span><span class="token punctuation">(</span>_gamestate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> DOWN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<div class="warning">
+    <blockquote>
+        <p>这里要注意一点：必须监测鼠标的点击和释放事件，而不能检测鼠标移动事件。</p>
+        <p>如果我们把鼠标的整个移动过程当作一个整体，那么只有点击位置和释放位置是能代表这个整体的。</p>
+        <p>每一帧的移动都只是局部，而局部的移动方向往往不能充分反映整体，望周知。</p>
+    </blockquote>
+</div>
+
+<p>这其实与平均速度、瞬时速度之间的关系有异曲同工之处。</p>
+<p>此外，让我们回顾一下刚才的整个过程：</p>
+<div class="success">
+    <blockquote>
+        <p>先分步处理，每一步都造成状态的改变，最后应用这些状态的累积，得到目标计算结果（一个部署好的干员）。</p>
+    </blockquote>
+</div>
+
+<p>不知道各位读者有联想到什么没有，在这一节，我们其实实现了一个微型的有限状态机，或者不如说：</p>
+<p>我们的整个程序都只不过是一个稍大点的有限状态机。</p>
+<blockquote>
+<p>程序设计，很奇妙吧~</p>
+</blockquote>
+<h3 id="让小人动起来"><a href="#让小人动起来" class="headerlink" title="让小人动起来"></a>让小人动起来</h3><p>如何让场上的单位都有自己的待机动画呢，这实际上与先前的 update 函数更新有着相同的原理：</p>
+<div class="info">
+    <blockquote>
+        <p>只要相邻两帧之间的间隔足够短，相邻图片的内容差异足够小，图片的连续播放就会看起来像动画一样。</p>
+    </blockquote>
+</div>
+
+<p>Qt 为我们提供了 <code>void paintEvent(QPaintEvent*)</code> 虚函数，每当我们调用同一单位的 update 函数时，paintEvent 函数就会紧接着被调用。</p>
+<p>所以我们只需要一系列的图片，然后把它们扔进 paintEvent 函数里，就能做出人物的待机动画？</p>
+<p>NO NO NO ~</p>
+<div class="success">
+    <blockquote>
+        <p>事实上，伟大的明日方舟 wiki （https://prts.wiki ）已经为我们准备好了所有人物的 gif 动画。我们只需要每隔 20ms 从 gif 里截取一帧，设为人物的当前画面，就可以啦！</p>
+    </blockquote>
+</div>
+
+<blockquote>
+<p>快说：谢谢明日方舟 wiki。</p>
+</blockquote>
+<p>并且，为了人物动画看起来不那么单一，我们在攻击时设置 _is_attacking 标志位，绘出人物图像时按照 _is_attacking 的真值，选择截取不同的 gif：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Operator</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent<span class="token operator">*</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    QPainter <span class="token function">painter</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QImage image<span class="token punctuation">;</span>
+    <span class="token comment">// 人物总是在攻击状态和待机状态之间切换，选择截取需要的动画，将不需要的暂停，以节约资源</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>_is_attacking<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        _attack_movie<span class="token operator">-></span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _idle_movie<span class="token operator">-></span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        image <span class="token operator">=</span> _attack_movie<span class="token operator">-></span><span class="token function">currentImage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        _idle_movie<span class="token operator">-></span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _attack_movie<span class="token operator">-></span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        image <span class="token operator">=</span> _idle_movie<span class="token operator">-></span><span class="token function">currentImage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span><span class="token function">QRect</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span> image<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<div class="warning">
+    <blockquote>
+        <p>这样简单的播放暂停会导致另一个问题，即攻击与攻击动画不同步。</p>
+        <p>我暂时还没有想到什么简单明了的解决方案。</p>
+    </blockquote>
+</div>
+
+<p>可是就算这样，怎么还是显得比较单调捏……</p>
+<div class="info">
+    <blockquote>
+        <p>所以我们再增加一个受击动画，让受击单位泛红闪烁一下。为了过渡的自然性，再为这个泛红程度增加一点渐入渐出的效果。</p>
+    </blockquote>
+</div>
+
+<p>让我们分解这个问题：</p>
+<ol>
+<li>首先是受击的时候，要设置一个倒计时 <code>_is_attacked_count = 10</code>。每 20ms 更新一次，则泛红状态持续 200ms。</li>
+<li>然后在 paintEvent 的重载中调用 convertToRedImage 函数，处理所需要被展示的图片。</li>
+<li>在 convertToRedImage 内部，我们希望在 200ms 内，泛红的程度的增加量能先线性地增加，再线性地降低。<br> 于是求出 R 分量增加量函数 <code>100 - 20 * abs(_is_attacked_count - 5)</code>，并将其写入 convertToRedImage 中。</li>
+</ol>
+<p>作函数如下：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Infected</span><span class="token double-colon punctuation">::</span><span class="token function">convertToRedImage</span><span class="token punctuation">(</span>QImage<span class="token operator">&amp;</span> img<span class="token punctuation">,</span> <span class="token keyword">int</span> degree<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">//* 四通道 8bit-8bit-8bit-8bit 的 rgba 色彩模式，前三位分别表示 rgb，最后一位表示透明度</span>
+    <span class="token comment">//* 8bit 为每位的值域，每个像素点的四位在色彩空间数组中临近存储</span>
+    img <span class="token operator">=</span> <span class="token function">QImage</span><span class="token punctuation">(</span>img<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">convertToFormat</span><span class="token punctuation">(</span>QImage<span class="token double-colon punctuation">::</span>Format_RGBA8888<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">uint8_t</span><span class="token operator">*</span> rgb <span class="token operator">=</span> img<span class="token punctuation">.</span><span class="token function">bits</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//* 将 R 分量二次函数式地增加 300 个点，然后按同样规则衰退回原状态</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> img<span class="token punctuation">.</span><span class="token function">width</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> img<span class="token punctuation">.</span><span class="token function">height</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> new_red_degree <span class="token operator">=</span> rgb<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">-</span> <span class="token number">20</span> <span class="token operator">*</span> <span class="token function">abs</span><span class="token punctuation">(</span>degree <span class="token operator">-</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        rgb<span class="token punctuation">[</span>i <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> new_red_degree <span class="token operator">></span> <span class="token number">255</span> <span class="token operator">?</span> <span class="token number">255</span> <span class="token operator">:</span> new_red_degree<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>随后在刚才的 paintEvent 中 here 的位置添加两行代码即告成功：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>_is_attacked_count <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">convertToRedImage</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> _is_attacked_count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _is_attacked_count<span class="token operator">--</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="更多样的提示信息"><a href="#更多样的提示信息" class="headerlink" title="更多样的提示信息"></a>更多样的提示信息</h3><p>在命令行时代，我们只能通过文字来输出游戏状态。</p>
+<p>但现在不同了，不仅是图形化，更多样的提示信息才是我们所需要的。</p>
+<blockquote>
+<p>I need that ! ! !</p>
+</blockquote>
+<h4 id="人物血量显示"><a href="#人物血量显示" class="headerlink" title="人物血量显示"></a>人物血量显示</h4><p>你觉得血条怎样显示最方便简洁？</p>
+<div class="success">
+    <blockquote>
+        <p>可能你脑中已然闪过了 114514 个答案。但血条是什么？</p>
+        <p>从图形的角度来看，它可能真的只是一个长度正比于血量的红色长方体。</p>
+    </blockquote>
+</div>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">QBrush <span class="token function">red_brush</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span><span class="token string">"#EE0000"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span>red_brush<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置笔刷为红色</span>
+<span class="token keyword">float</span> rate <span class="token operator">=</span> <span class="token number">1.0</span> <span class="token operator">*</span> _health <span class="token operator">/</span> _max_health<span class="token punctuation">;</span>
+painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> rate <span class="token operator">*</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 从 (15, 5) 的位置开始，画一个最大大小为 80 * 5 的长方体</span></code></pre>
+
+<h4 id="干员攻击范围显示"><a href="#干员攻击范围显示" class="headerlink" title="干员攻击范围显示"></a>干员攻击范围显示</h4><p>正如前文已经提到过的，干员攻击范围同时受<strong>干员纸面攻击范围、干员部署位置、干员朝向</strong>三个属性影响。</p>
+<div class="info">
+    <blockquote>
+        <p>对于这种复杂的、不直观的内容，用易于理解的、直观的形式表示，这正是图形化界面的初衷。</p>
+    </blockquote>
+</div>
+
+<p>来吧，还记得我们的干员攻击范围在逻辑层是用什么存储的吗？地块的集合。攻击范围的显示也是在地块上。</p>
+<p>这就是说，对于一个干员，我们可以简单地召集他攻击范围内的所有地块，让它们分别显示出蓝色条条，就完成了整个攻击范围的显示。这正是：</p>
+<blockquote>
+<p>化整为零，分而治之。</p>
+</blockquote>
+<p>为了保证只要鼠标处于点击状态，就显示攻击范围，所以干员类的鼠标点击函数和鼠标释放函数都应该重载：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Operator</span><span class="token double-colon punctuation">::</span><span class="token function">mousePressEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token operator">-></span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Place<span class="token operator">*</span><span class="token operator">&amp;</span> place <span class="token operator">:</span> _attack_places<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            place<span class="token operator">-></span><span class="token function">paintAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">Operator</span><span class="token double-colon punctuation">::</span><span class="token function">mouseReleaseEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token operator">-></span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Place<span class="token operator">*</span><span class="token operator">&amp;</span> place <span class="token operator">:</span> _attack_places<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            place<span class="token operator">-></span><span class="token function">paintAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>为什么这两个函数内容完全一致呢？这里采用了一个相对简洁的写法，秘密在下头：</p>
+<div class="info">
+    <blockquote>
+        <p>地块类这边接收信息，通过改变标志位，来改变 paintEvent 的效果。这正是按照状态显示不同信息时的通用手法。</p>
+    </blockquote>
+</div>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Place</span><span class="token double-colon punctuation">::</span><span class="token function">paintAttackArea</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    _isPainted <span class="token operator">=</span> <span class="token operator">!</span>_isPainted<span class="token punctuation">;</span> <span class="token comment">// 打印状态取反，相比于 if-else 更简洁</span>
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token class-name">Place</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent<span class="token operator">*</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>_isPainted<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        QPainter <span class="token function">painter</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>NoPen<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 取消描边</span>
+        painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span><span class="token function">QBrush</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>blue<span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>FDiagPattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置刷子格式为蓝色条纹状</span>
+        painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 画！</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="通用的日志打印接口"><a href="#通用的日志打印接口" class="headerlink" title="通用的日志打印接口"></a>通用的日志打印接口</h4><p>为了复杂信息的说明，我还在游戏左下角留出了一个日志窗口。</p>
+<blockquote>
+<p>规格严格，功夫到家。</p>
+</blockquote>
+<p>秉持着以上原则，我为这个日志窗口封装了统一的日志打印函数，它负责打印出如下形式的日志：</p>
+<head/><body>
+    <p>
+        <span style=" font-weight:600;color:#66ccff;"> TYPE </span> info
+    </p>
+</body>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">printLog</span><span class="token punctuation">(</span><span class="token keyword">const</span> QString<span class="token operator">&amp;</span> color<span class="token punctuation">,</span> <span class="token keyword">const</span> QString<span class="token operator">&amp;</span> type<span class="token punctuation">,</span> <span class="token keyword">const</span> QString<span class="token operator">&amp;</span> info<span class="token punctuation">,</span> Map<span class="token operator">*</span> map_init<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">//* 仅在第一次调用时传参 map_init，形成闭包</span>
+    <span class="token keyword">static</span> Map<span class="token operator">*</span> map <span class="token operator">=</span> map_init<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>map<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        map<span class="token operator">-></span>ui<span class="token operator">-></span>text_log<span class="token operator">-></span><span class="token function">appendHtml</span><span class="token punctuation">(</span><span class="token function">QString</span><span class="token punctuation">(</span><span class="token raw-string string">R"(&lt;html>&lt;head/>&lt;body>&lt;p>
+                &lt;span style=" font-weight:600;color:%1;"> %2 &lt;/span> %3 
+                &lt;/p>&lt;/body>&lt;/html>)"</span><span class="token punctuation">)</span>
+                                    <span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span>
+                                    <span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span>
+                                    <span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>你可能会对代码中的 map_init 感到疑惑，事实上，printLog 不是 map 的成员函数，这意味着它无法在游戏初始化时自行“找到” map。可不找到 map 就无法用 text_log 打印日志信息，所以才采用了这个取巧的方法：</p>
+<div class="success">
+    <blockquote>
+        <p>通过函数内的静态变量构成闭包，在首次传参时确定下来。</p>
+    </blockquote>
+</div>
+
+<h3 id="时间管理者"><a href="#时间管理者" class="headerlink" title="时间管理者"></a>时间管理者</h3><p>众所周知，时间管理向来不是一件容易的事情，但由于之前的合理规划，我们的整个游戏逻辑是由一个时钟控制的：</p>
+<ol>
+<li><p>只需要将 _timer 的触发时间间隔减半，就能实现二倍速。</p>
+</li>
+<li><p>只需要将 _timer 暂停，就能实现游戏的暂停。</p>
+</li>
+</ol>
+<p>为什么我只说“整个游戏逻辑”是由一个时钟控制的，而不是“整个游戏”呢？</p>
+<p>区别在于，我力图达到图形层与逻辑层的尽量分离，每个单位重载了它的 timerEvent 以更新自身图像显示，这是全局 _timer 所不管的：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token class-name">Infected</span><span class="token double-colon punctuation">::</span><span class="token function">timerEvent</span><span class="token punctuation">(</span>QTimerEvent<span class="token operator">*</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">startTimer</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 启动计时器。这句话写在 Infected 的构造函数中</span></code></pre>
+
+<p>也恰因此，当我们控制时间的时候，二倍速和暂停都不会影响到对象的动画正常播放。我认为这一点不算坏。</p>
+<div class="warning">
+    <blockquote>
+        <p>经过试验，图像更新会消耗大量资源。如果不异步处理，则会造成严重的卡顿。</p>
+        <p>并且，图像更新基本上是“无害”的，也即不会造成逻辑层的影响，便不会导致数据竞争，可以放心使用多线程处理。</p>
+    </blockquote>
+</div>
+
+<h3 id="游戏如何结束"><a href="#游戏如何结束" class="headerlink" title="游戏如何结束"></a>游戏如何结束</h3><p>最后的最后，请让我回收一个开头的伏笔：</p>
+<div class="info">
+    <blockquote>
+        <p>在全局 update 函数中，我采用了一个 try-catch 语句来接收 GameOverException 类的异常。</p>
+        <p>把游戏结束定义为异常，这很怪，不是么？</p>
+    </blockquote>
+</div>
+
+<p>但此举实际上好处多多，最重要的一点在于：</p>
+<blockquote>
+<p>异常处理机制，使得游戏结束的信号可以迅速地脱离层层栈展开，以回到 update 函数内被马上处理掉。<br>这正是“游戏结束”与“异常”这两个看似毫不相关的概念之共性。</p>
+</blockquote>
+<p>简单地写一下代码吧家人们~</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">GameOverException</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">QException</span></span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">virtual</span> QString <span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">noexcept</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// what 函数必须是不抛出异常的</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">WinGameException</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">GameOverException</span></span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    QString <span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">noexcept</span> <span class="token keyword">override</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token string">"You Win"</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">LoseGameException</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">GameOverException</span></span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    QString <span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">noexcept</span> <span class="token keyword">override</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token string">"You Lose"</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
+<p>用基类引用类型捕获到异常之后，可以直接把 <code>exception.what()</code> 丢进 printLog 打印，而无需去管到底是玩家赢了还是输了。</p>
+<p>至此神功大成，你会发出由衷的赞叹：</p>
+<div class="success">
+    <blockquote>
+        <p>程序设计，真好啊~</p>
+    </blockquote>
+</div>
+
+<h2 id="资源链接"><a href="#资源链接" class="headerlink" title="资源链接"></a>资源链接</h2><p>github 仓库地址：</p>
+<blockquote>
+<p><a href="https://github.com/Heart-tide/proj-arknights">https://github.com/Heart-tide/proj-arknights</a></p>
+</blockquote>
+<p>游戏完整版下载地址：</p>
+<blockquote>
+<p>链接：<a href="https://wwu.lanzoub.com/iSLZf06ib75i">https://wwu.lanzoub.com/iSLZf06ib75i</a><br>密码：7kcd</p>
+</blockquote>
+<h2 id="在这一切之后"><a href="#在这一切之后" class="headerlink" title="在这一切之后"></a>在这一切之后</h2><p>屋外天色已晚，一切都沉入沉沉的夜色……</p>
+<p>望着这 2k 行的代码、6k 字博客，你有什么收获、又有什么遗憾呢？</p>
+<p>不管你想到了什么，请你记住它，然后——</p>
+<p>明天见，我的朋友！</p>
+<blockquote>
+<p>忽然抚尺一下，群响毕绝。撤屏视之，一人、一桌、一椅、一扇、一抚尺而已。<br>——林嗣环《口技》</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Programming</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>Qt</tag>
+        <tag>Arknights</tag>
       </tags>
   </entry>
 </search>
